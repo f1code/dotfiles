@@ -1,0 +1,2 @@
+# Specify 192.168.239.22 as server for the sssworld-local.com domain
+server=/sssworld-local.com/192.168.239.22
