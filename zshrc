@@ -14,7 +14,10 @@ top_prompt_parts=()
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory notify
+# append history (so history from multiple sessions is preserved) but ignore duplicates
+setopt appendhistory hist_ignore_all_dups
+# report status of background jobs
+setopt notify
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/nico/.zshrc'
