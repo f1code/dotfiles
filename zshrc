@@ -50,8 +50,11 @@ right_prompt_parts[2]=$'${vcs_info_msg_0_}'
 bindkey -v
 
 # restore some bindings
+# Documentation: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
 bindkey '^P' up-history
 bindkey '^N' down-history
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
@@ -116,6 +119,7 @@ alias ls='ls --color=auto'
 
 alias df='df -h'
 alias du='du -h'
+alias vi=vim
 
 # }}}
 
