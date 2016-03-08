@@ -10,7 +10,6 @@ top_prompt_parts=()
 
 # Shell Options {{{
 ##################################################
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -24,7 +23,7 @@ zstyle :compinstall filename '/home/nico/.zshrc'
 
 autoload -U colors && colors
 autoload -Uz compinit && compinit
-# End of lines added by compinstall
+bindkey -e
 # }}}
 
 # Git {{{
@@ -43,38 +42,6 @@ precmd() {
 }
 right_prompt_parts[2]=$'${vcs_info_msg_0_}'
 
-# }}}
-
-# Options for VIM mode {{{
-##################################################
-bindkey -v
-
-# restore some bindings
-# Documentation: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-
-# map jk for escape in insert mode
-bindkey -M viins 'jk' vi-cmd-mode
-
-# add a mode indication in the prompt
-function zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    right_prompt_parts[1]="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
-    set-rps1-from-parts 
-    zle reset-prompt
-}
-
-# not really needed for line-init, and it messes up multiline prompts
-#zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=20          # Reduce timeout when switching edit mode
 # }}}
 
 # Prompt {{{
