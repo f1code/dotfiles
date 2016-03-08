@@ -38,7 +38,7 @@ rofi.color-normal:                   #2f343f, #f3f4f5, #2f343f, #2f343f, #9575cd
 ! Color scheme for urgent row: bg, fg, bg alt, hlbg, hlfg
 rofi.color-urgent:                   argb:00000000, #ffa0a0, argb:00000000, #ffa0a0,#0060a0
 ! Color scheme for active row: bg, fg, bg alt, hlbg, hlfg
-rofi.color-active:                   argb:00000000, #a0ffa0, argb:00000000, #a0ffa0,#0060a0
+rofi.color-active:                   argb:00000000, #a0a0a0, argb:00000000, argb:00000000, #75ffad
 ! Color scheme window: bg, border, separator
 rofi.color-window:                   #2f343f, #00b0ef, #2f343f
 rofi.font:                          Deja Vu Sans 18

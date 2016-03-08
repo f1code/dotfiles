@@ -56,33 +56,48 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # Workspace Setup {{{
 
 # Initial workspaces
+# Primary
 set $workspace1 1
-set $workspace2 2
-set $workspace3 3
-set $workspace4 4
-set $workspace5 5
-set $workspace6 6
+# VBox
+set $workspace2 "2:VM"
+# Remmina
+set $workspace3 "3:RDP"
+# XTIVIA Chrome
+set $workspace4 "4:XTIVIA"
+# Gmail Chrome
+set $workspace5 "5:GMAIL"
+# ILX Chrome
+set $workspace6 "6:ILX"
+# next 2 are scratch
 set $workspace7 7
 set $workspace8 8
+# pidgin, audacious, sticky stuff for left monitor
 set $workspace9 9
 set $workspace10 10
 
+# where stuff gets done
+set $monitor-main DVI-0
+# email, web etc
+set $monitor-comm DVI-1
+# monitor, IM, music
+set $monitor-ctrl DVI-1
+
 #/1/\=i/g | endforMiddle monitor
-workspace $workspace1 output DisplayPort-0
-workspace $workspace2 output DisplayPort-0
-workspace $workspace3 output DisplayPort-0
+workspace $workspace1 output $monitor-main
+workspace $workspace2 output $monitor-main
+workspace $workspace3 output $monitor-main
 # Right monitor
-workspace $workspace6 output DVI-1
-workspace $workspace4 output DVI-1
-workspace $workspace5 output DVI-1
+workspace $workspace6 output $monitor-comm
+workspace $workspace4 output $monitor-comm
+workspace $workspace5 output $monitor-comm
 # Left monitor
-workspace $workspace2 output DVI-0
-workspace $workspace9 output DVI-0
+workspace $workspace9 output $monitor-ctrl
+# workspace $workspace9 output DVI-0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
     tray_output DVI-1
     colors {
         background $bg-color
@@ -215,18 +230,18 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # Use mod-Control-Up and Down to rotate through the workspace list.
-bindsym $mod+Control+Up workspace prev
-bindsym $mod+Control+Down workspace next
+bindsym $mod+n workspace prev
+bindsym $mod+o workspace next
 
 # Use mod-Shift-Control-Up and Down to move the selected window to an
 # adjacent workspace. (This does *not* change your view to that workspace,
 # it just "zaps" the window there.)
-bindsym $mod+Shift+Control+Up move workspace prev
-bindsym $mod+Shift+Control+Down move workspace next
+bindsym $mod+Shift+n move workspace prev
+bindsym $mod+Shift+o move workspace next
 
 # Alternate workspace
-bindsym $mod+Escape workspace back_and_forth
-bindsym $mod+Shift+Escape move container to workspace back_and_forth
+bindsym $mod+z workspace back_and_forth
+bindsym $mod+Shift+z move container to workspace back_and_forth
 
 # }}}
 
@@ -235,15 +250,16 @@ bindsym $mod+Shift+Escape move container to workspace back_and_forth
 # kill focused window
 bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
-# bindsym Shift+Menu exec dmenu_run
+#bindsym Shift+Menu exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym Menu exec --no-startup-id i3-dmenu-desktop
 # Note configuration for rofi color is in .Xresources
-bindsym Menu exec rofi -show drun 
-bindsym Shift+Menu exec rofi -show run 
+bindsym $mod+d exec rofi -show drun 
+bindsym $mod+Shift+d exec rofi -show run 
+bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
 
 # reload the configuration file
@@ -278,8 +294,13 @@ bindsym $mod+XF86Mail exec ~/bin/browser-ilx
 # File browser
 bindsym XF86Search exec thunar
 # Screenshots
-bindsym Shift+Print exec shutter -s
-
+#  PrintScreen = Capture to clipboard
+bindsym Print exec escrotum -s -C
+#  Start+Print = Capture and edit
+bindsym $mod+Print exec escrotum -s /tmp/screenshot.png && pinta /tmp/screenshot.png
+bindsym $mod+Shift+Print exec pinta
+bindsym Ctrl+XF86Calculator exec gsimplecal
+bindsym XF86Calculator exec urxvt -name urxvt-floaty -e python
 
 
 # }}}
@@ -341,21 +362,21 @@ bindsym button8 move right
 for_window [class="VirtualBox"] floating enable, move container to workspace $workspace2
 for_window [instance="urxvt-floaty"] floating enable
 for_window [class="pidgin"] move container to workspace $workspace9
-for_window [instance="vlc-startup"] move container to workspace $workspace9
+for_window [instance="audacity"] move container to workspace $workspace9
 
 # }}}
 
 # {{{ Startup 
 
 #exec --no-startup-id i3-msg 'workspace 9; exec vlc; exec pidgin; workspace 5: ILX; exec ~/bin/chromium-ilx; workspace 3: RDP; exec remmina; workspace 4: XTIVIA; exec ~/bin/chromium-xtivia; workspace 2: VM; exec virtualbox; workspace 1'
-exec --no-startup-id i3-msg 'workspace $workspace9; exec pidgin; workspace $workspace1'
 # exec --no-startup-id i3-msg 'workspace 5: ILX; exec chromium --profile-directory=Profile\\ 3'
-# exec --no-startup-id i3-msg 'workspace 3: RDP; exec remmina'
+exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
 # #exec chromium --profile-directory=Profile\\ 3
 # exec --no-startup-id i3-msg 'workspace 4: XTIVIA'
 # exec chromium --profile-directory=Profile\\ 2
 # exec --no-startup-id i3-msg 'workspace 1'
-#
+exec pidgin
+exec audacious
 # Compton provides transparency (which we only use for Rofi)
 exec --no-startup-id compton -b
 
