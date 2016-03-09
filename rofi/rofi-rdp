@@ -1,5 +1,8 @@
 #!/bin/zsh
 # vim: ft=zsh
+#
+# Wrapper to invoke rofi with a list of hosts and call xfreerdp.
+# The hosts are stored in ~/.rdp-hosts, in a format:
 
 # Name : Address : User : Domain : Password
 
