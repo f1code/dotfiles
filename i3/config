@@ -76,6 +76,7 @@ set $workspace9 9
 set $workspace10 10
 
 # where stuff gets done
+# set $monitor-main DisplayPort-0
 set $monitor-main DVI-0
 # email, web etc
 set $monitor-comm DVI-1
@@ -257,8 +258,8 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym Menu exec --no-startup-id i3-dmenu-desktop
 # Note configuration for rofi color is in .Xresources
-bindsym $mod+d exec rofi -show drun 
-bindsym $mod+Shift+d exec rofi -show run 
+bindsym Mod1+F2 exec rofi -show drun 
+bindsym $mod+F2 exec rofi -show run 
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
 
@@ -300,7 +301,7 @@ bindsym Print exec escrotum -s -C
 bindsym $mod+Print exec escrotum -s /tmp/screenshot.png && pinta /tmp/screenshot.png
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
-bindsym XF86Calculator exec urxvt -name urxvt-floaty -e python
+bindsym XF86Calculator exec urxvt -name python-floaty -e python
 
 
 # }}}
@@ -360,21 +361,16 @@ bindsym button8 move right
 # Client Setup / Application Rules {{{
 
 for_window [class="VirtualBox"] floating enable, move container to workspace $workspace2
-for_window [instance="urxvt-floaty"] floating enable
-for_window [class="pidgin"] move container to workspace $workspace9
-for_window [instance="audacity"] move container to workspace $workspace9
+for_window [class="URxvt" instance="floaty"] floating enable
+assign [instance="Pidgin"] → $workspace9
+assign [instance="audacious"] → $workspace9
 
 # }}}
 
 # {{{ Startup 
 
-#exec --no-startup-id i3-msg 'workspace 9; exec vlc; exec pidgin; workspace 5: ILX; exec ~/bin/chromium-ilx; workspace 3: RDP; exec remmina; workspace 4: XTIVIA; exec ~/bin/chromium-xtivia; workspace 2: VM; exec virtualbox; workspace 1'
 # exec --no-startup-id i3-msg 'workspace 5: ILX; exec chromium --profile-directory=Profile\\ 3'
 exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
-# #exec chromium --profile-directory=Profile\\ 3
-# exec --no-startup-id i3-msg 'workspace 4: XTIVIA'
-# exec chromium --profile-directory=Profile\\ 2
-# exec --no-startup-id i3-msg 'workspace 1'
 exec pidgin
 exec audacious
 # Compton provides transparency (which we only use for Rofi)
