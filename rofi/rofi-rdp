@@ -11,12 +11,24 @@ get_rdp_hosts() {
 }
 
 get_rdp_params() {
-    (grep "^$1:" ~/.rdp-hosts | 
-    awk -F: '{system("xfreerdp -grab-keyboard /p:"$5" /d:"$4" /u:"$3" /v:"$2" /f +clipboard /cert-ignore")}') || notify-send -u critical "Connection Failed"
+    line=$(grep "^$1:" ~/.rdp-hosts)
+    address=$(echo $line | cut -d: -f2)
+    domain=$(echo $line | cut -d: -f4)
+    username=$(echo $line | cut -d: -f3)
+    password=$(echo $line | cut -d: -f5)
+    if ! xfreerdp -grab-keyboard /p:"$password" /d:$domain /u:$username /v:$address /f +clipboard /cert-ignore > /tmp/xfreerdp.log 2>&1
+    then
+        msg=$(grep ERROR /tmp/xfreerdp.log | cut -d- -f2-)
+        notify-send -u critical "Connection Failed" "$msg"
+    else
+        rm /tmp/xfreerdp.log
+    fi
+    #awk -F: '{system("xfreerdp -grab-keyboard /p:"$5" /d:"$4" /u:"$3" /v:"$2" /f +clipboard /cert-ignore")}') || notify-send -u critical "Connection Failed"
 }
 
 RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP:")
 
-if [[ ! -z $RDP_HOST ]]; then
+if [[ ! -z $RDP_HOST ]]
+then
     get_rdp_params $RDP_HOST
 fi
