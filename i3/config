@@ -12,6 +12,7 @@
 # General Config {{{
 #
 set $mod Mod4
+set $script-dir ~/.config/i3/scripts
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -258,8 +259,12 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym Menu exec --no-startup-id i3-dmenu-desktop
 # Note configuration for rofi color is in .Xresources
+# Rofi regular (desktop entries) menu
 bindsym Mod1+F2 exec rofi -show drun 
+# Rofi run command
 bindsym $mod+F2 exec rofi -show run 
+# Rofi RDP connect
+bindsym $mod+F3 exec $script-dir/rofi-rdp
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
 
@@ -289,16 +294,16 @@ bindsym $mod+g exec gvim
 # Floating terminal
 bindsym $mod+t exec urxvt -name urxvt-floaty
 # Web browsers - different configs
-bindsym XF86HomePage exec ~/bin/browser-default
-bindsym XF86Mail exec ~/bin/browser-xtivia
-bindsym $mod+XF86Mail exec ~/bin/browser-ilx
+bindsym XF86HomePage exec --no-startup-id $script-dir/browser-default
+bindsym XF86Mail exec --no-startup-id $script-dir/browser-xtivia
+bindsym $mod+XF86Mail exec --no-startup-id $script-dir/browser-ilx
 # File browser
 bindsym XF86Search exec thunar
 # Screenshots
 #  PrintScreen = Capture to clipboard
-bindsym Print exec escrotum -s -C
+bindsym Print exec --no-startup-id $script-dir/screenshot
 #  Start+Print = Capture and edit
-bindsym $mod+Print exec escrotum -s /tmp/screenshot.png && pinta /tmp/screenshot.png
+bindsym $mod+Print exec --no-startup-id $script-dir/screenshot edit
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
 bindsym XF86Calculator exec urxvt -name python-floaty -e python

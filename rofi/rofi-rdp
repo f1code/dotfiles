@@ -1,0 +1,19 @@
+#!/bin/zsh
+# vim: ft=zsh
+
+# Name : Address : User : Domain : Password
+
+get_rdp_hosts() {
+    grep -v '^#' ~/.rdp-hosts | cut -d ':' -f 1
+}
+
+get_rdp_params() {
+    (grep "^$1:" ~/.rdp-hosts | 
+    awk -F: '{system("xfreerdp -grab-keyboard /p:"$5" /d:"$4" /u:"$3" /v:"$2" /f +clipboard /cert-ignore")}') || notify-send -u critical "Connection Failed"
+}
+
+RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP:")
+
+if [[ ! -z $RDP_HOST ]]; then
+    get_rdp_params $RDP_HOST
+fi

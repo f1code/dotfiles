@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+cd /tmp
+
+if [[ "$1" = "edit" ]] ; then
+    escrotum -s -e "pinta \$f" || notify-send "Error - could not capture image"
+else
+    if escrotum -s -e "xclip -t image/png -selection clipboard \$f; rm \$f"; then 
+        notify-send -u low "Image captured to clipboard"
+    else
+        notify-send "Error - could not capture image"
+    fi
+fi

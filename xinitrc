@@ -1,5 +1,5 @@
 [ -f ~/.xprofile ] && source ~/.xprofile
-[ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources
+[ -f ~/.dotfiles/Xresources ] && xrdb -merge -I$HOME/.dotfiles ~/.dotfiles/Xresources
 numlockx on
 dunst &
 # Note xsetroot does not work with Compton
