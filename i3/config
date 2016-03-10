@@ -133,11 +133,6 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# focus floating window
-bindsym $mod+Shift+Tab focus floating
-# back to tiling
-bindsym $mod+Ctrl+Tab focus tiling
-
 # move focused window (within a layout)
 # bindsym $mod+Shift+h move left
 # bindsym $mod+Shift+j move down
@@ -375,7 +370,7 @@ assign [instance="audacious"] → $workspace9
 # {{{ Startup 
 
 # exec --no-startup-id i3-msg 'workspace 5: ILX; exec chromium --profile-directory=Profile\\ 3'
-exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
+# exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
 exec pidgin
 exec audacious
 # Compton provides transparency (which we only use for Rofi)

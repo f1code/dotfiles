@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # Wrapper to take a screenshot with escrotum and save it to the clipboard,
 # sending a notification when complete.

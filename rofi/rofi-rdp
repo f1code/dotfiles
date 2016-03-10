@@ -1,5 +1,5 @@
-#!/bin/zsh
-# vim: ft=zsh
+#!/bin/sh
+# vim: ft=sh
 #
 # Wrapper to invoke rofi with a list of hosts and call xfreerdp.
 # The hosts are stored in ~/.rdp-hosts, in a format:
@@ -16,7 +16,8 @@ get_rdp_params() {
     domain=$(echo $line | cut -d: -f4)
     username=$(echo $line | cut -d: -f3)
     password=$(echo $line | cut -d: -f5)
-    if ! xfreerdp -grab-keyboard /p:"$password" /d:$domain /u:$username /v:$address /f +clipboard /cert-ignore > /tmp/xfreerdp.log 2>&1
+    # Disabling glyph-cache improves performance in scrolling terminal windows
+    if ! xfreerdp -grab-keyboard /bpp:16 +compression /network:broadband-low /jpeg-quality:60 -glyph-cache /p:"$password" /d:$domain /u:$username /v:$address /f +clipboard /cert-ignore > /tmp/xfreerdp.log 2>&1
     then
         msg=$(grep ERROR /tmp/xfreerdp.log | cut -d- -f2-)
         notify-send -u critical "Connection Failed" "$msg"
@@ -28,7 +29,7 @@ get_rdp_params() {
 
 RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP:")
 
-if [[ ! -z $RDP_HOST ]]
+if [[ ! -z "$RDP_HOST" ]]
 then
-    get_rdp_params $RDP_HOST
+    get_rdp_params "$RDP_HOST"
 fi
