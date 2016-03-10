@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/sh
+# vim:ft=sh
 
 if [[ -n $BLOCK_BUTTON ]] 
 then

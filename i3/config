@@ -20,8 +20,8 @@ set $script-dir ~/.config/i3/scripts
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
-#font pango:DejaVu Sans 9
+#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans 9
 #font pango:System San Francisco Display 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
