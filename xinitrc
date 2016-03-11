@@ -11,6 +11,7 @@ fi
 [ -f ~/.dotfiles/Xresources ] && xrdb -merge -I$HOME/.dotfiles ~/.dotfiles/Xresources
 numlockx on
 dunst &
+dropbox &
 # Note xsetroot does not work with Compton
 hsetroot -solid '#111111'
 exec i3

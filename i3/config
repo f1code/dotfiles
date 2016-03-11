@@ -150,8 +150,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Move window to left / right monitor
-bindsym $mod+Ctrl+Left move container to output left, focus output left
-bindsym $mod+Ctrl+Right move container to output right, focus output right
+bindsym $mod+Ctrl+j move container to output left, focus output left
+bindsym $mod+Ctrl+semicolon move container to output right, focus output right
 
 
 # }}}
@@ -288,6 +288,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+g exec gvim
 # Floating terminal
 bindsym $mod+t exec urxvt -name urxvt-floaty
+# Top... float it by default
+bindsym $mod+Shift+t exec urxvt -name top-floaty -e top
 # Web browsers - different configs
 bindsym XF86HomePage exec --no-startup-id $script-dir/browser-default
 bindsym XF86Mail exec --no-startup-id $script-dir/browser-xtivia

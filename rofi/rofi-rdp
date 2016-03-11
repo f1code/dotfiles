@@ -16,9 +16,10 @@ get_rdp_params() {
     then
         exit 1
     fi
-    IFS=: read name address username domain password <<< "$line"
+    IFS=: read name address username domain password port <<< "$line"
 
-    echo $address
+    [[ -n "$port" ]] && address="$address:$port"
+
     # Disabling glyph-cache improves performance in scrolling terminal windows
     if ! xfreerdp -grab-keyboard /bpp:16 +compression /network:broadband-low /jpeg-quality:60 -glyph-cache /p:"$password" /d:$domain /u:$username /v:$address /f +clipboard /cert-ignore > /tmp/xfreerdp.log 2>&1
     then
