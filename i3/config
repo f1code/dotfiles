@@ -20,8 +20,8 @@ set $script-dir ~/.config/i3/scripts
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-font pango:DejaVu Sans 9
+font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans 9
 #font pango:System San Francisco Display 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -153,6 +153,9 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+Ctrl+j move container to output left, focus output left
 bindsym $mod+Ctrl+semicolon move container to output right, focus output right
 
+# Go to urgent window
+bindsym $mod+u [urgent=latest] focus
+bindsym $mod+Shift+u [urgent=oldest] focus
 
 # }}}
 
@@ -273,10 +276,12 @@ bindsym $mod+Shift+e exec "gvim ~/.config/i3/config"
 
 # Volume control... need to adjust those for multiple channels though
 # TODO; write small app that will check current default sink and adjust corresponding channel
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
-bindsym $mod+XF86AudioMute exec --no-startup-id pactl set-default-sink 0
+bindsym XF86AudioRaiseVolume exec --no-startup-id $script-dir/media up
+bindsym XF86AudioLowerVolume exec --no-startup-id $script-dir/media down
+bindsym XF86AudioPlay exec --no-startup-id $script-dir/media pauseplay
+bindsym Ctrl+XF86AudioPlay exec --no-startup-id $script-dir/media next
+bindsym Shift+XF86AudioPlay exec --no-startup-id $script-dir/media prev
+bindsym XF86AudioMute exec --no-startup-id $script-dir/media mute
 
 
 # }}}

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+INSTANCE=audacious
+# 1 = headset
+# 2 = speaker
+SINK="alsa_output.usb-Corsair_Vengeance_2100-00.analog-stereo"
+# We could use pacmd list-sink-inputs to retrieve the current sinks
+# http://askubuntu.com/questions/71863/how-to-change-pulseaudio-sink-with-pacmd-set-default-sink-during-playback
+
+case "$1" in
+    up)
+        pactl set-sink-volume $SINK +1%
+        ;;
+    down)
+        pactl set-sink-volume $SINK -1%
+        ;;
+    mute)
+        pactl set-sink-mute $SINK toggle
+        ;;
+    next)
+        playerctl -p $INSTANCE next
+        ;;
+    prev)
+        playerctl -p $INSTANCE previous
+        ;;
+    pauseplay)
+        playerctl -p $INSTANCE play-pause
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+pkill -RTMIN+10 i3blocks
