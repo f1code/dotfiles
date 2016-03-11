@@ -11,7 +11,7 @@ get_rdp_hosts() {
 }
 
 get_rdp_params() {
-    line=$(grep "^$1:" ~/.rdp-hosts)
+    line=$(grep "^$1:" ~/.rdp-hosts | tr -d ' ')
     if [[ -z "$line" ]]
     then
         exit 1
