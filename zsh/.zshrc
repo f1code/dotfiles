@@ -15,11 +15,15 @@ HISTSIZE=1000
 SAVEHIST=1000
 # report status of background jobs
 setopt notify
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
 zstyle :compinstall filename '/home/nico/.zshrc'
 
+# Globbing
+setopt extended_glob
+
+# Colors
 autoload -U colors && colors
+
 # Completion
 autoload -Uz compinit && compinit
 # use menus for completion
@@ -101,6 +105,10 @@ alias ls='ls --color=auto'
 alias df='df -h'
 alias du='du -h'
 alias vi=vim
+
+# Global aliases
+alias -g L="|less"
+alias -g NUL="> /dev/null 2>&1"
 
 # }}}
 
