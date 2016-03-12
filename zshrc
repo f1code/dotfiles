@@ -13,8 +13,6 @@ top_prompt_parts=()
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-# append history (so history from multiple sessions is preserved) but ignore duplicates
-setopt appendhistory hist_ignore_all_dups
 # report status of background jobs
 setopt notify
 # End of lines configured by zsh-newuser-install
@@ -22,7 +20,23 @@ setopt notify
 zstyle :compinstall filename '/home/nico/.zshrc'
 
 autoload -U colors && colors
+# Completion
 autoload -Uz compinit && compinit
+# use menus for completion
+zstyle ':completion:*' menu select
+# let's use the tag name as group name
+zstyle ':completion:*' group-name ''
+setopt completealiases
+
+# History
+# append history (so history from multiple sessions is preserved) but ignore duplicates
+setopt appendhistory hist_ignore_all_dups 
+setopt share_history
+# show only past commands beginning with the current input
+[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
+[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
+
+# Use Emacs key bindings (tried VI but ended up being too much trouble)
 bindkey -e
 # }}}
 
