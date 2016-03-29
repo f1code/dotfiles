@@ -7,28 +7,35 @@ SINK="alsa_output.usb-Corsair_Vengeance_2100-00.analog-stereo"
 # We could use pacmd list-sink-inputs to retrieve the current sinks
 # http://askubuntu.com/questions/71863/how-to-change-pulseaudio-sink-with-pacmd-set-default-sink-during-playback
 
+SLEEP=0.01
+
 case "$1" in
     up)
         pactl set-sink-volume $SINK +1%
         ;;
     down)
-        pactl set-sink-volume $SINK -1%
+        pactl set-sink-volume $SINK -3%
         ;;
     mute)
         pactl set-sink-mute $SINK toggle
         ;;
     next)
         playerctl -p $INSTANCE next
+        # Need a bigger delay for those, or the players won't 
+        # have "locked in" yet
+        SLEEP=0.7
         ;;
     prev)
         playerctl -p $INSTANCE previous
+        SLEEP=0.7
         ;;
     pauseplay)
         playerctl -p $INSTANCE play-pause
+        SLEEP=0.3
         ;;
     *)
         exit 1
         ;;
 esac
 
-pkill -RTMIN+10 i3blocks
+sleep $SLEEP && pkill -RTMIN+10 i3blocks
