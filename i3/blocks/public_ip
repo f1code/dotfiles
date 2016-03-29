@@ -6,4 +6,7 @@ if (( $? > 0 )); then
 else
     IP=`echo $IP | tr -d '"'`
     echo "{\"full_text\": \"$IP\", \"color\": \"#859900\"}"
+    if [ "$BLOCK_BUTTON" = "3" ]; then
+        echo -n $IP | xclip
+    fi
 fi
