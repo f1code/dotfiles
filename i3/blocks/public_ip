@@ -2,10 +2,13 @@
 
 IP=`dig @ns1.google.com -t txt o-o.myaddr.l.google.com +short 2>/dev/null`
 if (( $? > 0 )); then
-    echo '{"full_text": "DOWN", "color": "#ff0000"}'
+    echo "DOWN"
+    echo "DOWN"
+    echo "#ff0000"
 else
     IP=`echo $IP | tr -d '"'`
-    echo "{\"full_text\": \"$IP\", \"color\": \"#859900\"}"
+    #echo "{\"full_text\": \"$IP\", \"color\": \"#859900\"}"
+    echo $IP
     if [ "$BLOCK_BUTTON" = "3" ]; then
         echo -n $IP | xclip
     fi

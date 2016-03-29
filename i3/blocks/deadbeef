@@ -1,0 +1,5 @@
+#!/bin/sh
+
+TEXT=`deadbeef --nowplaying "%a - %t" 2>/dev/null`
+echo $TEXT
+echo $TEXT | cut -d '-' -f 1
