@@ -2,6 +2,8 @@
 URxvt*background: #1B1B1B
 URxvt*foreground: #cccccc
 URxvt*scrollBar: false
+URxvt*letterSpace: -2
+URxvt*font: xft:DejaVu Sans Mono:size=9
 *color0:  #2E3436
 *color1:  #a40000
 *color2:  #4E9A06

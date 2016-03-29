@@ -89,12 +89,12 @@ set $workspace9 9
 set $workspace10 10
 
 # where stuff gets done
-# set $monitor-main DisplayPort-0
 set $monitor-main DVI-0
+# set $monitor-main DVI-0
 # email, web etc
 set $monitor-comm DVI-1
 # monitor, IM, music
-set $monitor-ctrl DVI-1
+set $monitor-ctrl DisplayPort-0
 
 #/1/\=i/g | endforMiddle monitor
 workspace $workspace1 output $monitor-main
@@ -165,12 +165,18 @@ bindsym $mod+Ctrl+$right move container to output right, focus output right
 bindsym $mod+u [urgent=latest] focus
 bindsym $mod+Shift+u [urgent=oldest] focus
 
+# Make currently focused window a scratch pad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 # }}}
 
-Bindings - Layouts {{{
+# Bindings - Layouts {{{
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+x split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -198,7 +204,7 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+Shift+a focus child
 
-}}}
+# }}}
 
 # Bindings - Workspace Management {{{
 
@@ -266,13 +272,15 @@ bindsym $mod+Shift+q kill
 # bindsym Menu exec --no-startup-id i3-dmenu-desktop
 # Note configuration for rofi color is in .Xresources
 # Rofi regular (desktop entries) menu
-bindsym Mod1+F2 exec rofi -show drun 
-# Rofi run command
-bindsym $mod+F2 exec rofi -show run 
+bindsym $mod+F2 exec rofi -show drun 
+# Alt-F2 Rofi run command
+bindsym Mod1+F2 exec rofi -show run 
 # Rofi RDP connect
 bindsym $mod+F3 exec $script-dir/rofi-rdp
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
+# Sleep monitor (this is needed sometimes to wake up the DisplayPort one)
+bindsym $mod+Scroll_Lock exec --no-startup-id xset dpms force off
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -286,11 +294,14 @@ bindsym $mod+Shift+e exec "gvim ~/.config/i3/config"
 # TODO; write small app that will check current default sink and adjust corresponding channel
 bindsym XF86AudioRaiseVolume exec --no-startup-id $script-dir/media up
 bindsym XF86AudioLowerVolume exec --no-startup-id $script-dir/media down
-bindsym XF86AudioPlay exec --no-startup-id $script-dir/media pauseplay
-bindsym Ctrl+XF86AudioPlay exec --no-startup-id $script-dir/media next
-bindsym Shift+XF86AudioPlay exec --no-startup-id $script-dir/media prev
+# bindsym XF86AudioPlay exec --no-startup-id $script-dir/media pauseplay
+# bindsym Ctrl+XF86AudioPlay exec --no-startup-id $script-dir/media next
+# bindsym Shift+XF86AudioPlay exec --no-startup-id $script-dir/media prev
 bindsym XF86AudioMute exec --no-startup-id $script-dir/media mute
 bindsym $mod+XF86AudioMute exec pavucontrol
+
+# Show current bindings
+bindsym $mod+F1 exec urxvt -name "bindings-floaty" -e $script-dir/show-bindings
 
 
 # }}}
@@ -317,6 +328,7 @@ bindsym Print exec --no-startup-id $script-dir/screenshot
 bindsym $mod+Print exec --no-startup-id $script-dir/screenshot edit
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
+bindsym Shift+XF86Calculator exec pystopwatch
 bindsym XF86Calculator exec urxvt -name python-floaty -e python
 
 
@@ -335,10 +347,10 @@ mode "resize" {
         # bindsym j resize grow height 10 px or 10 ppt
         # bindsym k resize shrink height 10 px or 10 ppt
         # bindsym l resize grow width 10 px or 10 ppt
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym $left resize shrink width 10 px or 10 ppt
+        bindsym $down resize grow height 10 px or 10 ppt
+        bindsym $up resize shrink height 10 px or 10 ppt
+        bindsym $right resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -378,8 +390,13 @@ bindsym button8 move right
 
 for_window [class="VirtualBox"] floating enable, move container to workspace $workspace2
 for_window [class="URxvt" instance="floaty"] floating enable
+for_window [class="pystopwatch"] floating enable
+for_window [class="workrave"] floating enable
 assign [instance="Pidgin"] → $workspace9
+assign [instance="skype"] → $workspace9
 assign [instance="audacious"] → $workspace9
+assign [instance="deadbeef"] → $workspace9
+assign [instance="workrave"] → $workspace9
 
 # }}}
 
@@ -387,8 +404,13 @@ assign [instance="audacious"] → $workspace9
 
 # exec --no-startup-id i3-msg 'workspace 5: ILX; exec chromium --profile-directory=Profile\\ 3'
 # exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
+#exec --no-startup-id "i3-msg 'workspace $workspace9; append_layout ~/.config/i3/layouts/messenger-layout.json'"
 exec pidgin
-exec audacious
+# exec audacious
+# try DB instead of Auda for a bit
+exec deadbeef
+exec skype
+exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
 exec --no-startup-id compton -b
 

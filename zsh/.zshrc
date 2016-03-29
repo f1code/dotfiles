@@ -1,3 +1,14 @@
+# Load Prezto {{{
+
+# Source Prezto.
+# Not really using much of it right now - mostly the git aliases and some of the completion setup
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  zstyle ':prezto:module:editor' key-bindings 'emacs'
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# }}}
+
 # Local Variables {{{
 ##################################################
 
@@ -10,6 +21,10 @@ top_prompt_parts=()
 
 # Shell Options {{{
 ##################################################
+# Set path here, not in .zshenv, because it would get overwritten by 
+# /etc/profile
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin" 
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -32,10 +47,15 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' group-name ''
 setopt completealiases
 
+# ZMV command and corresponding alias (use it to move multiple files)
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
 # History
 # append history (so history from multiple sessions is preserved) but ignore duplicates
 setopt appendhistory hist_ignore_all_dups 
-setopt share_history
+# don't want to share history between sessions (this is set by default by prezto)
+unsetopt share_history
 # show only past commands beginning with the current input
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
@@ -97,19 +117,33 @@ set-ps1-from-parts
 # Aliases {{{
 ##################################################
 
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alF'
-alias ls='ls --color=auto'
+# Commented those out since they are in prezto already
+# alias l='ls -CF'
+# alias la='ls -A'
+# alias ll='ls -alF'
+# alias ls='ls --color=auto'
+#
+# alias df='df -h'
+# alias du='du -h'
+alias vi=nvim
+alias ssh="TERM=xterm ssh"
 
-alias df='df -h'
-alias du='du -h'
-alias vi=vim
+# Remove interactive aliases
+unalias rm
+unalias mv
+unalias ln
 
 # Global aliases
+alias -g G="|grep"
 alias -g L="|less"
 alias -g NUL="> /dev/null 2>&1"
 
+# Directory aliases
+
+hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
+
 # }}}
+
+~/bin/qotd.sh
 
 # vim: fdm=marker
