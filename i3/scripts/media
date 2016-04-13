@@ -11,7 +11,7 @@ SLEEP=0.01
 
 case "$1" in
     up)
-        pactl set-sink-volume $SINK +1%
+        pactl set-sink-volume $SINK +2%
         ;;
     down)
         pactl set-sink-volume $SINK -3%

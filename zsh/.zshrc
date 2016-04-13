@@ -9,7 +9,7 @@ fi
 
 # }}}
 
-# Local Variables {{{
+# Environment Variables {{{
 ##################################################
 
 # Prompt parts, allow populating the prompt from the subsections
@@ -17,13 +17,16 @@ right_prompt_parts=()
 left_prompt_parts=()
 top_prompt_parts=()
 
+# Set path here, not in .zshenv, because it would get overwritten by 
+# /etc/profile
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin" 
+[[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
+ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
+
 # }}}
 
 # Shell Options {{{
 ##################################################
-# Set path here, not in .zshenv, because it would get overwritten by 
-# /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin" 
 
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -126,7 +129,18 @@ set-ps1-from-parts
 # alias df='df -h'
 # alias du='du -h'
 alias vi=nvim
-alias ssh="TERM=xterm ssh"
+# Don't need that one anymore since I actually use xterm now... hah
+#alias ssh="TERM=xterm ssh"
+# These are defined by prezto:
+alias pu=pushd
+alias po=popd
+alias d="dirs -v"
+# There are also useful aliases like 1, 2, 3
+
+# locally installed node packages
+alias lbower="./node_modules/.bin/bower"
+alias lgulp="./node_modules/.bin/gulp"
+alias lgrunt="./node_modules/.bin/grunt"
 
 # Remove interactive aliases
 unalias rm
@@ -141,6 +155,7 @@ alias -g NUL="> /dev/null 2>&1"
 # Directory aliases
 
 hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
+hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
 
 # }}}
 

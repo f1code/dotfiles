@@ -182,7 +182,7 @@ bindsym $mod+x split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+q layout stacking
@@ -281,6 +281,9 @@ bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
 # Sleep monitor (this is needed sometimes to wake up the DisplayPort one)
 bindsym $mod+Scroll_Lock exec --no-startup-id xset dpms force off
+# TODO load alternate i3 config for colemak
+bindsym $mod+Ctrl+Scroll_Lock exec --no-startup-id "xmodmap ~/.dotfiles/xmodmap.colemak"
+bindsym $mod+Shift+Scroll_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.dotfiles/xmodmap.us"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -299,9 +302,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $script-dir/media down
 # bindsym Shift+XF86AudioPlay exec --no-startup-id $script-dir/media prev
 bindsym XF86AudioMute exec --no-startup-id $script-dir/media mute
 bindsym $mod+XF86AudioMute exec pavucontrol
+bindsym $mod+Pause exec pavucontrol
 
 # Show current bindings
-bindsym $mod+F1 exec urxvt -name "bindings-floaty" -e $script-dir/show-bindings
+bindsym $mod+F1 exec xterm -name "bindings-floaty" -e $script-dir/show-bindings
 
 
 # }}}
@@ -309,17 +313,21 @@ bindsym $mod+F1 exec urxvt -name "bindings-floaty" -e $script-dir/show-bindings
 # Bindings - Application Shortcuts {{{
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xterm
 bindsym $mod+g exec gvim
 # Floating terminal
-bindsym $mod+t exec urxvt -name urxvt-floaty
+bindsym $mod+t exec xterm -name xterm-floaty
 # Top... float it by default
-bindsym $mod+Shift+t exec urxvt -name top-floaty -e top
-# Web browsers - different configs
-bindsym XF86HomePage exec --no-startup-id $script-dir/browser-default
-bindsym XF86Mail exec --no-startup-id $script-dir/browser-xtivia
-bindsym $mod+XF86Mail exec --no-startup-id $script-dir/browser-ilx
+bindsym $mod+Shift+t exec xterm -name top-floaty -e top
+# Web browsers - different configs - use i for internet
+bindsym $mod+i exec --no-startup-id $script-dir/browser-default
+bindsym $mod+Shift+i exec --no-startup-id $script-dir/browser-xtivia
+bindsym $mod+Ctrl+i exec --no-startup-id $script-dir/browser-ilx
+# bindsym XF86HomePage exec --no-startup-id $script-dir/browser-default
+# bindsym XF86Mail exec --no-startup-id $script-dir/browser-xtivia
+# bindsym $mod+XF86Mail exec --no-startup-id $script-dir/browser-ilx
 # File browser
+bindsym $mod+f exec thunar
 bindsym XF86Search exec thunar
 # Screenshots
 #  PrintScreen = Capture to clipboard
@@ -328,8 +336,10 @@ bindsym Print exec --no-startup-id $script-dir/screenshot
 bindsym $mod+Print exec --no-startup-id $script-dir/screenshot edit
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
+bindsym $mod+Ctrl+d exec gsimplecal
 bindsym Shift+XF86Calculator exec pystopwatch
-bindsym XF86Calculator exec urxvt -name python-floaty -e python
+bindsym XF86Calculator exec xterm -name python-floaty -e python
+bindsym $mod+Ctrl+p exec xterm -name python-floaty -e python
 
 
 # }}}
@@ -389,7 +399,7 @@ bindsym button8 move right
 # Client Setup / Application Rules {{{
 
 for_window [class="VirtualBox"] floating enable, move container to workspace $workspace2
-for_window [class="URxvt" instance="floaty"] floating enable
+for_window [class="XTerm" instance="floaty"] floating enable
 for_window [class="pystopwatch"] floating enable
 for_window [class="workrave"] floating enable
 assign [instance="Pidgin"] → $workspace9
