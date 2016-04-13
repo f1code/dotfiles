@@ -5,12 +5,20 @@
 # The hosts are stored in ~/.rdp-hosts, in a format:
 
 # Name : Address : User : Domain : Password
+# TODO we should read the remmina files and use remmina instead of xfreerdp, maybe?
 
 get_rdp_hosts() {
-    grep -v '^#' ~/.rdp-hosts | cut -d ':' -f 1
+    #grep -v '^#' ~/.rdp-hosts | cut -d ':' -f 1
+    grep '^name=' ~/.remmina/*.remmina | cut -d '=' -f 2 | sort
 }
 
-get_rdp_params() {
+run_remmina() {
+    file=$(grep -l "^name=$1" ~/.remmina/*.remmina)
+    [[ -z "$file" ]] && exit 1
+    remmina -c $file
+}
+
+run_freerdp() {
     line=$(grep "^$1:" ~/.rdp-hosts | tr -d ' ')
     if [[ -z "$line" ]]
     then
@@ -35,5 +43,6 @@ RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP:")
 
 if [[ ! -z "$RDP_HOST" ]]
 then
-    get_rdp_params "$RDP_HOST"
+#    get_rdp_params "$RDP_HOST"
+    run_remmina $RDP_HOST
 fi
