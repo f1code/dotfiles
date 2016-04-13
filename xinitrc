@@ -14,10 +14,18 @@ numlockx on
 # notification daemon
 dunst &
 dropbox &
+nm-applet &
 # Note xsetroot does not work with Compton
 hsetroot -solid '#111111'
 # use caps as super
-setxkbmap -option caps:super
+#setxkbmap -option caps:super
+# map backspace instead 
+#setxkbmap -option caps:backspace
+# Load xmodmap, keyboard options are in there.
+xmodmap ~/.dotfiles/xmodmap.us
+#xmodmap ~/.dotfiles/xmodmap.norman
+# auto repeat for backspace
+#xset r 66  
 # default to headset
 pactl set-default-sink 1
 
