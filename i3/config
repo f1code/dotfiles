@@ -21,10 +21,13 @@ set $script-dir ~/.config/i3/scripts
 # set $up l
 # set $down k
 # This uses the VI keys
-set $left h
-set $right l
-set $up k
-set $down j
+# J
+set $left 44
+# L
+set $right 46 
+# I
+set $up 31
+set $down 45
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -130,10 +133,10 @@ bar {
 # Bindings - Window Focus / Movement {{{
 
 # change focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+bindcode $mod+$left focus left
+bindcode $mod+$down focus down
+bindcode $mod+$up focus up
+bindcode $mod+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -146,10 +149,10 @@ bindsym $mod+Right focus right
 # bindsym $mod+Shift+$left move down
 # bindsym $mod+Shift+$down move up
 # bindsym $mod+Shift+$up move right
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindcode $mod+Shift+$left move left
+bindcode $mod+Shift+$down move down
+bindcode $mod+Shift+$up move up
+bindcode $mod+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -158,12 +161,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # Move window to left / right monitor
-bindsym $mod+Ctrl+$left move container to output left, focus output left
-bindsym $mod+Ctrl+$right move container to output right, focus output right
+bindcode $mod+Ctrl+$left move container to output left, focus output left
+bindcode $mod+Ctrl+$right move container to output right, focus output right
 
-# Go to urgent window
-bindsym $mod+u [urgent=latest] focus
-bindsym $mod+Shift+u [urgent=oldest] focus
+# Go to urgent window (30 = qwerty U)
+bindcode $mod+30 [urgent=latest] focus
+bindcode $mod+Shift+30 [urgent=oldest] focus
 
 # Make currently focused window a scratch pad
 bindsym $mod+Shift+minus move scratchpad
@@ -176,18 +179,18 @@ bindsym $mod+minus scratchpad show
 # Bindings - Layouts {{{
 
 # split in horizontal orientation
-bindsym $mod+x split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+# enter fullscreen mode for the focused container (qwerty F)
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+q layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+s layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -244,14 +247,14 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # Use mod-Control-Up and Down to rotate through the workspace list.
-bindsym $mod+n workspace prev
-bindsym $mod+o workspace next
+bindcode $mod+Ctrl+$up workspace prev
+bindcode $mod+Ctrl+$down workspace next
 
 # Use mod-Shift-Control-Up and Down to move the selected window to an
 # adjacent workspace. (This does *not* change your view to that workspace,
 # it just "zaps" the window there.)
-bindsym $mod+Shift+n move workspace prev
-bindsym $mod+Shift+o move workspace next
+bindcode $mod+Ctrl+Shift+$up move workspace prev
+bindcode $mod+Ctrl+Shift+$down move workspace next
 
 # Alternate workspace
 bindsym $mod+z workspace back_and_forth
@@ -288,10 +291,10 @@ bindsym $mod+Shift+Scroll_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.do
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindcode $mod+Shift+27 restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Ctrl+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec "gvim ~/.config/i3/config"
+bindcode $mod+Shift+26 exec "gvim ~/.config/i3/config"
 
 # Volume control... need to adjust those for multiple channels though
 # TODO; write small app that will check current default sink and adjust corresponding channel
@@ -320,14 +323,14 @@ bindsym $mod+t exec xterm -name xterm-floaty
 # Top... float it by default
 bindsym $mod+Shift+t exec xterm -name top-floaty -e top
 # Web browsers - different configs - use i for internet
-bindsym $mod+i exec --no-startup-id $script-dir/browser-default
-bindsym $mod+Shift+i exec --no-startup-id $script-dir/browser-xtivia
-bindsym $mod+Ctrl+i exec --no-startup-id $script-dir/browser-ilx
+bindsym $mod+Home exec --no-startup-id $script-dir/browser-default
+bindsym $mod+Shift+Home exec --no-startup-id $script-dir/browser-xtivia
+bindsym $mod+Ctrl+Home exec --no-startup-id $script-dir/browser-ilx
 # bindsym XF86HomePage exec --no-startup-id $script-dir/browser-default
 # bindsym XF86Mail exec --no-startup-id $script-dir/browser-xtivia
 # bindsym $mod+XF86Mail exec --no-startup-id $script-dir/browser-ilx
 # File browser
-bindsym $mod+f exec thunar
+bindsym $mod+End exec thunar
 bindsym XF86Search exec thunar
 # Screenshots
 #  PrintScreen = Capture to clipboard
@@ -357,10 +360,10 @@ mode "resize" {
         # bindsym j resize grow height 10 px or 10 ppt
         # bindsym k resize shrink height 10 px or 10 ppt
         # bindsym l resize grow width 10 px or 10 ppt
-        bindsym $left resize shrink width 10 px or 10 ppt
-        bindsym $down resize grow height 10 px or 10 ppt
-        bindsym $up resize shrink height 10 px or 10 ppt
-        bindsym $right resize grow width 10 px or 10 ppt
+        bindcode $left resize shrink width 10 px or 10 ppt
+        bindcode $down resize grow height 10 px or 10 ppt
+        bindcode $up resize shrink height 10 px or 10 ppt
+        bindcode $right resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -373,7 +376,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 # Use M+S for resize instead of the default M+R, because it messes with Windows RDP
-bindsym $mod+s mode "resize"
+bindsym $mod+r mode "resize"
 # }}}
 
 # Mouse Bindings {{{
