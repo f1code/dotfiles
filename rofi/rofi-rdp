@@ -44,5 +44,5 @@ RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP:")
 if [[ ! -z "$RDP_HOST" ]]
 then
 #    get_rdp_params "$RDP_HOST"
-    run_remmina $RDP_HOST
+    run_remmina "$RDP_HOST"
 fi
