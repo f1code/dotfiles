@@ -2,78 +2,78 @@
 ! xmodmap for the Colemak layout.
 ! 2006-01-01 Shai Coleman, http://colemak.com/ . Public domain. 
 
-!keycode  49 =        grave    asciitilde       dead_tilde        asciitilde            
-!keycode  10 =       exclam             1       exclamdown       onesuperior            
-!keycode  11 =           at             2        masculine       twosuperior            
-!keycode  12 =   numbersign             3      ordfeminine     threesuperior            
-!keycode  13 =       dollar             4             cent          sterling            
-!keycode  14 =      percent             5         EuroSign               yen            
-!keycode  15 =  asciicircum             6          hstroke           Hstroke            
-!keycode  16 =    ampersand             7              eth               ETH            
-!keycode  17 =     asterisk             8            thorn             THORN            
-!keycode  18 =    parenleft             9  leftsinglequotemark   leftdoublequotemark   
-!keycode  19 =   parenright             0  rightsinglequotemark   rightdoublequotemark  
-!keycode  20 =        minus    underscore           endash            emdash            
-!keycode  21 =        equal          plus         multiply          division            
-!                                                                                      
-!keycode  24 =            q             Q       adiaeresis        Adiaeresis            
-!keycode  25 =            w             W            aring             Aring            
-!keycode  26 =            f             F           atilde            Atilde            
-!keycode  27 =            p             P           oslash          Ooblique            
-!keycode  28 =            g             G      dead_ogonek        asciitilde            
-!keycode  29 =            j             J          dstroke           Dstroke            
-!keycode  30 =            l             L          lstroke           Lstroke            
-!keycode  31 =            u             U           uacute            Uacute            
-!keycode  32 =            y             Y       udiaeresis        Udiaeresis            
-!keycode  33 =    semicolon         colon       odiaeresis        Odiaeresis            
-!keycode  34 =  bracketleft     braceleft    guillemotleft             U2039            
-!keycode  35 = bracketright    braceright   guillemotright             U203a            
-!keycode  51 =    backslash           bar       asciitilde        asciitilde            
-!                                                                                      
-!keycode  38 =            a             A           aacute            Aacute            
-!keycode  39 =            r             R       dead_grave        asciitilde            
-!keycode  40 =            s             S           ssharp        asciitilde            
-!keycode  41 =            t             T       dead_acute  dead_doubleacute            
-!keycode  42 =            d             D   dead_diaeresis        asciitilde            
-!keycode  43 =            h             H       dead_caron        asciitilde            
-!keycode  44 =            n             N           ntilde            Ntilde            
-!keycode  45 =            e             E           eacute            Eacute            
-!keycode  46 =            i             I           iacute            Iacute            
-!keycode  47 =            o             O           oacute            Oacute            
-!keycode  48 =   apostrophe      quotedbl           otilde            Otilde            
-!                                                                                      
-!keycode  52 =            z             Z               ae                AE            
-!keycode  53 =            x             X  dead_circumflex        asciitilde            
-!keycode  54 =            c             C         ccedilla          Ccedilla            
-!keycode  55 =            v             V               oe                OE            
-!keycode  56 =            b             B       dead_breve        asciitilde            
-!keycode  57 =            k             K   dead_abovering        asciitilde            
-!keycode  58 =            m             M      dead_macron        asciitilde            
-!keycode  59 =        comma          less     dead_cedilla        asciitilde            
-!keycode  60 =       period       greater    dead_abovedot        asciitilde            
-!keycode  61 =        slash      question     questiondown        asciitilde            
-! caps = control                                                                                      
-keycode  66 =    Control_L 
-!keycode  66 =    BackSpace
-!keycode  94 =        minus    underscore           endash            emdash            
-!keycode  65 =        space         space            space      nobreakspace            
-!keycode 113 =  Mode_switch   Mode_switch                                               
+keycode  49 =        grave    asciitilde       dead_tilde        asciitilde            
+keycode  10 =            1        exclam       exclamdown       onesuperior            
+keycode  11 =            2            at        masculine       twosuperior            
+keycode  12 =            3    numbersign      ordfeminine     threesuperior            
+keycode  13 =            4        dollar             cent          sterling            
+keycode  14 =            5       percent         EuroSign               yen            
+keycode  15 =            6   asciicircum          hstroke           Hstroke            
+keycode  16 =            7     ampersand              eth               ETH            
+keycode  17 =            8      asterisk            thorn             THORN            
+keycode  18 =            9     parenleft   leftsinglequotemark   leftdoublequotemark   
+keycode  19 =            0    parenright  rightsinglequotemark   rightdoublequotemark  
+keycode  20 =        minus    underscore           endash            emdash            
+keycode  21 =        equal          plus         multiply          division            
+                                                                                      
+keycode  24 =            q             Q       percent
+keycode  25 =            w             W            equal
+keycode  26 =            e             E           bracketleft            Atilde            
+keycode  27 =            r             R           bracketright          Ooblique            
+keycode  28 =            t             T      dollar
+keycode  29 =            y             Y          asciicircum
+keycode  30 =            u             U          BackSpace
+keycode  31 =            i             I           Up
+keycode  32 =            o             O       Tab
+keycode  33 =            p         P       grave
+keycode  34 =  bracketleft     braceleft    guillemotleft             U2039            
+keycode  35 = bracketright    braceright   guillemotright             U203a            
+keycode  51 =    backslash           bar       asciitilde        asciitilde            
+                                                                                      
+keycode  38 =            a             A           exclam
+keycode  39 =            s             S       period
+keycode  40 =            d             D           parenleft        asciitilde            
+keycode  41 =            f             F       parenright  dead_doubleacute            
+keycode  42 =            g             G    braceleft
+keycode  43 =            h             H           braceright
+keycode  44 =            j             J           Left
+keycode  45 =            k             K           Down
+keycode  46 =            l             L           Right
+keycode  47 =            semicolon             colon           colon
+keycode  48 =   apostrophe      quotedbl           minus
+                                                                                      
+keycode  52 =            z             Z               at
+keycode  53 =            x             X  plus
+keycode  54 =            c             C         Escape          Ccedilla            
+keycode  55 =            v             V        ampersand                OE            
+keycode  56 =            b             B       bar
+keycode  57 =            n             N   underscore
+keycode  58 =            m             M      Return
+keycode  59 =        comma          less     dead_cedilla        asciitilde            
+keycode  60 =       period       greater    dead_abovedot        asciitilde            
+keycode  61 =        slash      question     questiondown        asciitilde            
+                                                                                      
+keycode  66 =    Mode_switch
+keycode  94 =        minus    underscore           endash            emdash            
+keycode  65 =        space         space            space      nobreakspace            
+keycode 108 =  Super_R
+keycode 134 =  Mode_switch
+!keycode 108 =  Return
+keycode 105 =  Control_R
+
 clear Lock
-
-!clear Shift
-!clear Control
-!clear Mod1
-!clear Mod2
-!clear Mod3
-!clear Mod4
-!clear Mod5
-
 add Lock = Caps_Lock
+clear Mod1
+!clear Mod2
+clear Mod3
+clear Mod4
+!clear Mod5
+clear Control
 !add    Shift   = Shift_L Shift_R
 add    Control = Control_L Control_R
-!add    Mod1    = Alt_L Alt_R
+add    Mod1    = Alt_L Alt_R
 !add    Mod2    = Num_Lock
-!add    Mod4    = Meta_L Meta_R
+add    Mod4    = Super_L Super_R
 !add    Mod5    = Scroll_Lock 
 
 !keycode   9 = Escape

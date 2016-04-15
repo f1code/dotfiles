@@ -28,6 +28,10 @@ xmodmap ~/.dotfiles/xmodmap.us
 #xset r 66  
 # default to headset
 pactl set-default-sink 1
+# Allow tapping caps key for escape
+# Not too sure about the Shift one but left shift was getting 
+# hit too much by mistake
+exec xcape -e "Mode_switch=Escape;Shift_R=Return" -t 350
 
 exec i3
 #exec awesome

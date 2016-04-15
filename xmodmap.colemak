@@ -16,67 +16,64 @@ keycode  19 =            0    parenright  rightsinglequotemark   rightdoublequot
 keycode  20 =        minus    underscore           endash            emdash            
 keycode  21 =        equal          plus         multiply          division            
                                                                                       
-keycode  24 =            q             Q       adiaeresis        Adiaeresis            
-keycode  25 =            w             W            aring             Aring            
-keycode  26 =            f             F           atilde            Atilde            
-keycode  27 =            p             P           oslash          Ooblique            
-keycode  28 =            g             G      dead_ogonek        asciitilde            
-keycode  29 =            j             J          dstroke           Dstroke            
-keycode  30 =            l             L          lstroke           Lstroke            
-keycode  31 =            u             U           ucircumflex            Ucircumflex            
-keycode  32 =            y             Y       udiaeresis        Udiaeresis            
-keycode  33 =    semicolon         colon       odiaeresis        Odiaeresis            
+keycode  24 =            q             Q       percent
+keycode  25 =            w             W            equal
+keycode  26 =            f             F           bracketleft            Atilde            
+keycode  27 =            p             P           bracketright          Ooblique            
+keycode  28 =            g             G      dollar
+keycode  29 =            j             J          asciicircum
+keycode  30 =            l             L          BackSpace
+keycode  31 =            u             U           Up
+keycode  32 =            y             Y       Tab
+keycode  33 =    semicolon         colon       grave
 keycode  34 =  bracketleft     braceleft    guillemotleft             U2039            
 keycode  35 = bracketright    braceright   guillemotright             U203a            
 keycode  51 =    backslash           bar       asciitilde        asciitilde            
                                                                                       
-keycode  38 =            a             A           agrave            Agrave            
-keycode  39 =            r             R       dead_grave        asciitilde            
-keycode  40 =            s             S           ssharp        asciitilde            
-keycode  41 =            t             T       dead_acute  dead_doubleacute            
-keycode  42 =            d             D   dead_diaeresis        asciitilde            
-keycode  43 =            h             H       dead_caron        asciitilde            
-! need to remap to accents at some point?
-! This makes mappings easier for now
-keycode  44 =            n             N           j    J
-keycode  45 =            e             E           k    K
-keycode  46 =            i             I           l    L
-keycode  47 =            o             O           ocircumflex            Ocircumflex            
-keycode  48 =   apostrophe      quotedbl           otilde            Otilde            
+keycode  38 =            a             A           exclam
+keycode  39 =            r             R       period
+keycode  40 =            s             S           parenleft        asciitilde            
+keycode  41 =            t             T       parenright  dead_doubleacute            
+keycode  42 =            d             D    braceleft
+keycode  43 =            h             H           braceright
+keycode  44 =            n             N           Left
+keycode  45 =            e             E           Down
+keycode  46 =            i             I           Right
+keycode  47 =            o             O           colon
+keycode  48 =   apostrophe      quotedbl           minus
                                                                                       
-keycode  52 =            z             Z               ae                AE            
-keycode  53 =            x             X  dead_circumflex        asciitilde            
-keycode  54 =            c             C         ccedilla          Ccedilla            
-
-keycode  55 =            v             V               oe                OE            
-keycode  56 =            b             B       dead_breve        asciitilde            
-keycode  57 =            k             K   dead_abovering        asciitilde            
-keycode  58 =            m             M      dead_macron        asciitilde            
+keycode  52 =            z             Z               at
+keycode  53 =            x             X  plus
+keycode  54 =            c             C         Escape          Ccedilla            
+keycode  55 =            v             V        ampersand                OE            
+keycode  56 =            b             B       bar
+keycode  57 =            k             K   underscore
+keycode  58 =            m             M      Return
 keycode  59 =        comma          less     dead_cedilla        asciitilde            
 keycode  60 =       period       greater    dead_abovedot        asciitilde            
 keycode  61 =        slash      question     questiondown        asciitilde            
                                                                                       
-keycode  66 =    Control_L     Control_L        Caps_Lock         Caps_Lock            
+keycode  66 =    Mode_switch
 keycode  94 =        minus    underscore           endash            emdash            
 keycode  65 =        space         space            space      nobreakspace            
-keycode 108 =  Mode_switch   Mode_switch                                               
+keycode 108 =  Super_R
+keycode 134 =  Mode_switch
 !keycode 108 =  Return
-keycode 105 =  Mode_switch  Mode_switch
+keycode 105 =  Control_R
+
 clear Lock
-
-!clear Shift
-!clear Control
-!clear Mod1
+add Lock = Caps_Lock
+clear Mod1
 !clear Mod2
-!clear Mod3
-!clear Mod4
+clear Mod3
+clear Mod4
 !clear Mod5
-
+clear Control
 !add    Shift   = Shift_L Shift_R
 add    Control = Control_L Control_R
-!add    Mod1    = Alt_L Alt_R
+add    Mod1    = Alt_L Alt_R
 !add    Mod2    = Num_Lock
-!add    Mod4    = Meta_L Meta_R
+add    Mod4    = Super_L Super_R
 !add    Mod5    = Scroll_Lock 
 
 !keycode   9 = Escape
