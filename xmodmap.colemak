@@ -3,7 +3,7 @@
 ! 2006-01-01 Shai Coleman, http://colemak.com/ . Public domain. 
 
 keycode  49 =        grave    asciitilde       dead_tilde        asciitilde            
-keycode  10 =            1        exclam       exclamdown       onesuperior            
+keycode  10 =            1        exclam           exclam       onesuperior            
 keycode  11 =            2            at        masculine       twosuperior            
 keycode  12 =            3    numbersign      ordfeminine     threesuperior            
 keycode  13 =            4        dollar             cent          sterling            
