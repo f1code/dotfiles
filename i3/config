@@ -339,10 +339,10 @@ bindsym Print exec --no-startup-id $script-dir/screenshot
 bindsym $mod+Print exec --no-startup-id $script-dir/screenshot edit
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
-bindsym $mod+Ctrl+d exec gsimplecal
+bindsym $mod+d exec gsimplecal
 bindsym Shift+XF86Calculator exec pystopwatch
 bindsym XF86Calculator exec xterm -name python-floaty -e python
-bindsym $mod+Ctrl+p exec xterm -name python-floaty -e python
+bindsym $mod+p exec xterm -name python-floaty -e python
 
 
 # }}}
