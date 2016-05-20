@@ -6,6 +6,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  done
  unset f
 fi
+# I am not sure why this is needed?
+xrandr --output eDP-1 --primary 
 
 [ -f ~/.xprofile ] && source ~/.xprofile
 [ -f ~/.dotfiles/Xresources ] && xrdb -merge -I$HOME/.dotfiles ~/.dotfiles/Xresources
@@ -15,6 +17,7 @@ numlockx on
 dunst &
 dropbox &
 nm-applet &
+#cbatticon &
 # Note xsetroot does not work with Compton
 hsetroot -solid '#111111'
 # use caps as super
@@ -28,10 +31,6 @@ xmodmap ~/.dotfiles/xmodmap.us
 #xset r 66  
 # default to headset
 pactl set-default-sink 1
-# Allow tapping caps key for escape
-# Not too sure about the Shift one but left shift was getting 
-# hit too much by mistake
-exec xcape -e "Mode_switch=Escape;Shift_R=Return" -t 350
 
 exec i3
 #exec awesome

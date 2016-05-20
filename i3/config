@@ -92,7 +92,8 @@ set $workspace9 9
 set $workspace10 10
 
 # where stuff gets done
-set $monitor-main DVI-0
+#set $monitor-main DVI-0
+set $monitor-main eDP-1
 # set $monitor-main DVI-0
 # email, web etc
 set $monitor-comm DVI-1
@@ -115,7 +116,7 @@ workspace $workspace9 output $monitor-ctrl
 # finds out, if available)
 bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    tray_output DVI-1
+    tray_output primary
     colors {
         background $bg-color
         separator #757575
@@ -418,14 +419,19 @@ assign [instance="workrave"] → $workspace9
 # exec --no-startup-id i3-msg 'workspace 5: ILX; exec chromium --profile-directory=Profile\\ 3'
 # exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
 #exec --no-startup-id "i3-msg 'workspace $workspace9; append_layout ~/.config/i3/layouts/messenger-layout.json'"
-exec pidgin
+exec --no-startup-id pidgin
 # exec audacious
 # try DB instead of Auda for a bit
-exec deadbeef
-exec skype
+exec --no-startup-id deadbeef
+exec --no-startup-id skype
 exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
 exec --no-startup-id compton -b
+# Allow tapping caps key for escape
+# Not too sure about the Shift one but left shift was getting 
+# hit too much by mistake
+exec --no-startup-ip xcape -e "Mode_switch=Escape;Shift_R=Return" -t 350
+exec --no-startup-ip cbatticon
 
 # }}}
 
