@@ -159,6 +159,7 @@ alias -g NUL="> /dev/null 2>&1"
 
 hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
 hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
+hash -d arc-theme=~/www/arcapital/web/wp-content/themes/arccapital
 
 # }}}
 
