@@ -128,7 +128,10 @@ set-ps1-from-parts
 #
 # alias df='df -h'
 # alias du='du -h'
-alias vi=nvim
+which -s nvim && alias vi=nvim
+# if [[ `uname` = "Linux" ]]; then 
+#     alias vi=nvim
+# fi
 # having some issues with vim + xterm, it puts some garabage in the screen
 # So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
 #alias vi=vim

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<root>
+<!-- <modifierdef>MY_HYPER</modifierdef> -->
+
+  <!-- <appdef> -->
+  <!--     <appname>VIM</appname> -->
+  <!--     <equal>org.vim.MacVim</equal> -->
+  <!-- </appdef> -->
+  <item>
+      <name>Remap Caps Lock to Hyper</name>
+      <appendix>OS X doesn't have a Hyper key, this snippet maps the caps lock (F19) to simulate pressing Control, Shift, Option and Command.  The rest of the mappings for it are configured in Keyboard Maestro.</appendix>
+      <appendix> * Map Caps to Delete, when pressed by itself.</appendix>
+      <appendix> * Map Scroll Lock to Caps Lock.</appendix>
+ 
+      <identifier>caps_lock_to_hyper</identifier>
+
+<!--
+This sounded like a cool option but it does not do all the mappings correctly
+      <autogen>__KeyOverlaidModifier__ 
+		 KeyCode::F19,
+	  KeyCode::VK_MODIFIER_MY_HYPER,
+		 KeyCode::DELETE
+      </autogen>
+-->
+
+        <!-- Caps is remapped to F19 in Seil, so here we map it to a crazy modifier combo and 
+             also to delete when pressed by itself.
+             -->
+      <autogen>
+	  __KeyOverlaidModifier__ 
+      KeyCode::F19,
+
+      KeyCode::COMMAND_L,
+      ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,
+	  KeyCode::DELETE
+      </autogen>
+
+	<autogen>
+		__KeyToKey__
+		KeyCode::PC_SCROLLLOCK,
+		KeyCode::CAPSLOCK
+	</autogen>
+
+  </item>
+
+  <item>
+      <name>Custom mappings for control key</name>
+      <appendix> * Map Command to Command+F2, when pressed by itself.</appendix>
+      <appendix> * Map Command to Control, and Control to Command</appendix>
+      <identifier>custom_mappings_control</identifier>
+      <not>VI, TERMINAL</not>
+      
+      <!-- map command to command+F2 when pressed by itself, which allows it to be used to 
+         start the launcher -->
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::COMMAND_L,
+        KeyCode::CONTROL_L,
+        KeyCode::F2, ModifierFlag::COMMAND_L
+      </autogen>
+
+      <autogen>
+          __KeyOverlaidModifier__
+          KeyCode::CONTROL_L,
+          KeyCode::COMMAND_L,
+          KeyCode::F3, ModifierFlag::COMMAND_L
+      </autogen>
+  </item>
+
+  <item>
+      <name>Custom mappings for control key, without mapping to command</name>
+      <identifier>custom_mappings_control_noremaptocommand</identifier>
+      <only>VI, TERMINAL</only>
+      <!-- map command to command+F2 when pressed by itself, which allows it to be used to 
+         start the launcher -->
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::COMMAND_L,
+        KeyCode::COMMAND_L,
+        KeyCode::F2, ModifierFlag::COMMAND_L
+      </autogen>
+
+      <autogen>
+          __KeyOverlaidModifier__
+          KeyCode::CONTROL_L,
+          KeyCode::CONTROL_L,
+          KeyCode::F3, ModifierFlag::COMMAND_L
+      </autogen>
+  </item>
+
+</root>
