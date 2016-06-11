@@ -19,7 +19,7 @@ quality=0
 ssh_loopback=0
 username=webdll
 ssh_username=
-password=pNEhJ9TKrGV9SVv0k8oX5A==
+password=.
 gateway_server=
 disablepasswordstoring=0
 microphone=0
@@ -30,7 +30,7 @@ security=
 domain=CS
 precommand=
 ssh_server=
-protocol=RDESKTOP
+protocol=RDP
 shareprinter=0
 disableclipboard=0
 ssh_privatekey=
