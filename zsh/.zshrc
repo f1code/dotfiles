@@ -1,4 +1,4 @@
-# Load Prezto {{{
+# Third Party extensions {{{
 
 # Source Prezto.
 # Not really using much of it right now - mostly the git aliases and some of the completion setup
@@ -6,6 +6,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   zstyle ':prezto:module:editor' key-bindings 'emacs'
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# FZF extensions
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
 
