@@ -307,6 +307,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $script-dir/media down
 bindsym XF86AudioMute exec --no-startup-id $script-dir/media mute
 bindsym $mod+XF86AudioMute exec pavucontrol
 bindsym $mod+Pause exec pavucontrol
+bindsym XF86KbdBrightnessDown exec --no-startup-id $script-dir/kbd_backlight down
+bindsym XF86KbdBrightnessUp exec --no-startup-id $script-dir/kbd_backlight up
 
 # Show current bindings
 bindsym $mod+F1 exec xterm -name "bindings-floaty" -e $script-dir/show-bindings
