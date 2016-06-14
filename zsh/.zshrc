@@ -1,4 +1,4 @@
-# Load Prezto {{{
+# Third Party extensions {{{
 
 # Source Prezto.
 # Not really using much of it right now - mostly the git aliases and some of the completion setup
@@ -6,6 +6,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   zstyle ':prezto:module:editor' key-bindings 'emacs'
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# FZF extensions
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
 
@@ -22,6 +25,9 @@ top_prompt_parts=()
 export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin" 
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+export GOPATH=$HOME/Projects/go
 
 # }}}
 
@@ -128,7 +134,10 @@ set-ps1-from-parts
 #
 # alias df='df -h'
 # alias du='du -h'
-alias vi=nvim
+which -s nvim && alias vi=nvim
+# if [[ `uname` = "Linux" ]]; then 
+#     alias vi=nvim
+# fi
 # having some issues with vim + xterm, it puts some garabage in the screen
 # So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
 #alias vi=vim
@@ -159,6 +168,8 @@ alias -g NUL="> /dev/null 2>&1"
 
 hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
 hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
+hash -d arc-theme=~/www/arcapital/web/wp-content/themes/arccapital
+hash -d go-nico=~/Projects/go/src/github.com/nicocrm
 
 # }}}
 

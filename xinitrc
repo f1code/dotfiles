@@ -12,7 +12,7 @@ xrandr --output eDP-1 --primary
 [ -f ~/.xprofile ] && source ~/.xprofile
 [ -f ~/.dotfiles/Xresources ] && xrdb -merge -I$HOME/.dotfiles ~/.dotfiles/Xresources
 # default numlock on
-numlockx on
+# numlockx on
 # notification daemon
 dunst &
 dropbox &

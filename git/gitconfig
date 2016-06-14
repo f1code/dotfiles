@@ -5,3 +5,4 @@
 	default = simple
 [core]
 	excludesfile = /home/nico/.dotfiles/git/gitignore
+	autocrlf = input
