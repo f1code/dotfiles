@@ -70,7 +70,7 @@ This sounded like a cool option but it does not do all the mappings correctly
   <item>
       <name>Custom mappings for control key, without mapping to command</name>
       <identifier>custom_mappings_control_noremaptocommand</identifier>
-      <only>VI, TERMINAL</only>
+      <!-- <only>VI, TERMINAL</only> -->
       <!-- map command to command+F2 when pressed by itself, which allows it to be used to 
          start the launcher -->
       <autogen>
