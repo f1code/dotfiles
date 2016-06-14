@@ -1,4 +1,4 @@
-# Load Prezto {{{
+# Third Party extensions {{{
 
 # Source Prezto.
 # Not really using much of it right now - mostly the git aliases and some of the completion setup
@@ -6,6 +6,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   zstyle ':prezto:module:editor' key-bindings 'emacs'
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# FZF extensions
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # }}}
 
@@ -163,6 +166,7 @@ alias -g NUL="> /dev/null 2>&1"
 hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
 hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
 hash -d arc-theme=~/www/arcapital/web/wp-content/themes/arccapital
+hash -d go-nico=~/Projects/go/src/github.com/nicocrm
 
 # }}}
 

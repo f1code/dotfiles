@@ -28,7 +28,8 @@ XTerm*metaSendsEscape: true
 XTerm*saveLines: 4096
 XTerm*background: #1B1B1B
 XTerm*foreground: #cccccc
-XTerm*faceName: DejaVu Sans Mono:size=9
+! XTerm*faceName: DejaVu Sans Mono:size=9
+XTerm*faceName: Fira Code:size=9
 XTerm*selectToClipboard: true
 
 
