@@ -284,15 +284,15 @@ bindsym $mod+F3 exec $script-dir/rofi-rdp
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
 # Sleep monitor (this is needed sometimes to wake up the DisplayPort one)
-bindsym $mod+Scroll_Lock exec --no-startup-id xset dpms force off
+bindsym $mod+Caps_Lock exec --no-startup-id xset dpms force off
 # TODO load alternate i3 config for colemak
-bindsym $mod+Ctrl+Scroll_Lock exec --no-startup-id "xmodmap ~/.dotfiles/xmodmap.colemak"
-bindsym $mod+Shift+Scroll_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.dotfiles/xmodmap.us"
+bindsym $mod+Ctrl+Caps_Lock exec --no-startup-id "xmodmap ~/.dotfiles/xmodmap.colemak"
+bindsym $mod+Shift+Caps_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.dotfiles/xmodmap.us"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindcode $mod+Shift+27 restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Ctrl+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindcode $mod+Shift+26 exec "gvim ~/.config/i3/config"
@@ -342,10 +342,11 @@ bindsym Print exec --no-startup-id $script-dir/screenshot
 bindsym $mod+Print exec --no-startup-id $script-dir/screenshot edit
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
-bindsym $mod+Ctrl+d exec gsimplecal
+bindsym $mod+d exec gsimplecal
 bindsym Shift+XF86Calculator exec pystopwatch
 bindsym XF86Calculator exec xterm -name python-floaty -e python
-bindsym $mod+Ctrl+p exec xterm -name python-floaty -e python
+# 33 = qwerty p
+bindcode $mod+33 exec xterm -name python-floaty -e python
 
 
 # }}}

@@ -60,6 +60,8 @@ keycode 108 =  Super_R
 keycode 134 =  Mode_switch
 !keycode 108 =  Return
 keycode 105 =  Control_R
+! Use scroll lock as caps lock
+keycode 78 = Caps_Lock
 
 clear Lock
 add Lock = Caps_Lock

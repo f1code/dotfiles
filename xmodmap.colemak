@@ -49,9 +49,9 @@ keycode  55 =            v             V        ampersand                OE
 keycode  56 =            b             B       bar
 keycode  57 =            k             K   underscore
 keycode  58 =            m             M      Return
-keycode  59 =        comma          less     dead_cedilla        asciitilde            
-keycode  60 =       period       greater    dead_abovedot        asciitilde            
-keycode  61 =        slash      question     questiondown        asciitilde            
+keycode  59 =        comma          less     less        asciitilde            
+keycode  60 =       period       greater    greater        asciitilde            
+keycode  61 =        slash      question     question        asciitilde            
                                                                                       
 keycode  66 =    Mode_switch
 keycode  94 =        minus    underscore           endash            emdash            
@@ -60,6 +60,8 @@ keycode 108 =  Super_R
 keycode 134 =  Mode_switch
 !keycode 108 =  Return
 keycode 105 =  Control_R
+! Use scroll lock as caps lock
+keycode 78 = Caps_Lock
 
 clear Lock
 add Lock = Caps_Lock
