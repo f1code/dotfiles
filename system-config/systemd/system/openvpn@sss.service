@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenVPN for SSS network
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/openvpn --daemon --writepid /var/run/openvpn.pid --config /etc/openvpn/sss.conf 
+PIDFile=/var/run/openvpn.pid
+
+[Install]
+WantedBy=multi-user.target
