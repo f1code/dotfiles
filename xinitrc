@@ -7,7 +7,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 # I am not sure why this is needed?
-xrandr --output eDP-1 --primary 
+xrandr --output eDP1 --primary --auto --output VGA1 --auto --right-of eDP1
 
 [ -f ~/.xprofile ] && source ~/.xprofile
 [ -f ~/.dotfiles/Xresources ] && xrdb -merge -I$HOME/.dotfiles ~/.dotfiles/Xresources

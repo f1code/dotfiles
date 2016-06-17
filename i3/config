@@ -93,12 +93,12 @@ set $workspace10 10
 
 # where stuff gets done
 #set $monitor-main DVI-0
-set $monitor-main eDP-1
+set $monitor-main VGA1
 # set $monitor-main DVI-0
 # email, web etc
-set $monitor-comm DVI-1
+set $monitor-comm VGA1
 # monitor, IM, music
-set $monitor-ctrl DisplayPort-0
+set $monitor-ctrl eDP1
 
 #/1/\=i/g | endforMiddle monitor
 workspace $workspace1 output $monitor-main
