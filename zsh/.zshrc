@@ -134,7 +134,7 @@ set-ps1-from-parts
 #
 # alias df='df -h'
 # alias du='du -h'
-which -s nvim && alias vi=nvim
+which nvim >/dev/null && alias vi=nvim
 # if [[ `uname` = "Linux" ]]; then 
 #     alias vi=nvim
 # fi
