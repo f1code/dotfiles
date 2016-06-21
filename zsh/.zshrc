@@ -22,12 +22,12 @@ top_prompt_parts=()
 
 # Set path here, not in .zshenv, because it would get overwritten by 
 # /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin" 
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export GOPATH=$HOME/Projects/go
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOPATH/bin" 
 
 # }}}
 
@@ -135,9 +135,7 @@ set-ps1-from-parts
 # alias df='df -h'
 # alias du='du -h'
 which nvim >/dev/null && alias vi=nvim
-# if [[ `uname` = "Linux" ]]; then 
-#     alias vi=nvim
-# fi
+alias pacmanro='sudo pacman -Rs `pacman -Qtdq`'
 # having some issues with vim + xterm, it puts some garabage in the screen
 # So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
 #alias vi=vim
