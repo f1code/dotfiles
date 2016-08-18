@@ -24,7 +24,7 @@ keycode  28 =            g             G      percent
 keycode  29 =            j             J          asciicircum
 keycode  30 =            l             L          BackSpace         ecircumflex
 keycode  31 =            u             U           Up               ucircumflex
-keycode  32 =            y             Y       Tab                  udiaresis
+keycode  32 =            y             Y       Tab                  
 keycode  33 =    semicolon         colon       grave
 keycode  34 =  bracketleft     braceleft    guillemotleft             U2039            
 keycode  35 = bracketright    braceright   guillemotright             U203a            
@@ -38,7 +38,7 @@ keycode  42 =            d             D    braceleft
 keycode  43 =            h             H           braceright       ediaeresis
 keycode  44 =            n             N           Left             eacute
 keycode  45 =            e             E           Down             egrave
-keycode  46 =            i             I           Right            idiaresis
+keycode  46 =            i             I           Right            idiaeresis
 keycode  47 =            o             O           colon            ocircumflex
 keycode  48 =   apostrophe      quotedbl           minus
                                                                                       
