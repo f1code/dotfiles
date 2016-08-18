@@ -93,9 +93,11 @@ set $workspace10 10
 
 # where stuff gets done
 #set $monitor-main DVI-0
+#set $monitor-main eDP1
 set $monitor-main VGA1
 # set $monitor-main DVI-0
 # email, web etc
+#set $monitor-comm eDP1
 set $monitor-comm VGA1
 # monitor, IM, music
 set $monitor-ctrl eDP1
@@ -337,9 +339,9 @@ bindsym $mod+End exec thunar
 bindsym XF86Search exec thunar
 # Screenshots
 #  PrintScreen = Capture to clipboard
-bindsym Print exec --no-startup-id $script-dir/screenshot
+bindsym --release Print exec --no-startup-id $script-dir/screenshot
 #  Start+Print = Capture and edit
-bindsym $mod+Print exec --no-startup-id $script-dir/screenshot edit
+bindsym --release $mod+Print exec --no-startup-id $script-dir/screenshot edit
 bindsym $mod+Shift+Print exec pinta
 bindsym Ctrl+XF86Calculator exec gsimplecal
 bindsym $mod+d exec gsimplecal
@@ -431,8 +433,7 @@ exec --no-startup-id compton -b
 # Allow tapping caps key for escape
 # Not too sure about the Shift one but left shift was getting 
 # hit too much by mistake
-exec --no-startup-id xcape -e "Mode_switch=BackSpace;Alt_L=BackSpace;Super_R=Return" -t 350
-exec --no-startup-ip cbatticon
+exec --no-startup-id xcape -e "Mode_switch=BackSpace;Alt_L=Escape;Super_R=Return" -t 350
 
 # }}}
 

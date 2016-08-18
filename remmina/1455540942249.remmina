@@ -38,4 +38,4 @@ protocol=RDP
 shareprinter=0
 disableclipboard=0
 ssh_privatekey=
-viewmode=4
+viewmode=1

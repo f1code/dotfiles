@@ -19,7 +19,7 @@ quality=0
 ssh_loopback=0
 username=webdll
 ssh_username=
-password=zMsGij1ptLVJPzXl1OSFrg==
+password=.
 gateway_server=
 disablepasswordstoring=0
 microphone=0
@@ -36,6 +36,6 @@ disableclipboard=0
 ssh_privatekey=
 keyboard_grab=0
 window_maximize=0
-window_height=480
-window_width=640
+window_height=1041
+window_width=956
 viewmode=4
