@@ -166,7 +166,7 @@ alias -g NUL="> /dev/null 2>&1"
 
 # Directory aliases
 
-hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
+hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/glue-full-timer-timesheet-app
 hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
 hash -d arc-theme=~/www/arcapital/web/wp-content/themes/arccapital
 hash -d go-nico=~/Projects/go/src/github.com/nicocrm
