@@ -20,14 +20,15 @@ right_prompt_parts=()
 left_prompt_parts=()
 top_prompt_parts=()
 
-# Set path here, not in .zshenv, because it would get overwritten by 
-# /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin" 
-[[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
-ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/Projects/go
+# Set path here, not in .zshenv, because it would get overwritten by 
+# /etc/profile
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOROOT/bin" 
+[[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
+ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
 
 # }}}
 
