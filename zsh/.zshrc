@@ -12,6 +12,9 @@ fi
 
 # }}}
 
+# RBEnv - loaded by prezto
+
+
 # Environment Variables {{{
 ##################################################
 
@@ -19,10 +22,10 @@ fi
 right_prompt_parts=()
 left_prompt_parts=()
 top_prompt_parts=()
+[[ -f "env.local" ]] && . env.local
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
-export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/Projects/go
 # Set path here, not in .zshenv, because it would get overwritten by 
 # /etc/profile
@@ -135,10 +138,8 @@ set-ps1-from-parts
 #
 # alias df='df -h'
 # alias du='du -h'
-which -s nvim && alias vi=nvim
-# if [[ `uname` = "Linux" ]]; then 
-#     alias vi=nvim
-# fi
+which nvim >/dev/null && alias vi=nvim
+alias pacmanro='sudo pacman -Rs `pacman -Qtdq`'
 # having some issues with vim + xterm, it puts some garabage in the screen
 # So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
 #alias vi=vim
@@ -167,7 +168,7 @@ alias -g NUL="> /dev/null 2>&1"
 
 # Directory aliases
 
-hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/pg-timesheet
+hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/glue-full-timer-timesheet-app
 hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
 hash -d arc-theme=~/www/arcapital/web/wp-content/themes/arccapital
 hash -d go-nico=~/Projects/go/src/github.com/nicocrm

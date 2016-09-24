@@ -19,7 +19,7 @@ quality=0
 ssh_loopback=0
 username=administrator
 ssh_username=
-password=9KLyUEjBW68=
+password=.
 gateway_server=
 disablepasswordstoring=0
 microphone=0
@@ -30,7 +30,7 @@ security=
 domain=
 precommand=
 ssh_server=
-protocol=RDESKTOP
+protocol=RDP
 shareprinter=0
 disableclipboard=0
 ssh_privatekey=
