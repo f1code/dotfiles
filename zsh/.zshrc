@@ -30,7 +30,7 @@ ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export GOPATH=$HOME/Projects/go
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOPATH/bin" 
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOPATH/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.config/composer/vendor/bin" 
 
 # }}}
 
