@@ -425,7 +425,8 @@ exec --no-startup-id skype
 exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
 exec --no-startup-id compton -b
-exec --no-startup-id xcape -e "Mode_switch=BackSpace;Alt_L=BackSpace;Super_R=Return" -t 350
+# exec --no-startup-id xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=BackSpace;Super_R=Return" -t 350
+exec --no-startup-id xcape -e "Overlay1_Enable=BackSpace;Alt_L=BackSpace;Super_R=Return" -t 250
 
 # }}}
 
