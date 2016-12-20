@@ -93,12 +93,12 @@ set $workspace10 10
 
 # where stuff gets done
 #set $monitor-main DVI-0
-#set $monitor-main eDP1
-set $monitor-main VGA1
+set $monitor-main eDP1
+#set $monitor-main VGA1
 # set $monitor-main DVI-0
 # email, web etc
-#set $monitor-comm eDP1
-set $monitor-comm VGA1
+set $monitor-comm eDP1
+#set $monitor-comm VGA1
 # monitor, IM, music
 set $monitor-ctrl eDP1
 
