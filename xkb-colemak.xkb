@@ -1435,10 +1435,12 @@ xkb_symbols "pc+us+inet(evdev)" {
         type= "PC_ALT_LEVEL2",
         symbols= [           Print,         Sys_Req ]
     };
+    // make right alt key act as super
     key <RALT> {
         type= "TWO_LEVEL",
         symbols= [         Super_R,        NoSymbol ]
     };
+    key.type = "ONE_LEVEL";
     key <LNFD> {         [        Linefeed ] };
     key <HOME> {         [            Home ] };
     key   <UP> {         [              Up ] };
