@@ -32,7 +32,8 @@ hsetroot -solid '#111111'
 #setxkbmap -option caps:backspace
 # Load xmodmap, keyboard options are in there.
 #xmodmap ~/.dotfiles/xmodmap.us
-xmodmap ~/.dotfiles/xmodmap.colemak
+#xmodmap ~/.dotfiles/xmodmap.colemak
+xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY
 # auto repeat for backspace
 #xset r 66  
 # default to headset

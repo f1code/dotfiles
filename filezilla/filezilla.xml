@@ -22,7 +22,7 @@
 		<Setting name="Speedlimit inbound">100</Setting>
 		<Setting name="Speedlimit outbound">20</Setting>
 		<Setting name="Speedlimit burst tolerance">0</Setting>
-		<Setting name="View hidden files">0</Setting>
+		<Setting name="View hidden files">1</Setting>
 		<Setting name="Preserve timestamps">0</Setting>
 		<Setting name="Socket recv buffer size (v2)">4194304</Setting>
 		<Setting name="Socket send buffer size (v2)">262144</Setting>
@@ -51,7 +51,7 @@
 		<Setting name="Auto Ascii dotfiles">1</Setting>
 		<Setting name="Theme">opencrystal/</Setting>
 		<Setting name="Language Code" />
-		<Setting name="Last Server Path">1 0 3 nfs 3 c12 3 h05 3 mnt 6 211018 7 domains 13 ar-global.com 4 html 10 wp-content 6 themes 10 arccapital</Setting>
+		<Setting name="Last Server Path">1 0 21 arcapital.rti-dev.com 3 web 7 content 10 wp-content 6 themes 10 arccapital 6 images</Setting>
 		<Setting name="Concurrent download limit">0</Setting>
 		<Setting name="Concurrent upload limit">0</Setting>
 		<Setting name="Update Check">1</Setting>
@@ -70,15 +70,15 @@
 		<Setting name="Show Tree Remote">1</Setting>
 		<Setting name="File Pane Layout">0</Setting>
 		<Setting name="File Pane Swap">0</Setting>
-		<Setting name="Last local directory">/home/nico/www/arcapital/web/wp-content/themes/arccapital/</Setting>
+		<Setting name="Last local directory">/home/nico/www/arcapital/web/wp-content/themes/arccapital/images/</Setting>
 		<Setting name="Filelist directory sort">0</Setting>
 		<Setting name="Queue successful autoclear">0</Setting>
 		<Setting name="Queue column widths">680 60 180 80 60 150</Setting>
 		<Setting name="Local filelist colwidths">266 80 100 248</Setting>
-		<Setting name="Remote filelist colwidths">358 75 80 242 80 80</Setting>
+		<Setting name="Remote filelist colwidths">358 75 80 242 71 80</Setting>
 		<Setting name="Window position and size">1 1889 236 959 884 </Setting>
-		<Setting name="Splitter positions (v2)">50 -282 500000000 100 100 500000000</Setting>
-		<Setting name="Local filelist sortorder">1 3</Setting>
+		<Setting name="Splitter positions (v2)">55 -167 500000000 100 100 500000000</Setting>
+		<Setting name="Local filelist sortorder">0 0</Setting>
 		<Setting name="Remote filelist sortorder">0 0</Setting>
 		<Setting name="Time Format">0</Setting>
 		<Setting name="Date Format">0</Setting>
@@ -90,10 +90,10 @@
 		<Setting name="Custom file associations" />
 		<Setting name="Comparison mode">1</Setting>
 		<Setting name="Comparison threshold">1</Setting>
-		<Setting name="Site Manager position">0 1046 123 784 830 </Setting>
+		<Setting name="Site Manager position">0 2006 123 784 830 </Setting>
 		<Setting name="Theme icon size" />
 		<Setting name="Timestamp in message log">0</Setting>
-		<Setting name="Sitemanager last selected">0/RTI/ARCapital - Production</Setting>
+		<Setting name="Sitemanager last selected">0/RTI/gluewp.rti-dev.com</Setting>
 		<Setting name="Local filelist shown columns">1111</Setting>
 		<Setting name="Remote filelist shown columns">111111</Setting>
 		<Setting name="Local filelist column order">0,1,2,3</Setting>
@@ -102,7 +102,7 @@
 		<Setting name="Filter toggle state">0</Setting>
 		<Setting name="Show quickconnect bar">1</Setting>
 		<Setting name="Messagelog position">0</Setting>
-		<Setting name="Last connected site">0/RTI/ARCapital - Production</Setting>
+		<Setting name="Last connected site">0/RTI/ARCapital - Staging</Setting>
 		<Setting name="File doubleclock action">0</Setting>
 		<Setting name="Dir doubleclock action">0</Setting>
 		<Setting name="Minimize to tray">0</Setting>
@@ -117,7 +117,7 @@
 		<Setting name="Filteredit window size" />
 		<Setting name="Enable invalid char filter">1</Setting>
 		<Setting name="Invalid char replace">_</Setting>
-		<Setting name="Already connected choice">1</Setting>
+		<Setting name="Already connected choice">0</Setting>
 		<Setting name="Edit status dialog size" />
 		<Setting name="Display current speed">0</Setting>
 		<Setting name="Toolbar hidden">0</Setting>
@@ -128,19 +128,19 @@
 		<Setting name="Kiosk mode">0</Setting>
 		<Setting name="Disable update check">0</Setting>
 		<LastServer>
-			<Host>s211018.gridserver.com</Host>
+			<Host>ftp.ord1-1.websitesettings.com</Host>
 			<Port>22</Port>
 			<Protocol>1</Protocol>
 			<Type>0</Type>
-			<User>ar-global.com</User>
-			<Pass encoding="base64">U3VjY2Vzc2luMjAxNyE=</Pass>
+			<User>arc8staging</User>
+			<Pass encoding="base64">U2lyaXVzM0FwMDExMDcwcjEwbg==</Pass>
 			<Logontype>1</Logontype>
 			<TimezoneOffset>0</TimezoneOffset>
 			<PasvMode>MODE_DEFAULT</PasvMode>
 			<MaximumMultipleConnections>0</MaximumMultipleConnections>
 			<EncodingType>Auto</EncodingType>
 			<BypassProxy>0</BypassProxy>
-			<Name>ARCapital - Production</Name>
+			<Name>ARCapital - Staging</Name>
 		</LastServer>
 		<Setting name="Persistent Choices">1</Setting>
 	</Settings>

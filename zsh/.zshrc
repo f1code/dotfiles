@@ -22,15 +22,21 @@ fi
 right_prompt_parts=()
 left_prompt_parts=()
 top_prompt_parts=()
+[[ -f "$ZDOTDIR/env.local" ]] && . $ZDOTDIR/env.local
 
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+export GOPATH=$HOME/Projects/go
 # Set path here, not in .zshenv, because it would get overwritten by 
 # /etc/profile
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOROOT/bin" 
+[[ -n "$MAMPROOT" ]] && export PATH="$PATH:$MAMPROOT/Library/bin"
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export GOPATH=$HOME/Projects/go
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOPATH/bin" 
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOPATH/bin:$HOME/.gem/ruby/2.3.0/bin:$HOME/.config/composer/vendor/bin" 
 
 # }}}
 
@@ -148,6 +154,9 @@ alias pacmanro='sudo pacman -Rs `pacman -Qtdq`'
 alias pu=pushd
 alias po=popd
 alias d="dirs -v"
+if [[ -n "$MAMPROOT" ]]; then
+    alias php=/Applications/MAMP/bin/php/php7.0.10/bin/php
+fi
 # There are also useful aliases like 1, 2, 3
 
 # locally installed node packages

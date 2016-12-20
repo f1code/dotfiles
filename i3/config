@@ -430,10 +430,10 @@ exec --no-startup-id skype
 exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
 exec --no-startup-id compton -b
-# Allow tapping caps key for escape
-# Not too sure about the Shift one but left shift was getting 
-# hit too much by mistake
-exec --no-startup-id xcape -e "Mode_switch=BackSpace;Alt_L=Escape;Super_R=Return" -t 350
+# Having shift as escape causes too many issues of lost input focus
+# exec --no-startup-id xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=BackSpace;Super_R=Return;Shift_L=Escape" -t 250
+exec --no-startup-id xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=BackSpace;Super_R=Return" -t 250
+# exec --no-startup-id xcape -e "Overlay1_Enable=BackSpace;Alt_L=BackSpace;Super_R=Return" -t 250
 
 # }}}
 

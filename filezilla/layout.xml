@@ -14,7 +14,8 @@
 			<xrc file="update.xrc" date="1475592837" />
 		</Resources>
 		<Language id="en_US" date="">
-			<Font font="Cantarell 11" width="823" height="20" />
+			<Font font="DejaVu Sans 11" width="979" height="18" />
+			<Dialog name="Site Manager" width="806" />
 		</Language>
 	</Layout>
 </FileZilla3>
