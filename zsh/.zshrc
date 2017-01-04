@@ -29,7 +29,7 @@ export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export GOPATH=$HOME/Projects/go
 # Set path here, not in .zshenv, because it would get overwritten by 
 # /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOROOT/bin" 
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOROOT/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" 
 [[ -n "$MAMPROOT" ]] && export PATH="$PATH:$MAMPROOT/Library/bin"
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
