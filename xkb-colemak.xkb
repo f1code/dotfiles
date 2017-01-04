@@ -1260,8 +1260,8 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <AD12> {
         symbols= [    bracketright,      braceright ]
     };
-    key <RTRN> {         [          Return ] };
-    key <LCTL> {         [       Control_L ] };
+    key <RTRN> { type= "ONE_LEVEL",         [          Return ] };
+    key <LCTL> { type= "ONE_LEVEL",        [       Control_L ] };
     key <AC01> {
         symbols= [               a,               A, Home, agrave ]
     };
@@ -1384,8 +1384,8 @@ xkb_symbols "pc+us+inet(evdev)" {
         type= "CTRL+ALT",
         symbols= [             F10,             F10,             F10,             F10, XF86Switch_VT_10 ]
     };
-    key <NMLK> {         [        Num_Lock ] };
-    key <SCLK> {         [       Caps_Lock ] };
+    key <NMLK> {   type= "ONE_LEVEL", symbols=      [        Num_Lock ] };
+    key <SCLK> {   type= "ONE_LEVEL", symbols=      [       Caps_Lock ] };
     key  <KP7> {         [         KP_Home,            KP_7 ] };
     key  <KP8> {         [           KP_Up,            KP_8 ] };
     key  <KP9> {         [        KP_Prior,            KP_9 ] };
