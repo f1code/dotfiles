@@ -9,6 +9,8 @@ fi
 
 # FZF extensions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Z
+[ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
 
 # }}}
 
