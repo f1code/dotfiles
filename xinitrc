@@ -23,13 +23,20 @@ hsetroot -solid '#111111'
 #setxkbmap -option caps:backspace
 # Load xmodmap, keyboard options are in there.
 #xmodmap ~/.dotfiles/xmodmap.us
-xmodmap ~/.dotfiles/xmodmap.colemak
+#xmodmap ~/.dotfiles/xmodmap.colemak
 # xkbcomp has issue where the Enter (caps + m) is interpreted as Ctrl+Enter somehow
-#xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY
+xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY
 # auto repeat for backspace
 #xset r 66  
 # default to headset
 pactl set-default-sink 1
+
+# setup dual monitor with primary on HDMI
+if xrandr --query | grep HDMI1 | grep disconnected; then 
+    xrandr --output eDP1 --auto --primary 
+else
+    xrandr --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
+fi
 
 exec i3
 #exec awesome

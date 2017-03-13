@@ -588,7 +588,7 @@ xkb_types "complete" {
         level_name[Level4]= "Shift Alt";
     };
     type "FOUR_LEVEL_ALPHABETIC" {
-        modifiers= Shift+Lock+LevelThree;
+        modifiers= Shift+Lock+LevelThree+LevelFive;
         map[Shift]= Level2;
         map[Lock]= Level2;
         map[LevelThree]= Level3;
@@ -702,19 +702,16 @@ xkb_compatibility "complete" {
         virtualModifier= NumLock;
         action= LockMods(modifiers=NumLock);
     };
-    interpret ISO_Level3_Shift+AnyOf(all) {
+    interpret ISO_Level3_Shift+AnyOfOrNone(all) {
         virtualModifier= LevelThree;
-        useModMapMods=level1;
         action= SetMods(modifiers=LevelThree,clearLocks);
     };
-    interpret ISO_Level3_Latch+AnyOf(all) {
+    interpret ISO_Level3_Latch+AnyOfOrNone(all) {
         virtualModifier= LevelThree;
-        useModMapMods=level1;
         action= LatchMods(modifiers=LevelThree,clearLocks,latchToLock);
     };
-    interpret ISO_Level3_Lock+AnyOf(all) {
+    interpret ISO_Level3_Lock+AnyOfOrNone(all) {
         virtualModifier= LevelThree;
-        useModMapMods=level1;
         action= LockMods(modifiers=LevelThree);
     };
     interpret Alt_L+AnyOf(all) {
@@ -753,17 +750,17 @@ xkb_compatibility "complete" {
         virtualModifier= ScrollLock;
         action= LockMods(modifiers=modMapMods);
     };
-    interpret ISO_Level5_Shift+AnyOf(all) {
+    interpret ISO_Level5_Shift+AnyOfOrNone(all) {
         virtualModifier= LevelFive;
         useModMapMods=level1;
         action= SetMods(modifiers=LevelFive,clearLocks);
     };
-    interpret ISO_Level5_Latch+AnyOf(all) {
+    interpret ISO_Level5_Latch+AnyOfOrNone(all) {
         virtualModifier= LevelFive;
         useModMapMods=level1;
         action= LatchMods(modifiers=LevelFive,clearLocks,latchToLock);
     };
-    interpret ISO_Level5_Lock+AnyOf(all) {
+    interpret ISO_Level5_Lock+AnyOfOrNone(all) {
         virtualModifier= LevelFive;
         useModMapMods=level1;
         action= LockMods(modifiers=LevelFive);
@@ -772,15 +769,6 @@ xkb_compatibility "complete" {
         virtualModifier= AltGr;
         useModMapMods=level1;
         action= SetGroup(group=+1);
-    };
-    interpret ISO_Level3_Shift+AnyOfOrNone(all) {
-        action= SetMods(modifiers=LevelThree,clearLocks);
-    };
-    interpret ISO_Level3_Latch+AnyOfOrNone(all) {
-        action= LatchMods(modifiers=LevelThree,clearLocks,latchToLock);
-    };
-    interpret ISO_Level3_Lock+AnyOfOrNone(all) {
-        action= LockMods(modifiers=LevelThree);
     };
     interpret ISO_Group_Latch+AnyOfOrNone(all) {
         virtualModifier= AltGr;
@@ -1126,15 +1114,6 @@ xkb_compatibility "complete" {
         repeat= True;
         action= Private(type=0x86,data[0]=0x2d,data[1]=0x56,data[2]=0x4d,data[3]=0x6f,data[4]=0x64,data[5]=0x65,data[6]=0x00);
     };
-    interpret ISO_Level5_Shift+AnyOfOrNone(all) {
-        action= SetMods(modifiers=LevelFive,clearLocks);
-    };
-    interpret ISO_Level5_Latch+AnyOfOrNone(all) {
-        action= LatchMods(modifiers=LevelFive,clearLocks,latchToLock);
-    };
-    interpret ISO_Level5_Lock+AnyOfOrNone(all) {
-        action= LockMods(modifiers=LevelFive);
-    };
     interpret Caps_Lock+AnyOfOrNone(all) {
         action= LockMods(modifiers=Lock);
     };
@@ -1223,7 +1202,7 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <AD01> {
         symbols= [ q, Q ]
     };
-    key.type = "FOUR_LEVEL_ALPHABETIC";
+    key.type = "EIGHT_LEVEL_SEMIALPHABETIC";
     key <AD02> {
         symbols= [               w,               W, equal, equal ]
     };
@@ -1241,10 +1220,11 @@ xkb_symbols "pc+us+inet(evdev)" {
         symbols= [               j,               J ]
     };
     key <AD07> {
-        symbols= [               l,               L, BackSpace, ecircumflex ]
+        symbols= [               l,               L, BackSpace, NoSymbol]
     };
     key <AD08> {
-        symbols= [               u,               U, Up ]
+        [               u,               U, Up ],
+        [ ucircumflex ]
     };
     key <AD09> {
         type= "ALPHABETIC",
@@ -1263,7 +1243,8 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <RTRN> { type= "ONE_LEVEL",         [          Return ] };
     key <LCTL> { type= "ONE_LEVEL",        [       Control_L ] };
     key <AC01> {
-        symbols= [               a,               A, Home, agrave ]
+        [               a,               A, Home, agrave ],
+        [ agrave ]
     };
     key <AC02> {
         symbols= [               r,               R, exclam, acircumflex ]
@@ -1278,19 +1259,24 @@ xkb_symbols "pc+us+inet(evdev)" {
         symbols= [               d,               D, braceleft, braceleft ]
     };
     key <AC06> {
-        symbols= [               h,               H, braceright, ediaeresis ]
+        [               h,               H, braceright, braceright ],
+        [ ecircumflex ]
     };
     key <AC07> {
-        symbols= [               n,               N, Left, eacute ]
+        [               n,               N, Left, Left ],
+        [ egrave ]
     };
     key <AC08> {
-        symbols= [               e,               E, Down, egrave ]
+        [               e,               E, Down, Down ],
+        [ eacute ]
     };
     key <AC09> {
-        symbols= [               i,               I, Right, idiaeresis ]
+        [               i,               I, Right, Right ], 
+        [   idiaeresis ]
     };
     key <AC10> {
-        symbols= [               o,               O, colon, ocircumflex ]
+        [               o,               O, colon, colon ],
+        [ocircumflex]
     };
     key <AC11> {
         symbols= [      apostrophe,        quotedbl, minus, minus ]
@@ -1309,7 +1295,8 @@ xkb_symbols "pc+us+inet(evdev)" {
         symbols= [               x,               X, plus, plus ]
     };
     key <AB03> {
-        symbols= [               c,               C, Escape]
+        [               c,               C, Escape],
+        [ ccedilla ]
     };
     key <AB04> {
         symbols= [               v,               V, ampersand ]
@@ -1435,12 +1422,8 @@ xkb_symbols "pc+us+inet(evdev)" {
         type= "PC_ALT_LEVEL2",
         symbols= [           Print,         Sys_Req ]
     };
-    // make right alt key act as super
-    key <RALT> {
-        type= "TWO_LEVEL",
-        symbols= [         Super_R,        NoSymbol ]
-    };
     key.type = "ONE_LEVEL";
+    key <RALT> {         [ Mode_switch ] };
     key <LNFD> {         [        Linefeed ] };
     key <HOME> {         [            Home ] };
     key   <UP> {         [              Up ] };
@@ -1467,8 +1450,8 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <HNGL> {         [          Hangul ] };
     key <HJCV> {         [    Hangul_Hanja ] };
     key <LWIN> {         [         Super_L ] };
-    key <RWIN> {         [     Mode_switch ] };
-    key <COMP> {         [            Menu ] };
+    key <RWIN> {         [     Super_R ] };
+    key <COMP> {         [            ISO_Level5_Shift ] };
     key <STOP> {         [          Cancel ] };
     key <AGAI> {         [            Redo ] };
     key <PROP> {         [        SunProps ] };
