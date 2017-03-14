@@ -284,9 +284,12 @@ bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Menu exec i3lock
 # Sleep monitor (this is needed sometimes to wake up the DisplayPort one)
 bindsym $mod+Caps_Lock exec --no-startup-id xset dpms force off
-# TODO load alternate i3 config for colemak
-bindsym $mod+Ctrl+Caps_Lock exec --no-startup-id "xmodmap ~/.dotfiles/xmodmap.colemak"
-bindsym $mod+Shift+Caps_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.dotfiles/xmodmap.us"
+# Switch to colemak: Start + Ctrl + Caps
+bindsym $mod+Ctrl+Caps_Lock exec --no-startup-id "setxkbmap us; xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY"
+# Switch to US: Start + Shift + Caps
+bindsym $mod+Shift+Caps_Lock exec --no-startup-id "setxkbmap us"
+# bindsym $mod+Ctrl+Caps_Lock exec --no-startup-id "xmodmap ~/.dotfiles/xmodmap.colemak"
+# bindsym $mod+Shift+Caps_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.dotfiles/xmodmap.us"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

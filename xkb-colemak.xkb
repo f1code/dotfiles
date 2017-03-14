@@ -1202,7 +1202,7 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <AD01> {
         symbols= [ q, Q ]
     };
-    key.type = "EIGHT_LEVEL_SEMIALPHABETIC";
+    key.type = "FOUR_LEVEL_ALPHABETIC";
     key <AD02> {
         symbols= [               w,               W, equal, equal ]
     };
@@ -1220,7 +1220,8 @@ xkb_symbols "pc+us+inet(evdev)" {
         symbols= [               j,               J ]
     };
     key <AD07> {
-        symbols= [               l,               L, BackSpace, NoSymbol]
+        [               l,               L, BackSpace, NoSymbol],
+        [ ediaeresis ]
     };
     key <AD08> {
         [               u,               U, Up ],
@@ -1423,6 +1424,7 @@ xkb_symbols "pc+us+inet(evdev)" {
         symbols= [           Print,         Sys_Req ]
     };
     key.type = "ONE_LEVEL";
+    // this is how we can use Right Alt to get to the "Group2" symbols (the accented characters)
     key <RALT> {         [ Mode_switch ] };
     key <LNFD> {         [        Linefeed ] };
     key <HOME> {         [            Home ] };
