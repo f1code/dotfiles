@@ -1,0 +1,8 @@
+# This is used when PHPStorm attempts to load the configuration:
+# Instead of looking at ~/.zshenv it only looks at ~/.zshrc 
+# So here we reset the environment AND load the "real" .zshrc
+
+source ~/.zshenv
+source $ZDOTDIR/.zshrc
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
