@@ -1,0 +1,1 @@
+ACTION=="change", SUBSYSTEM=="drm", ENV{HOTPLUG}=="1", RUN+="/home/nico/.config/i3/scripts/detect_displays.sh"
