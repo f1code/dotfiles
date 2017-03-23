@@ -294,6 +294,9 @@ bindsym $mod+Shift+Caps_Lock exec --no-startup-id "setxkbmap us"
 # bindsym $mod+Ctrl+Caps_Lock exec --no-startup-id "xmodmap ~/.dotfiles/xmodmap.colemak"
 # bindsym $mod+Shift+Caps_Lock exec --no-startup-id "setxkbmap us; xmodmap ~/.dotfiles/xmodmap.us"
 
+# re-detect displays
+bindsym $mod+F12 exec $script-dir/detect_displays.sh
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)

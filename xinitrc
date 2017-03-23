@@ -8,12 +8,14 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 # I am not sure why this is needed?
 #xrandr --output eDP1 --primary --auto --output HDMI1 --auto --right-of eDP1
-xrandr --output eDP1 --primary --auto 
+# xrandr --output eDP1 --primary --auto 
+# setup dual monitor with primary on HDMI - the geometry is hard coded in the script
 ~/.config/i3/scripts/detect_displays.sh
+
 
 # For touchpad
 # Disable tapping while typing
-syndaemon -d -i 2 -t -K
+# syndaemon -d -i 2 -t -K
 
 [ -f ~/.xprofile ] && source ~/.xprofile
 [ -f ~/.dotfiles/Xresources ] && xrdb -merge -I$HOME/.dotfiles ~/.dotfiles/Xresources
@@ -39,13 +41,6 @@ xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY
 #xset r 66  
 # default to headset
 pactl set-default-sink 1
-
-# setup dual monitor with primary on HDMI
-if xrandr --query | grep HDMI1 | grep disconnected; then 
-    xrandr --output eDP1 --auto --primary 
-else
-    xrandr --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
-fi
 
 exec i3
 #exec awesome
