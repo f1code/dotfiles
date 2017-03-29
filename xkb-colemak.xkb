@@ -1165,7 +1165,8 @@ xkb_keymap {
 
         key  <ESC> {         [          Escape ] };
         key <AE01> {
-            symbols= [               1,          exclam ]
+            [               1,          exclam ],
+            [   exclamdown ]
         };
         key <AE02> {
             symbols= [               2,              at ]
@@ -1220,8 +1221,8 @@ xkb_keymap {
             symbols= [               g,               G, percent, percent ]
         };
         key <AD06> {
-            type= "ALPHABETIC",
-                symbols= [               j,               J ]
+            [               j,               J ],
+            [ uacute ]
         };
         key <AD07> {
             [               l,               L, BackSpace, NoSymbol],
@@ -1232,8 +1233,8 @@ xkb_keymap {
             [ ucircumflex ]
         };
         key <AD09> {
-            type= "ALPHABETIC",
-                symbols= [               y,               Y ]
+            [               y,               Y ],
+            [ ugrave, Ugrave ]
         };
         key <AD10> {
             type= "ALPHABETIC",
@@ -1284,10 +1285,12 @@ xkb_keymap {
             [ocircumflex]
         };
         key <AC11> {
-            symbols= [      apostrophe,        quotedbl, minus, minus ]
+            [      apostrophe,        quotedbl, minus, minus ],
+            [ oacute ]
         };
         key <TLDE> {
-            symbols= [           grave,      asciitilde, dead_tilde, asciitilde ]
+            [           grave,      asciitilde ],
+            [ ntilde, Ntilde  ]
         };
         key <LFSH> {         [         Shift_L ] };
         key <BKSL> {
@@ -1322,7 +1325,8 @@ xkb_keymap {
             symbols= [          period,         greater, greater ]
         };
         key <AB10> {
-            symbols= [           slash,        question, question ]
+            [           slash,        question, question ],
+            [   questiondown ]
         };
         key <RTSH> {         [         Shift_R ] };
         key.type = "ALPHABETIC";
