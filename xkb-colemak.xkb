@@ -299,6 +299,7 @@ xkb_keymap {
         alias <LatM> = <AB07>;
     };
 
+    // Defines the different key types
     xkb_types "complete" {
 
         virtual_modifiers NumLock,Alt,LevelThree,LAlt,RAlt,RControl,LControl,ScrollLock,LevelFive,AltGr,Meta,Super,Hyper;
@@ -591,6 +592,8 @@ xkb_keymap {
             level_name[Level3]= "Alt Base";
             level_name[Level4]= "Shift Alt";
         };
+        // most keys are off this type
+        // this allows reaching the last 2 symbols by holding the "LevelThree" key (mapped to caps)
         type "FOUR_LEVEL_ALPHABETIC" {
             modifiers= Shift+Lock+LevelThree+LevelFive;
             map[Shift]= Level2;
@@ -1432,7 +1435,7 @@ xkb_keymap {
                 symbols= [           Print,         Sys_Req ]
         };
         key.type = "ONE_LEVEL";
-        // this is how we can use Right Alt to get to the "Group2" symbols (the accented characters)
+        // this is how we can use Right Alt to get to the "Group 2" symbols (the accented characters)
         key <RALT> {         [ Mode_switch ] };
         key <LNFD> {         [        Linefeed ] };
         key <HOME> {         [            Home ] };

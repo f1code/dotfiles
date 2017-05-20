@@ -1,3 +1,7 @@
+// This is a version that uses the caps key as an overlay instead
+// https://superuser.com/questions/801611/how-to-make-all-applications-respect-my-modified-xkb-layout
+// This works better because it lets key not have the state bits, but unfortunately it is a bit slower 
+// and causes some key strokes to be missed
 xkb_keymap {
 xkb_keycodes "evdev+aliases(qwerty)" {
     minimum = 8;
@@ -309,6 +313,10 @@ xkb_types "complete" {
         level_name[Level1]= "Base";
         level_name[Level2]= "Shift";
     };
+    // this is the type for most keys
+    // we use the overlay to enable the caps lock level
+    // we use a 2nd group to enable the special characters
+    // technically we could use a 3rd key to enable a new layer
     type "ALPHABETIC" {
         modifiers= Shift+Lock;
         map[Shift]= Level2;
@@ -1233,39 +1241,42 @@ xkb_symbols "pc+us+inet(evdev)" {
     key  <TAB> {         [             Tab,    ISO_Left_Tab ] };
     key.type = "ALPHABETIC";
     key <AD01> {
-        symbols= [ q, Q ]
+        symbols[Group1]= [ q, Q ]
     };
     key <AD02> {
-        symbols= [               w,               W ],
+        symbols[Group1]= [               w,               W ],
         overlay1 = <AE12>  // equal key
     };
     key <AD03> {
-        symbols= [               f,               F, bracketleft, Atilde ],
+        symbols[Group1]= [               f,               F, bracketleft, Atilde ],
         overlay1 = <AD11>  // bracket left
     };
     key <AD04> {
-        symbols= [               p,               P, bracketright, Oslash ],
+        symbols[Group1]= [               p,               P, bracketright, Oslash ],
         overlay1 = <AD12>  // bracket right
     };
     key <AD05> {
-        symbols= [               g,               G, percent, percent ],
+        symbols[Group1]= [               g,               G, percent, percent ],
         overlay1 = <I248>  // percent
     };
     key <AD06> {
-        type= "ALPHABETIC",
-        symbols= [               j,               J ]
+        symbols[Group1]= [               j,               J ],
+        symbols[Group2]= [ uacute, Uacute ]
     };
     key <AD07> {
-        symbols= [               l,               L, BackSpace, ecircumflex ],
+        symbols[Group1]= [               l,               L, BackSpace, ecircumflex ],
+        symbols[Group2]= [ ediaeresis ],
         overlay1 = <BKSP>  // bracket right
     };
     key <AD08> {
-        symbols= [               u,               U ],
+        symbols[Group1]= [               u,               U ],
+        symbols[Group2]= [ ucircumflex, Ucircumflex ],
         overlay1 = <UP>  
     };
     key <AD09> {
         type[group1]= "ALPHABETIC",
-        symbols[Group1]= [               y,               Y ]
+        symbols[Group1]= [               y,               Y ],
+        symbols[Group2]= [ ugrave, Ugrave ],
         // overlay1 = <AD12>  // AVAILABLE
     };
     key <AD10> {
@@ -1287,13 +1298,13 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <AC01> {
         type[group1]= "ALPHABETIC",
         symbols[Group1]= [               a,               A ],
-        symbols[Group2]= [            Home,          agrave ],
+        symbols[Group2]= [            agrave,          Agrave ],
         overlay1 = <HOME>  
     };
     key <AC02> {
         type[group1]= "ALPHABETIC",
         symbols[Group1]= [               r,               R ],
-        symbols[Group2]= [          exclam,     acircumflex ],
+        symbols[Group2]= [          acircumflex ],
         overlay1 = <I248>  // bracket right
     };
     key <AC03> {
@@ -1317,35 +1328,35 @@ xkb_symbols "pc+us+inet(evdev)" {
     key <AC06> {
         type[group1]= "ALPHABETIC",
         symbols[Group1]= [               h,               H ],
-        symbols[Group2]= [      braceright,      ediaeresis ],
+        symbols[Group2]= [      ecircumflex ],
         overlay1 = <I250>
     };
     key <AC07> {
         type[group1]= "ALPHABETIC",
         symbols[Group1]= [               n,               N ],
-        symbols[Group2]= [            Left,          eacute ],
+        symbols[Group2]= [            egrave ],
         overlay1 = <LEFT>
     };
     key <AC08> {
         type[group1]= "ALPHABETIC",
         symbols[Group1]= [               e,               E ],
-        symbols[Group2]= [            Down,          egrave ],
+        symbols[Group2]= [            eacute ],
         overlay1 = <DOWN>
     };
     key <AC09> {
         type[group1]= "ALPHABETIC",
         symbols[Group1]= [               i,               I ],
-        symbols[Group2]= [           Right,      idiaeresis ],
+        symbols[Group2]= [           idiaeresis ],
         overlay1 = <RGHT>
     };
     key <AC10> {
         symbols[Group1]= [               o,               O ],
-        symbols[Group2]= [           colon,     ocircumflex ],
+        symbols[Group2]= [           ocircumflex ],
         overlay1 = <I251>
     };
     key <AC11> {
         symbols[Group1]= [      apostrophe,        quotedbl ],
-        symbols[Group2]= [           minus ],
+        symbols[Group2]= [           oacute ],
         overlay1 = <AE11>
     };
     key <TLDE> {
@@ -1371,7 +1382,8 @@ xkb_symbols "pc+us+inet(evdev)" {
     };
     key <AB03> {
         type= "ALPHABETIC",
-        symbols= [               c,               C],
+        symbols[Group1]= [               c,               C],
+        symbols[Group2]= [ ccedilla ],
         overlay1 = <ESC>
     };
     key <AB04> {
@@ -1519,11 +1531,9 @@ xkb_symbols "pc+us+inet(evdev)" {
         type= "PC_ALT_LEVEL2",
         symbols[Group1]= [           Print,         Sys_Req ]
     };
-    key <RALT> {
-        type= "TWO_LEVEL",
-        symbols[Group1]= [         Super_R,        NoSymbol ]
-    };
     key.type = "ONE_LEVEL";
+    // this is how we can use Right Alt to get to the "Group 2" symbols (the accented characters)
+    key <RALT> {         [ Mode_switch ] };
     key <LNFD> {         [        Linefeed ] };
     key <HOME> {         [            Home ] };
     key   <UP> {         [              Up ] };
