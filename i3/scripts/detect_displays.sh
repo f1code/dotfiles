@@ -59,3 +59,7 @@ fi
 #     xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
 #     #xrandr --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
 # fi
+# While we are at it, let's restart xcape
+killall xcape
+xcape -e "ISO_Level3_Shift=BackSpace" -t 250
+# xcape -e "Overlay1_Enable=BackSpace" -t 250
