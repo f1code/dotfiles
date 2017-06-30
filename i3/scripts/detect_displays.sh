@@ -59,7 +59,8 @@ fi
 #     xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
 #     #xrandr --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
 # fi
-# While we are at it, let's restart xcape
+# While we are at it, let's reset the keyboard layout and restart xcape
 killall xcape
-xcape -e "ISO_Level3_Shift=BackSpace" -t 250
+setxkbmap us; xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY
+xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=Return;Mode_switch=Escape" -t 250
 # xcape -e "Overlay1_Enable=BackSpace" -t 250
