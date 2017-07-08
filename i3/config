@@ -167,6 +167,10 @@ bindsym $mod+Shift+Right move right
 bindcode $mod+Ctrl+$left move container to output left, focus output left
 bindcode $mod+Ctrl+$right move container to output right, focus output right
 
+# Move workspace to left / right monitor
+bindcode $mod+Shift+Ctrl+$left move workspace to output left, focus output left
+bindcode $mod+Shift+Ctrl+$right move workspace to output right, focus output right
+
 # Go to urgent window (30 = qwerty U)
 bindcode $mod+30 [urgent=latest] focus
 bindcode $mod+Shift+30 [urgent=oldest] focus
