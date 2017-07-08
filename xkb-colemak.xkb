@@ -1342,7 +1342,7 @@ xkb_keymap {
             symbols= [           space,           space ]
         };
         // This is how CAPS can act to get the extra symbols
-        key <CAPS> {         [     ISO_Level3_Shift ] };
+        key <CAPS> {   type="ONE_LEVEL", symbols=[     ISO_Level3_Shift ] };
         key <FK01> {
             type= "CTRL+ALT",
                 symbols= [              F1,              F1,              F1,              F1, XF86Switch_VT_1 ]
