@@ -229,6 +229,8 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
+# Rename workspace
+bindsym $mod+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 # 1 - 5 launch keys
 bindsym XF86Launch5 workspace $workspace1
 bindsym XF86Launch6 workspace $workspace2
@@ -305,6 +307,7 @@ bindsym $mod+F12 exec $script-dir/detect_displays.sh
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+bindsym $mod+F4 exec i3-input
 # exit i3 (logs you out of your X session)
 bindsym $mod+Ctrl+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindcode $mod+Shift+26 exec "gvim ~/.config/i3/config"
