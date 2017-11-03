@@ -41,7 +41,7 @@ done <<< "$DEVICES"
 if [ ! -z "$HDMI1" -a ! -z "$VGA1" ]
 then
   echo "HDMI1 and VGA1 are plugged in"
-  xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1 
+  xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
 elif [ ! -z "$HDMI1" -a -z "$VGA1" ]; then
   echo "HDMI1 is plugged in, but not VGA1"
   xrandr --output VGA1 --off --output eDP1 --off --output HDMI1 --auto --primary
@@ -53,8 +53,8 @@ else
   xrandr --output HDMI1 --off --output VGA1 --off --output eDP1 --auto --primary
 fi
 
-# if xrandr --query | grep HDMI1 | grep disconnected; then 
-#     xrandr --output eDP1 --auto --primary 
+# if xrandr --query | grep HDMI1 | grep disconnected; then
+#     xrandr --output eDP1 --auto --primary
 # else
 #     xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
 #     #xrandr --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
@@ -62,5 +62,5 @@ fi
 # While we are at it, let's reset the keyboard layout and restart xcape
 killall xcape
 setxkbmap us; xkbcomp ~/.dotfiles/xkb-colemak.xkb $DISPLAY
-xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=Return;Mode_switch=Escape" -t 250
+xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=Return" -t 250
 # xcape -e "Overlay1_Enable=BackSpace" -t 250

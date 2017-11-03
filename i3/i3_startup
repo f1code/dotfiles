@@ -15,6 +15,6 @@ workrave &
 compton -b
 # Allow tapping win key for escape
 # (tried with caps but it was generally annoying)
-# Not too sure about the Shift one but left shift was getting 
+# Not too sure about the Shift one but left shift was getting
 # hit too much by mistake
-xcape -e "Alt_L=BackSpace;Super_L=Escape;Super_R=Return" -t 350
+xcape -e "Alt_L=BackSpace;Super_R=Return" -t 350
