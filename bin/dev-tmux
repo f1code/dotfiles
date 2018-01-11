@@ -3,6 +3,6 @@
 tmux new-session -d 
 tmux split-window -h 
 tmux split-window -h 
-tmux split-window -v nvim
+tmux split-window -v
 tmux select-layout "c904,273x74,0,0{81x74,0,0[81x29,0,0,1,81x21,0,30,2,81x22,0,52,3],191x74,82,0,0}"
 tmux -2 attach-session -d
