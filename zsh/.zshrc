@@ -161,6 +161,12 @@ if [[ -n "$MAMPROOT" ]]; then
 fi
 # There are also useful aliases like 1, 2, 3
 
+# Git aliases
+# Git branch gone delete
+alias gbgd="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -d"
+# Git branch gone delete, even if not merged
+alias gbgD="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D"
+
 # locally installed node packages
 alias lbower="./node_modules/.bin/bower"
 alias lgulp="./node_modules/.bin/gulp"
