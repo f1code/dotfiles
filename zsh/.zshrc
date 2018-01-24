@@ -166,6 +166,7 @@ fi
 alias gbgd="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -d"
 # Git branch gone delete, even if not merged
 alias gbgD="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D"
+alias gcv="git commit --no-verify"
 
 # locally installed node packages
 alias lbower="./node_modules/.bin/bower"
