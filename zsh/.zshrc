@@ -31,7 +31,7 @@ export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 export GOPATH=$HOME/Projects/go
 # Set path here, not in .zshenv, because it would get overwritten by 
 # /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOROOT/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" 
+export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$HOME/.local/bin:$GOROOT/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" 
 [[ -n "$MAMPROOT" ]] && export PATH="$PATH:$MAMPROOT/Library/bin"
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
@@ -60,6 +60,7 @@ setopt extended_glob
 autoload -U colors && colors
 
 # Completion
+fpath=($ZDOTDIR/salesforce-cli-zsh-completion $fpath)
 autoload -Uz compinit && compinit
 # use menus for completion
 zstyle ':completion:*' menu select
@@ -137,6 +138,7 @@ set-ps1-from-parts
 # Aliases {{{
 ##################################################
 
+alias netctl='sudo netctl'
 # Commented those out since they are in prezto already
 # alias l='ls -CF'
 # alias la='ls -A'
