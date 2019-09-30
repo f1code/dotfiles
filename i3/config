@@ -147,6 +147,10 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# to switch to the left / right monitor
+bindcode $mod+Mod1+$left focus output left
+bindcode $mod+Mod1+$right focus output right
+
 # move focused window (within a layout)
 # bindsym $mod+Shift+h move left
 # bindsym $mod+Shift+$left move down
@@ -421,7 +425,7 @@ bindsym button8 move right
 # Client Setup / Application Rules {{{
 
 for_window [class="VirtualBox"] floating enable, move container to workspace $workspace2
-for_window [class="XTerm" instance="floaty"] floating enable
+for_window [class="XTerm" instance="floaty"] floating enable, move absolute position 100 px 100 px
 for_window [class="pystopwatch"] floating enable
 for_window [class="workrave"] floating enable
 assign [instance="Pidgin"] → $workspace9
