@@ -8,7 +8,8 @@ sleep 2
 #exec --no-startup-id "i3-msg 'workspace $workspace9; append_layout ~/.config/i3/layouts/messenger-layout.json'"
 # exec audacious
 # try DB instead of Auda for a bit
-deadbeef &
+# deadbeef &
+spotify &
 skype &
 workrave &
 # Compton provides transparency (which we only use for Rofi)

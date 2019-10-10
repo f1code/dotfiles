@@ -432,6 +432,7 @@ assign [instance="Pidgin"] → $workspace9
 assign [instance="skype"] → $workspace9
 assign [instance="audacious"] → $workspace9
 assign [instance="deadbeef"] → $workspace9
+assign [instance="spotify"] → $workspace9
 assign [instance="workrave"] → $workspace9
 
 # }}}
@@ -441,9 +442,9 @@ assign [instance="workrave"] → $workspace9
 # exec --no-startup-id i3-msg 'workspace 5: ILX; exec chromium --profile-directory=Profile\\ 3'
 # exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
 #exec --no-startup-id "i3-msg 'workspace $workspace9; append_layout ~/.config/i3/layouts/messenger-layout.json'"
-exec --no-startup-id pidgin
-exec --no-startup-id deadbeef
-exec --no-startup-id skype
+# exec --no-startup-id pidgin
+exec --no-startup-id spotify
+# exec --no-startup-id skype
 exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
 exec --no-startup-id compton -b

@@ -37,40 +37,16 @@ if ($ENV{'BLOCK_BUTTON'} == 1) {
 } elsif ($ENV{'BLOCK_BUTTON'} == 3) {
     system("playerctl $player_arg next");
 }
-
-if ($player_arg eq '' or $player_arg =~ /cmus$/) {
-    # try cmus first
-    my @cmus = split /^/, qx(cmus-remote -Q);
-    if ($? == 0) {
-        foreach my $line (@cmus) {
-            my @data = split /\s/, $line;
-            if (shift @data eq 'tag') {
-                my $key = shift @data;
-                my $value = join ' ', @data;
-
-                @metadata[0] = $value if $key eq 'artist';
-                @metadata[1] = $value if $key eq 'title';
-            }
-        }
-
-        if (@metadata) {
-            # metadata found so we are done
-            print(join ' - ', @metadata);
-            exit 0;
-        }
-    }
-
-    # if cmus was given, we are done
-    exit 0 unless $player_arg eq '';
-}
-
 my $artist = qx(playerctl $player_arg metadata artist);
 # exit status will be nonzero when playerctl cannot find your player
 exit(0) if $?;
+chomp($artist);
 push(@metadata, $artist) if $artist;
 
 my $title = qx(playerctl $player_arg metadata title);
 exit(0) if $?;
+chomp($title);
 push(@metadata, $title) if $title;
 
-print(join(" - ", @metadata)) if @metadata;
+# print("foo\n");
+print(join(" - ", @metadata) . "\n") if @metadata;
