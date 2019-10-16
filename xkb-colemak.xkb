@@ -1209,7 +1209,7 @@ xkb_keymap {
         key  <TAB> {         [             Tab,    ISO_Left_Tab ] };
         key.type = "ALPHABETIC";
         key <AD01> {
-            symbols= [ q, Q ]
+            [ q, Q ]
         };
         key.type = "FOUR_LEVEL_ALPHABETIC";
         key <AD02> {
@@ -1225,17 +1225,19 @@ xkb_keymap {
             symbols= [               g,               G, percent, percent ]
         };
         key <AD06> {
-            [               j,               J ],
-            [ uacute ]
+            [               j,               J ]
         };
+        // l -> ë
         key <AD07> {
             [               l,               L, BackSpace, NoSymbol],
             [ ediaeresis ]
         };
+        // u -> û
         key <AD08> {
             [               u,               U, Up ],
             [ ucircumflex ]
         };
+        // y -> ù
         key <AD09> {
             [               y,               Y ],
             [ ugrave, Ugrave ]
@@ -1257,7 +1259,8 @@ xkb_keymap {
             [ agrave ]
         };
         key <AC02> {
-            symbols= [               r,               R, exclam, acircumflex ]
+            [               r,               R, exclam, acircumflex ],
+            [ acircumflex ]
         };
         key <AC03> {
             symbols= [               s,               S, parenleft, asciitilde ]
@@ -1268,29 +1271,34 @@ xkb_keymap {
         key <AC05> {
             symbols= [               d,               D, braceleft, braceleft ]
         };
+        // h -> ê
         key <AC06> {
             [               h,               H, braceright, braceright ],
             [ ecircumflex ]
         };
+        // n -> è
         key <AC07> {
             [               n,               N, Left, Left ],
             [ egrave ]
         };
+        // e -> é
         key <AC08> {
             [               e,               E, Down, Down ],
             [ eacute, Eacute ]
         };
+        // i -> ï
         key <AC09> {
             [               i,               I, Right, Right ], 
                 [   idiaeresis ]
         };
+        // o -> ô
         key <AC10> {
             [               o,               O, colon, colon ],
-            [ocircumflex]
+            [ocircumflex, Ocircumflex]
         };
         key <AC11> {
             [      apostrophe,        quotedbl, minus, minus ],
-            [ oacute ]
+            [ oacute, Oacute ]
         };
         key <TLDE> {
             [           grave,      asciitilde ],
@@ -1308,16 +1316,20 @@ xkb_keymap {
         };
         key <AB03> {
             [               c,               C, Escape],
-            [ ccedilla ]
+            [ ccedilla, Ccedilla ]
         };
         key <AB04> {
-            symbols= [               v,               V, ampersand ]
+            [               v,               V, ampersand ],
+            [ ae, AE ]
         };
         key <AB05> {
-            symbols= [               b,               B, bar ]
+            [               b,               B, bar ],
+            [ oe, OE ]
         };
+        // k -> î
         key <AB06> {
-            symbols= [               k,               K, underscore ]
+            [               k,               K, underscore ],
+            [ icircumflex ]
         };
         key <AB07> {
             symbols= [               m,               M, Return ]

@@ -326,6 +326,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $script-dir/media down
 bindsym XF86AudioMute exec --no-startup-id $script-dir/media mute
 bindsym $mod+XF86AudioMute exec pavucontrol
 bindsym $mod+Pause exec pavucontrol
+bindsym Pause exec playerctl -p spotify play-pause
 bindsym XF86KbdBrightnessDown exec --no-startup-id $script-dir/kbd_backlight down
 bindsym XF86KbdBrightnessUp exec --no-startup-id $script-dir/kbd_backlight up
 
