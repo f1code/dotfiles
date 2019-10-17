@@ -39,7 +39,7 @@ run_freerdp() {
     #awk -F: '{system("xfreerdp -grab-keyboard /p:"$5" /d:"$4" /u:"$3" /v:"$2" /f +clipboard /cert-ignore")}') || notify-send -u critical "Connection Failed"
 }
 
-RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP:")
+RDP_HOST=$( (get_rdp_hosts) | rofi -dmenu -i -p "Select RDP")
 
 if [[ ! -z "$RDP_HOST" ]]
 then
