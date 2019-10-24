@@ -1,0 +1,2 @@
+event=ibm/hotkey LEN0268:00
+action=/etc/acpi/actions/kb-light.py
