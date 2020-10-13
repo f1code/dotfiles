@@ -9,8 +9,27 @@ fi
 
 # FZF extensions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/nico/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nico/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/nico/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nico/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 # Z
 [ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
+
+export NVM_DIR=$HOME/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # }}}
 
@@ -165,9 +184,9 @@ fi
 
 # Git aliases
 # Git branch gone delete
-alias gbgd="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -d"
+alias gbgd="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -d"
 # Git branch gone delete, even if not merged
-alias gbgD="git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D"
+alias gbgD="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D"
 alias gcv="git commit --no-verify"
 
 # locally installed node packages
@@ -189,7 +208,7 @@ alias -g NUL="> /dev/null 2>&1"
 
 hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/glue-full-timer-timesheet-app
 hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
-hash -d arc-theme=~/www/arcapital/web/wp-content/themes/arccapital
+hash -d arc-theme=/var/lib/www/arcapital/web/wp-content/themes/arccapital
 hash -d go-nico=~/Projects/go/src/github.com/nicocrm
 
 # }}}

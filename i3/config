@@ -73,17 +73,17 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 # Initial workspaces
 # Primary
-set $workspace1 1
+set $workspace1 "1:CODE"
 # VBox
 set $workspace2 "2:VM"
 # Remmina
 set $workspace3 "3:RDP"
 # XTIVIA Chrome
-set $workspace4 "4:XTIVIA"
+set $workspace4 "4:NET"
 # Gmail Chrome
 set $workspace5 "5:GMAIL"
 # ILX Chrome
-set $workspace6 "6:ILX"
+set $workspace6 "6:COMM"
 # next 2 are scratch
 set $workspace7 7
 set $workspace8 8
@@ -448,7 +448,8 @@ exec --no-startup-id spotify
 # exec --no-startup-id skype
 exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
-exec --no-startup-id compton -b
+# (disable for nwo... trying to see if that is what causes lockups)
+# exec --no-startup-id compton -b
 # Having shift as escape causes too many issues of lost input focus
 # exec --no-startup-id xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=BackSpace;Super_R=Return;Shift_L=Escape" -t 250
 #exec --no-startup-id xcape -e "ISO_Level3_Shift=BackSpace;Alt_L=Return" -t 250

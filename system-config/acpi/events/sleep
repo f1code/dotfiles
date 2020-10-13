@@ -1,0 +1,2 @@
+event=ibm/hotkey LEN0268:00.*1311
+action=/etc/acpi/actions/sleep.sh
