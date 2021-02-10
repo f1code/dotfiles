@@ -6,21 +6,22 @@
 # Note I tried with scrot but it had some problems with the windows 
 # refreshing
 
-cd /tmp
-
-if [[ "$1" = "edit" ]] ; then
-    escrotum -s -e "pinta \$f" || notify-send "Error - could not capture image"
-else
-    # if /usr/bin/import /tmp/screen.png 2>/tmp/out; then
-    #     xclip -t image/png -selection clipboard /tmp/screen.png &&
-    #         rm /tmp/screen.png &&
-    #         notify-send -u low "Image captured to clipboard"
-    # else
-    #     notify-send "Error - could not capture image"
-    # fi
-    if escrotum -s -e "xclip -t image/png -selection clipboard \$f; rm \$f"; then 
-        notify-send -u low "Image captured to clipboard"
-    else
-        notify-send "Error - could not capture image"
-    fi
-fi
+/usr/bin/flameshot gui
+# cd /tmp
+#
+# if [[ "$1" = "edit" ]] ; then
+#     escrotum -s -e "pinta \$f" || notify-send "Error - could not capture image"
+# else
+#     # if /usr/bin/import /tmp/screen.png 2>/tmp/out; then
+#     #     xclip -t image/png -selection clipboard /tmp/screen.png &&
+#     #         rm /tmp/screen.png &&
+#     #         notify-send -u low "Image captured to clipboard"
+#     # else
+#     #     notify-send "Error - could not capture image"
+#     # fi
+#     if escrotum -s -e "xclip -t image/png -selection clipboard \$f; rm \$f"; then 
+#         notify-send -u low "Image captured to clipboard"
+#     else
+#         notify-send "Error - could not capture image"
+#     fi
+# fi
