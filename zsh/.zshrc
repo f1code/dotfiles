@@ -24,6 +24,14 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Google Cloud SDK
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/nico/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nico/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/nico/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nico/google-cloud-sdk/completion.zsh.inc'; fi
+
 # Z
 [ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
 
@@ -203,6 +211,8 @@ unalias ln
 alias -g G="|grep"
 alias -g L="|less"
 alias -g NUL="> /dev/null 2>&1"
+alias -g BR='$(git branch --show-current)'
+alias -g BR:M='$(git branch --show-current):master'
 
 # Directory aliases
 

@@ -24,7 +24,6 @@ fi
 # notification daemon
 dunst &
 dropbox &
-nm-applet &
 #cbatticon &
 # Note xsetroot does not work with Compton
 hsetroot -solid '#111111'
