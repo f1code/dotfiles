@@ -326,7 +326,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $script-dir/media down
 bindsym XF86AudioMute exec --no-startup-id $script-dir/media mute
 bindsym $mod+XF86AudioMute exec pavucontrol
 bindsym $mod+Pause exec pavucontrol
-bindsym Pause exec playerctl -p spotify play-pause
+# bindsym Pause exec playerctl -p spotify play-pause
 bindsym XF86KbdBrightnessDown exec --no-startup-id $script-dir/kbd_backlight down
 bindsym XF86KbdBrightnessUp exec --no-startup-id $script-dir/kbd_backlight up
 
@@ -433,7 +433,7 @@ assign [instance="Pidgin"] → $workspace9
 assign [instance="skype"] → $workspace9
 assign [instance="audacious"] → $workspace9
 assign [instance="deadbeef"] → $workspace9
-assign [instance="spotify"] → $workspace9
+# assign [instance="spotify"] → $workspace9
 assign [instance="workrave"] → $workspace9
 
 # }}}
@@ -444,7 +444,7 @@ assign [instance="workrave"] → $workspace9
 # exec --no-startup-id i3-msg 'workspace $workspace3, exec remmina, workspace $workspace1'
 #exec --no-startup-id "i3-msg 'workspace $workspace9; append_layout ~/.config/i3/layouts/messenger-layout.json'"
 # exec --no-startup-id pidgin
-exec --no-startup-id spotify
+# exec --no-startup-id spotify
 # exec --no-startup-id skype
 exec --no-startup-id workrave
 # Compton provides transparency (which we only use for Rofi)
