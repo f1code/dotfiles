@@ -37,21 +37,44 @@ do
 
   fi
 done <<< "$DEVICES"
+LIDOPEN=`grep open /proc/acpi/button/lid/LID/state`
+if [ ! -z "$HDMI2" ]; then
+  HDMI=HDMI2
+elif [ ! -z "$HDMI1" ]; then
+  HDMI=HDMI1
+else
+  HDMI=
+fi
 
-if [ ! -z "$HDMI1" -a ! -z "$VGA1" ]
-then
-  echo "HDMI1 and VGA1 are plugged in"
-  xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
-elif [ ! -z "$HDMI1" -a -z "$VGA1" ]; then
-  echo "HDMI1 is plugged in, but not VGA1"
-  xrandr --output VGA1 --off --output eDP1 --off --output HDMI1 --auto --primary
-elif [ -z "$HDMI1" -a ! -z "$VGA1" ]; then
-  echo "VGA1 is plugged in, but not HDMI1"
-  xrandr --output HDMI1 --off --output eDP1 --off --output VGA1 --auto --primary
+if [ ! -z "$HDMI" -a ! -z "$DP1" -a -z "$LIDOPEN" ]; then
+  echo "$HDMI is plugged in, DP1 is plugged in, lid is closed"
+  xrandr --output DP1 --auto --primary --output $HDMI --auto --right-of DP1 --output eDP1 --off
+elif [ ! -z "$HDMI" ]; then
+  if [ ! -z "$LIDOPEN" ]; then
+    echo "$HDMI is plugged in, lid is open"
+    xrandr --output $HDMI --auto --primary --output eDP1 --auto --left-of $HDMI
+  else
+    echo "$HDMI is plugged in, lid is closed"
+    xrandr --output $HDMI --auto --primary --output eDP1 --off
+  fi
 else
   echo "No external monitors are plugged in"
-  xrandr --output HDMI1 --off --output VGA1 --off --output eDP1 --auto --primary
+  xrandr --output HDMI2 --off --output HDMI1 --off --output eDP1 --auto --primary
 fi
+# if [ ! -z "$HDMI1" -a ! -z "$VGA1" ]
+# then
+#   echo "HDMI1 and VGA1 are plugged in"
+#   xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
+# elif [ ! -z "$HDMI1" -a -z "$VGA1" ]; then
+#   echo "HDMI1 is plugged in, but not VGA1"
+#   xrandr --output VGA1 --off --output HDMI1 --auto --primary --output eDP1 --auto --left-of $HDMI1
+# elif [ -z "$HDMI1" -a ! -z "$VGA1" ]; then
+#   echo "VGA1 is plugged in, but not HDMI1"
+#   xrandr --output HDMI1 --off --output eDP1 --off --output VGA1 --auto --primary
+# else
+#   echo "No external monitors are plugged in"
+#   xrandr --output HDMI1 --off --output VGA1 --off --output eDP1 --auto --primary
+# fi
 
 # if xrandr --query | grep HDMI1 | grep disconnected; then
 #     xrandr --output eDP1 --auto --primary
