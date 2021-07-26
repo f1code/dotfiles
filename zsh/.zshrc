@@ -8,20 +8,24 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # FZF extensions
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nico/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/nico/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/nico/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/nico/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/home/nico/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/nico/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/nico/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/nico/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 # Google Cloud SDK
@@ -165,6 +169,9 @@ set-ps1-from-parts
 # Aliases {{{
 ##################################################
 
+function osh() {
+  ssh -t root@$1.odoo.com screen -rxpNGL
+}
 alias netctl='sudo netctl'
 # Commented those out since they are in prezto already
 # alias l='ls -CF'
@@ -174,20 +181,17 @@ alias netctl='sudo netctl'
 #
 # alias df='df -h'
 # alias du='du -h'
-which nvim >/dev/null && alias vi=nvim
+# which nvim >/dev/null && alias vi=nvim
 alias pacmanro='sudo pacman -Rs `pacman -Qtdq`'
-# having some issues with vim + xterm, it puts some garabage in the screen
+# having some issues with vim + xterm, it puts some garabage in the screen (also, vim does not support semshi)
 # So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
-#alias vi=vim
+alias vi=nvim
 # Don't need that one anymore since I actually use xterm now... hah
 #alias ssh="TERM=xterm ssh"
 # These are defined by prezto:
 alias pu=pushd
 alias po=popd
 alias d="dirs -v"
-if [[ -n "$MAMPROOT" ]]; then
-    alias php=/Applications/MAMP/bin/php/php7.0.10/bin/php
-fi
 # There are also useful aliases like 1, 2, 3
 
 # Git aliases
@@ -223,6 +227,6 @@ hash -d go-nico=~/Projects/go/src/github.com/nicocrm
 
 # }}}
 
-~/bin/qotd.sh
+# ~/bin/qotd.sh
 
 # vim: fdm=marker

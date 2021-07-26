@@ -294,7 +294,7 @@ bindsym Mod1+F2 exec rofi -show run
 # Rofi RDP connect
 bindsym $mod+F3 exec $script-dir/rofi-rdp
 bindsym $mod+Tab exec rofi -show window
-bindsym $mod+Menu exec i3lock
+bindsym $mod+F11 exec i3lock
 # Sleep monitor (this is needed sometimes to wake up the DisplayPort one)
 bindsym $mod+Caps_Lock exec --no-startup-id xset dpms force off
 # Switch to colemak: Start + Ctrl + Caps

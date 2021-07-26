@@ -23,7 +23,8 @@ fi
 # numlockx on
 # notification daemon
 dunst &
-dropbox &
+seafile-applet &
+#dropbox &
 #cbatticon &
 # Note xsetroot does not work with Compton
 hsetroot -solid '#111111'
