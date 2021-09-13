@@ -14,8 +14,8 @@ rofi.color-window:                   #2f343f, #00b0ef, #2f343f
 rofi.font:                          Deja Vu Sans 18
 rofi.lines: 10
 ! Full screen breaks transparency with i3, so leave it false, add padding instead
-rofi.fullscreen: false
-rofi.padding: 400
+rofi.fullscreen: true
+! rofi.padding: 400
 rofi.opacity: 90
-rofi.width: 100
-rofi.bw: 0
+! rofi.width: 100
+! rofi.bw: 0

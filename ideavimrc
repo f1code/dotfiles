@@ -1,0 +1,80 @@
+" base for this: https://danidiaz.medium.com/configuring-ideavimrc-de16a4da0715
+"
+" set relativenumber
+set number
+
+" https://github.com/JetBrains/ideavim/blob/master/doc/emulated-plugins.md
+
+" https://youtrack.jetbrains.com/issue/VIM-1970 
+set highlightedyank
+
+" https://youtrack.jetbrains.com/issue/VIM-959
+set ideamarks
+
+" https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
+set ideajoin
+
+" https://youtrack.jetbrains.com/issue/VIM-1521
+set commentary
+
+" dia daa cia caa
+set argtextobj
+
+" die dae cie cae
+set textobj-entire
+
+" https://youtrack.jetbrains.com/issue/VIM-1042
+set NERDTree
+
+" https://github.com/JetBrains/ideavim/wiki/Emulated-plugins#vim-paragraph-motion
+set vim-paragraph-motion
+
+" https://github.com/JetBrains/ideavim/wiki/Emulated-plugins#vim-indent-object
+set textobj-indent
+
+set exchange
+
+" https://github.com/JetBrains/ideavim/wiki/Select-mode
+" set selectmode-=template
+
+"  Mouseless Driven Development by Hadi Hariri https://www.youtube.com/watch?v=UH6YVv9js3s 
+" https://github.com/JetBrains/ideavim
+" https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+" https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
+set surround
+
+" Use space bar for leader
+let mapleader = " "
+
+
+" map s <Action>(HideAllWindows)
+" Ctrl + F12 in idea.
+map <Leader>s <Action>(FileStructurePopup)
+
+" I like using space for jumping to the next error or issue
+" map <Space> <Action>(GotoNextError)
+" map <Leader><Space> <Action>(GotoPreviousError)
+"
+" https://stackoverflow.com/questions/13346245/keyboard-shortcut-to-display-error-in-intellij
+map <Leader>e <Action>(ShowErrorDescription)
+" Alt + F7 in idea. 
+" Find usages in file is Ctrl + F7. 
+" Alt + E, then F, then U (through the menu bar) also seems to work fine.
+map <Leader>f <Action>(FindUsages)
+" Alt + Insert in idea.
+map <Leader>g <Action>(Generate)
+" F12 
+map <Leader>w <Action>(JumpToLastWindow)
+
+" The default C-o and C-i behaviours have certain inconsistencies with
+" Vim which I can't quite pinpoint.
+" I'm using the default IntelliJ behaviours instead.
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
+map g; <Action>(JumpToLastChange)
+map g, <Action>(JumpToNextChange)
+
+" Can also use Ctrl-Shift-[
+map <Leader>[ <Action>(EditorCodeBlockStart)
+" Can also use Ctrl-Shift-]
+map <Leader>] <Action>(EditorCodeBlockEnd)
