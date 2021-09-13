@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.dotfiles/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Third Party extensions {{{
 
 # Source Prezto.
@@ -8,68 +15,35 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # FZF extensions
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-  export FZF_DEFAULT_OPTS='-m --height 50% --border'
-fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/nico/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/nico/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/nico/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/nico/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-
-# Google Cloud SDK
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/nico/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nico/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/nico/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nico/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Z
-[ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
+# [ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
 
 export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# }}}
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PATH:$PYENV_ROOT/bin"
+eval "$(pyenv init --path)"
 
-# RBEnv - loaded by prezto
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# }}}
 
 
 # Environment Variables {{{
 ##################################################
 
-# Prompt parts, allow populating the prompt from the subsections
-right_prompt_parts=()
-left_prompt_parts=()
-top_prompt_parts=()
 [[ -f "$ZDOTDIR/env.local" ]] && . $ZDOTDIR/env.local
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
-export GOPATH=$HOME/Projects/go
 # Set path here, not in .zshenv, because it would get overwritten by 
 # /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$HOME/.local/bin:$GOROOT/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools" 
-[[ -n "$MAMPROOT" ]] && export PATH="$PATH:$MAMPROOT/Library/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.npm/bin:$HOME/.local/bin" 
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
-export GOPATH=$HOME/Projects/go
-export PATH="$PATH:$HOME/bin:$HOME/.meteor:$HOME/.npm/bin:$GOPATH/bin:$HOME/.gem/ruby/2.4.0/bin:$HOME/.config/composer/vendor/bin" 
 
 # }}}
 
@@ -116,62 +90,9 @@ unsetopt share_history
 bindkey -e
 # }}}
 
-# Git {{{
-##################################################
-
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-# check-for-changes enables the %u format, to show unstaged changes
-zstyle ':vcs_info:*' check-for-changes true
-fmt_git_unstaged="%{${fg[red]}%}%u"
-zstyle ':vcs_info:git*' formats "%{${fg[green]}%}(%{${fg[green]}%}%b ${fmt_git_unstaged}%{${fg[green]}%})%{$reset_color%}"
-precmd() {
-    # running this in a pre-command will populate the vcs info message
-    # variable that we will then use in the prompt
-    vcs_info
-}
-right_prompt_parts[2]=$'${vcs_info_msg_0_}'
-
-# }}}
-
-# Prompt {{{
-##################################################
-
-# date / time
-top_prompt_parts+=("%{$fg[yellow]%}[%D{%a %b %d %T}]")
-# user / host
-top_prompt_parts+=("%{$fg_bold[green]%}<%n@%m>")
-# last command status
-top_prompt_parts+=("%{$fg_bold[magenta]%}[%?]")
-# git
-top_prompt_parts+=''
-# newline
-top_prompt_parts+="%{$reset_color%}"$'\n'
-
-# directory and %
-left_prompt_parts=("%{$fg_bold[blue]%}%~" "%#" "%{$reset_color%}")
-
-function set-rps1-from-parts {
-    RPS1="${(j::)right_prompt_parts}"
-}
-
-function set-ps1-from-parts {
- #   PS1="${(j: :)left_prompt_parts}%{$reset_color%}"
-    PS1=$'\n'"${(j: :)top_prompt_parts}${(j: :)left_prompt_parts}%{$reset_color%}"
-}
-
-setopt prompt_subst
-set-rps1-from-parts
-set-ps1-from-parts
-
-# }}}
-
 # Aliases {{{
 ##################################################
 
-function osh() {
-  ssh -t root@$1.odoo.com screen -rxpNGL
-}
 alias netctl='sudo netctl'
 # Commented those out since they are in prezto already
 # alias l='ls -CF'
@@ -183,7 +104,7 @@ alias netctl='sudo netctl'
 # alias du='du -h'
 # which nvim >/dev/null && alias vi=nvim
 alias pacmanro='sudo pacman -Rs `pacman -Qtdq`'
-# having some issues with vim + xterm, it puts some garabage in the screen (also, vim does not support semshi)
+# having some issues with vim + xterm, it puts some garabage in the screen
 # So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
 alias vi=nvim
 # Don't need that one anymore since I actually use xterm now... hah
@@ -192,6 +113,9 @@ alias vi=nvim
 alias pu=pushd
 alias po=popd
 alias d="dirs -v"
+if [[ -n "$MAMPROOT" ]]; then
+    alias php=/Applications/MAMP/bin/php/php7.0.10/bin/php
+fi
 # There are also useful aliases like 1, 2, 3
 
 # Git aliases
@@ -227,6 +151,7 @@ hash -d go-nico=~/Projects/go/src/github.com/nicocrm
 
 # }}}
 
-# ~/bin/qotd.sh
-
 # vim: fdm=marker
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
