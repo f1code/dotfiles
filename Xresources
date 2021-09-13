@@ -28,15 +28,15 @@ XTerm*metaSendsEscape: true
 XTerm*saveLines: 4096
 XTerm*background: #1B1B1B
 XTerm*foreground: #cccccc
-XTerm*faceName: DejaVu Sans Mono:size=9
-! XTerm*faceName: Fira Code:size=11
+! XTerm*faceName: DejaVu Sans Mono:size=9
+XTerm*faceName: MesloLGS NF:size=9
 XTerm*selectToClipboard: true
 UXTerm*locale: true
 UXTerm*metaSendsEscape: true
 UXTerm*saveLines: 500
 UXTerm*background: #1B1B1B
 UXTerm*foreground: #cccccc
-UXTerm*faceName: DejaVu Sans Mono:size=9
+UXTerm*faceName: MesloLGS NF:size=9
 UXTerm*selectToClipboard: true
 
 
