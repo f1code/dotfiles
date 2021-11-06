@@ -20,16 +20,7 @@ fi
 # Z
 # [ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
 
-export NVM_DIR=$HOME/.nvm
-export NVM_LAZY_LOAD=true
-source $ZDOTDIR/zsh-nvm.plugin.zsh
-
-# Python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:$PYENV_ROOT/bin"
-eval "$(pyenv init --path)"
-
-export PATH="$HOME/.poetry/bin:$PATH"
+xset -b
 
 # }}}
 
@@ -93,6 +84,7 @@ bindkey -e
 # Aliases {{{
 ##################################################
 
+alias python=python3
 alias netctl='sudo netctl'
 # Commented those out since they are in prezto already
 # alias l='ls -CF'
