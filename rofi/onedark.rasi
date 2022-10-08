@@ -82,7 +82,8 @@ element urgent, element selected urgent {
 }
 
 element active, element selected active {
-  text-color: @purple;
+  /* not sure where that is shown really */
+  text-color: #DDA0DD;
 }
 
 message {
