@@ -9,6 +9,8 @@ sleep 2
 # exec audacious
 # try DB instead of Auda for a bit
 # deadbeef &
+# connect display link output
+(xrandr --listproviders | grep -q "modesetting") && xrandr --setprovideroutputsource 1 0
 spotify &
 skype &
 workrave &

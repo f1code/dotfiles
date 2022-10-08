@@ -4,7 +4,8 @@
 # Source: https://github.com/codingtony/udev-monitor-hotplug/blob/master/usr/local/bin/monitor-hotplug.sh
 
 # setup dual monitor with primary on HDMI
-DEVICES=$(find /sys/class/drm/*/status)
+# DEVICES=$(find /sys/class/drm/*/status)
+DEVICES=$(xrandr | grep '\<connected\>' | cut -d ' ' -f 1)
 #inspired by /etc/acpd/lid.sh and the function it sources
 #
 # displaynum=`ls /tmp/.X11-unix/* | sed s#/tmp/.X11-unix/X##`
@@ -16,26 +17,12 @@ DEVICES=$(find /sys/class/drm/*/status)
 
 
 #this while loop declare the $HDMI1 $VGA1 $LVDS1 and others if they are plugged in
-while read l
+while read dev
 do
-  dir=$(dirname $l);
-  status=$(cat $l);
-  dev=$(echo $dir | cut -d\- -f 2-);
+  devvar=$(echo $dev | tr -d '-')
 
-  if [ $(expr match  $dev "HDMI") != "0" ]
-  then
-#REMOVE THE -X- part from HDMI-X-n
-    dev=HDMI${dev#HDMI-?-}
-  else
-    dev=$(echo $dev | tr -d '-')
-  fi
-
-  if [ "connected" == "$status" ]
-  then
-    echo $dev "connected"
-    declare $dev="yes";
-
-  fi
+  echo "$dev connected ($devvar)"
+  declare $devvar="$dev";
 done <<< "$DEVICES"
 LIDOPEN=`grep open /proc/acpi/button/lid/LID/state`
 if [ ! -z "$HDMI2" ]; then
@@ -46,35 +33,37 @@ else
   HDMI=
 fi
 
+
 if [ ! -z "$HDMI" -a ! -z "$DP1" -a -z "$LIDOPEN" ]; then
-  echo "$HDMI is plugged in, DP1 is plugged in, lid is closed"
+  echo "$HDMI is plugged in, DP1 is plugged in, lid is closed - using DP1 as primary"
+  PRIMARY=DP1
   xrandr --output DP1 --auto --primary --output $HDMI --auto --right-of DP1 --output eDP1 --off
 elif [ ! -z "$HDMI" ]; then
   if [ ! -z "$LIDOPEN" ]; then
-    echo "$HDMI is plugged in, lid is open"
+    echo "$HDMI is plugged in, lid is open - using $HDMI as primary"
+    PRIMARY=$HDMI
     xrandr --output $HDMI --auto --primary --output eDP1 --auto --left-of $HDMI
   else
-    echo "$HDMI is plugged in, lid is closed"
+    echo "$HDMI is plugged in, lid is closed - using $HDMI as primary"
+    PRIMARY=$HDMI
     xrandr --output $HDMI --auto --primary --output eDP1 --off
   fi
-else
-  echo "No external monitors are plugged in"
+fi
+if [ ! -z "$DVII11" -a -z "$PRIMARY" ]; then
+  echo "Using displaylink $DVII11 1 as primary"
+  xrandr --output "$DVII11" --auto --primary --output eDP1 --off
+  PRIMARY=$DVII11
+fi
+if [ ! -z "$DVII22" -a ! -z "$PRIMARY" ]; then
+  echo "Using displaylink $DVII22 as secondary"
+  xrandr --output "$DVII22" --auto --primary --right-of $PRIMARY
+fi
+if [ -z "$PRIMARY" ]; then
+  echo "No external monitors are plugged in - using eDP1 as primary"
+  PRIMARY=eDP1
   xrandr --output HDMI2 --off --output HDMI1 --off --output eDP1 --auto --primary
 fi
-# if [ ! -z "$HDMI1" -a ! -z "$VGA1" ]
-# then
-#   echo "HDMI1 and VGA1 are plugged in"
-#   xrandr --output eDP1 --off --output HDMI1 --auto --primary --output VGA1 --auto --right-of HDMI1
-# elif [ ! -z "$HDMI1" -a -z "$VGA1" ]; then
-#   echo "HDMI1 is plugged in, but not VGA1"
-#   xrandr --output VGA1 --off --output HDMI1 --auto --primary --output eDP1 --auto --left-of $HDMI1
-# elif [ -z "$HDMI1" -a ! -z "$VGA1" ]; then
-#   echo "VGA1 is plugged in, but not HDMI1"
-#   xrandr --output HDMI1 --off --output eDP1 --off --output VGA1 --auto --primary
-# else
-#   echo "No external monitors are plugged in"
-#   xrandr --output HDMI1 --off --output VGA1 --off --output eDP1 --auto --primary
-# fi
+
 
 # if xrandr --query | grep HDMI1 | grep disconnected; then
 #     xrandr --output eDP1 --auto --primary
