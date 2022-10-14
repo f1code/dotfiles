@@ -49,14 +49,21 @@ elif [ ! -z "$HDMI" ]; then
     xrandr --output $HDMI --auto --primary --output eDP1 --off
   fi
 fi
-if [ ! -z "$DVII11" -a -z "$PRIMARY" ]; then
-  echo "Using displaylink $DVII11 1 as primary"
-  xrandr --output "$DVII11" --auto --primary --output eDP1 --off
-  PRIMARY=$DVII11
+if [ ! -z "$DVII11" ]; then
+  if [ -z "$PRIMARY" ]; then
+    echo "Using displaylink $DVII11 as primary"
+    xrandr --output "$DVII11" --auto --primary --output eDP1 --off
+    PRIMARY=$DVII11
+  else
+    # don't do that because normally it means the monitor is already plugged in HDMI
+  #   echo "Using displaylink $DVII11 as secondary"
+  #   xrandr --output "$DVII11" --auto --right-of $PRIMARY
+    xrandr --output "$DVII11" --off
+  fi
 fi
 if [ ! -z "$DVII22" -a ! -z "$PRIMARY" ]; then
   echo "Using displaylink $DVII22 as secondary"
-  xrandr --output "$DVII22" --auto --primary --right-of $PRIMARY
+  xrandr --output "$DVII22" --auto --right-of $PRIMARY
 fi
 if [ -z "$PRIMARY" ]; then
   echo "No external monitors are plugged in - using eDP1 as primary"
