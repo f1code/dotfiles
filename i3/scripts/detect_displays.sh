@@ -69,6 +69,9 @@ if [ -z "$PRIMARY" ]; then
   echo "No external monitors are plugged in - using eDP1 as primary"
   PRIMARY=eDP1
   xrandr --output HDMI2 --off --output HDMI1 --off --output eDP1 --auto --primary
+else
+  echo "Mirroring primary display $PRIMARY to eDP1"
+  xrandr --output eDP1 --same-as $PRIMARY
 fi
 
 
