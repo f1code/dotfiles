@@ -20,7 +20,9 @@ fi
 # Z
 # [ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
 
-xset -b
+if which xset >/dev/null; then
+	xset -b
+fi
 
 # }}}
 
