@@ -84,7 +84,7 @@ alias dkcU='docker compose up -d'
 alias dkcx='docker compose stop'
 
 # FNM (replaces, nvm, install with brew)
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --log-level quiet)"
 
 # 4G
 if [[ -d "$HOME/prancer" ]]; then
