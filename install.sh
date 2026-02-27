@@ -1,12 +1,9 @@
 #!/bin/sh
 
-cd ~/.dotfiles
-for i in gsimplecal dunst fontconfig i3; do
-    ln -sf ~/.dotfiles/$i ~/.config/$i 
-done
-for i in zshenv tmux.conf npmrc xprofile xinitrc remmina; do
-    ln -sf ~/.dotfiles/$i ~/.$i 
-done
-for i in bin/*; do
-    ln -sf ~/.dotfiles/$i ~/$i 
-done
+$DOTFILES=~/.config/dotfiles
+ln -s $DOTFILES/ghostty ~/.config
+ln -s $DOTFILES/karabiner ~/.config
+ln -s $DOTFILES/zsh/.zshenv ~
+# for i in bin/*; do
+#     ln -sf ~/.dotfiles/$i ~/$i 
+# done

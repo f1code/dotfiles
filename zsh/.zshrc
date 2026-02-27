@@ -1,133 +1,53 @@
+# For profiling, if needed:
+# zmodload zsh/zprof
+#
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.dotfiles/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
 fi
 
-# Third Party extensions {{{
-
 # Source Prezto.
-# Not really using much of it right now - mostly the git aliases and some of the completion setup
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  zstyle ':prezto:module:editor' key-bindings 'emacs'
+if [[ -o interactive ]] && [[ -z "$CURSOR_AGENT" ]] && [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# FZF extensions
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Z
-# [ -f "${ZDOTDIR}/z.sh" ] && source "${ZDOTDIR}/z.sh"
-
-if which xset >/dev/null; then
-	xset -b
-fi
-
-# }}}
-
-
-# Environment Variables {{{
-##################################################
-
-[[ -f "$ZDOTDIR/env.local" ]] && . $ZDOTDIR/env.local
-
-# Set path here, not in .zshenv, because it would get overwritten by 
-# /etc/profile
-export PATH="$PATH:$HOME/bin:$HOME/.npm/bin:$HOME/.local/bin" 
-[[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
-ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
-
-# }}}
+path=(
+  $path
+  # dart pub binaries
+  $HOME/.pub-cache/bin
+  # unversioned python commands
+  /opt/homebrew/opt/python@3/libexec/bin
+)
 
 # Shell Options {{{
 ##################################################
 
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-# report status of background jobs
-setopt notify
 
-zstyle :compinstall filename '/home/nico/.zshrc'
-
-# Globbing
-setopt extended_glob
-
-# Colors
-autoload -U colors && colors
-
-# Completion
-fpath=($ZDOTDIR/salesforce-cli-zsh-completion $fpath)
-autoload -Uz compinit && compinit
-# use menus for completion
-zstyle ':completion:*' menu select
-# let's use the tag name as group name
-zstyle ':completion:*' group-name ''
-setopt completealiases
-
-# ZMV command and corresponding alias (use it to move multiple files)
-autoload -U zmv
-alias mmv='noglob zmv -W'
-
-# History
-# append history (so history from multiple sessions is preserved) but ignore duplicates
-setopt appendhistory hist_ignore_all_dups 
-# don't want to share history between sessions (this is set by default by prezto)
-unsetopt share_history
-# show only past commands beginning with the current input
-[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
-[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
-
-# Use Emacs key bindings (tried VI but ended up being too much trouble)
-bindkey -e
 # }}}
 
 # Aliases {{{
 ##################################################
 
-alias python=python3
-alias netctl='sudo netctl'
-# Commented those out since they are in prezto already
-# alias l='ls -CF'
-# alias la='ls -A'
-# alias ll='ls -alF'
-# alias ls='ls --color=auto'
-#
-# alias df='df -h'
-# alias du='du -h'
-# which nvim >/dev/null && alias vi=nvim
-alias pacmanro='sudo pacman -Rs `pacman -Qtdq`'
-# having some issues with vim + xterm, it puts some garabage in the screen
-# So I switched to neovim for the time being, though it seems to have some issues with the clipboard at times... ugh
 alias vi=nvim
-# Don't need that one anymore since I actually use xterm now... hah
-#alias ssh="TERM=xterm ssh"
-# These are defined by prezto:
-alias pu=pushd
-alias po=popd
-alias d="dirs -v"
-if [[ -n "$MAMPROOT" ]]; then
-    alias php=/Applications/MAMP/bin/php/php7.0.10/bin/php
+alias cp='nocorrect cp'
+alias ln='nocorrect ln'
+alias mv='nocorrect mv'
+alias rm='nocorrect rm'
+alias cpi="${aliases[cp]:-cp} -i"
+alias lni="${aliases[ln]:-ln} -i"
+alias mvi="${aliases[mv]:-mv} -i"
+alias rmi="${aliases[rm]:-rm} -i"
+alias rg='rg -S'
+if command -v eza >/dev/null 2>&1; then 
+  alias ls='eza --icons=always --hyperlink'
+  alias ll='eza -l --icons=always --hyperlink'
+  alias la='eza -la --icons=always --hyperlink'
 fi
-# There are also useful aliases like 1, 2, 3
-
-# Git aliases
-# Git branch gone delete
-alias gbgd="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -d"
-# Git branch gone delete, even if not merged
-alias gbgD="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print \$1}' | xargs git branch -D"
-alias gcv="git commit --no-verify"
-
-# locally installed node packages
-alias lbower="./node_modules/.bin/bower"
-alias lgulp="./node_modules/.bin/gulp"
-alias lgrunt="./node_modules/.bin/grunt"
-
-# Remove interactive aliases
-unalias rm
-unalias mv
-unalias ln
 
 # Global aliases
 alias -g G="|grep"
@@ -136,16 +56,128 @@ alias -g NUL="> /dev/null 2>&1"
 alias -g BR='$(git branch --show-current)'
 alias -g BR:M='$(git branch --show-current):master'
 
-# Directory aliases
+# ZMV command and corresponding alias (use it to move multiple files)
+autoload -U zmv
+alias mmv='noglob zmv -W'
 
-hash -d pg-timesheet=~/Projects/RSD/pg-timesheet/glue-full-timer-timesheet-app
-hash -d ef-theme=~/www/ef/web/B0nfir3-content/themes/electric_factory_theme
-hash -d arc-theme=/var/lib/www/arcapital/web/wp-content/themes/arccapital
-hash -d go-nico=~/Projects/go/src/github.com/nicocrm
+# SCM Puff [https://github.com/mroth/scmpuff]
+eval "$(scmpuff init -s --aliases=false)"
+alias gs="scmpuff_status"
+
+# Docker
+alias dk='docker'
+alias dkr='docker run'
+alias dkR='docker run -it --rm'
+alias dkps='docker ps'
+alias dkpsa='docker ps -a'
+
+# Docker Compose (c)
+alias dkc='docker compose'
+alias dkcb='docker compose build'
+alias dkcB='docker compose build --no-cache'
+alias dkce='docker compose exec'
+alias dkcl='docker compose logs'
+alias dkcs='docker compose start'
+alias dkcS='docker compose restart'
+alias dkcu='docker compose up'
+alias dkcU='docker compose up -d'
+alias dkcx='docker compose stop'
+
+# FNM (replaces, nvm, install with brew)
+eval "$(fnm env --use-on-cd)"
+
+# 4G
+if [[ -d "$HOME/prancer" ]]; then
+  # Customize to your needs...
+  [[ -s "${HOME}/tools/k8s/aliases.sh" ]] && source "${HOME}/tools/k8s/aliases.sh"
+
+  alias load-reports="dkce backend python manage.py initialize_reports --override=True"
+  alias load-glossaries="dkce backend python manage.py initialize_prancer_glossary --override=True"
+  alias shell-plus-sql="dkce backend python manage.py shell_plus --print-sql"
+  wipe-db-prancer() {
+    # optionally, pass the dump file to use
+    # default uses dbs/develop.dmp
+    readonly dumpfile=~/dbs/${1:?develop}.dmp.gz
+    echo "Using dump file $dumpfile"
+    unsetopt pushdignoredups
+    # optionally, pass a prancer version suffix to use as directory to switch to
+    # (or . to not switch directory)
+    # default uses ~/prancer
+    if [[ "$2" == "." ]]; then
+      prancer_dir=.
+    else
+      prancer_dir="$HOME/prancer${2:+_$2}"
+    fi
+    if [ ! -f "$dumpfile" ]; then
+      echo "File $dumpfile does not exist!"
+      return 1
+    fi
+    pushd $prancer_dir
+    docker compose stop backend celery celery-beat db-builder && \
+      docker compose exec db psql -U prancer -d postgres -c 'drop database if exists prancer with (force)' && \
+      docker compose exec db psql -U prancer -d postgres -c 'create database prancer' && \
+      gunzip -c $dumpfile | docker compose exec -T db psql -U prancer -d prancer && \
+      docker compose up -d && \
+      docker compose logs -f db-builder
+    popd
+  }
+fi
 
 # }}}
 
-# vim: fdm=marker
+. "$HOME/.local/bin/env"
 
-# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
-[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
+
+# Ghostty - we don't need these on warp {{{
+##################################################
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+  # FZF extensions
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+  autoload bashcompinit && bashcompinit
+  autoload -Uz compinit && compinit
+  complete -C '/opt/homebrew/bin/aws_completer' aws
+
+  # 1. Autosuggestions
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  # Bind Ctrl+Space to accept the suggestion
+  bindkey '^ ' autosuggest-accept
+  # This accepts just the next word of the ghost text
+  bindkey '\e ' forward-word
+
+  # 2. Autocomplete
+  # --- zsh-autocomplete tuning ---
+  # Add a slight 100ms delay so the menu doesn't flash wildly while you type fast
+  zstyle ':autocomplete:*' delay 0.1
+  
+  # Limit the dropdown menu height (the default can take up half your screen)
+  zstyle ':autocomplete:*' list-lines 10
+
+  # Let zsh-autosuggestions handle the "ghost text", keep autocomplete to the menu
+  zstyle ':autocomplete:*' insert-unambiguous no
+  source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+  # DISABLE THE "EXPANSION" GROUP
+  # This stops zsh from making you tab through the expanded path of ~ or $VAR
+  zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
+
+  # --- Keybinding fixes (Must go AFTER sourcing autocomplete) ---
+  # Make Up/Down arrows search your history instead of jumping into the menu.
+  # (You will use Tab and Shift-Tab to navigate the dropdown menu instead).
+  bindkey '\e[A' up-line-or-history    # Up Arrow
+  bindkey '\e[B' down-line-or-history  # Down Arrow
+
+  # Force 'Enter' to always run the command you typed. 
+  # (Without this, if a menu item is highlighted, Enter just inserts the word).
+  bindkey '\r' accept-line
+  bindkey '^M' accept-line
+
+  # 3. Syntax highlighting - must be last
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+# }}}
+
+# To customize prompt, run `p10k configure` or edit ~/.config/dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/.config/dotfiles/zsh/.p10k.zsh ]] || source ~/.config/dotfiles/zsh/.p10k.zsh
+
+# zprof

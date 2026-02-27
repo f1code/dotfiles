@@ -1,8 +1,0 @@
-[user]
-	email = ngaller@gmail.com
-	name = Nicolas Galler
-[push]
-	default = simple
-[core]
-	excludesfile = /home/nico/.dotfiles/git/gitignore
-	autocrlf = input

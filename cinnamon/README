@@ -1,9 +1,0 @@
-See info at https://wiki.archlinux.org/index.php/cinnamon
-
-Keybindings:
-
-
-To export your keyboard shortcut keys, you should do:
-dconf dump /org/cinnamon/desktop/keybindings/ >keybindings-backup.dconf
-To later import it (for example) on another computer, do:
-dconf load /org/cinnamon/desktop/keybindings/ <keybindings-backup.dconf

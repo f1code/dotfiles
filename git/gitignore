@@ -1,5 +1,0 @@
-# Do not use this!  Use individual .gitignore files otherwise
-# this will get messed up when sharing the project!!!
-#node_modules
-#npm-debug.log
-#tags

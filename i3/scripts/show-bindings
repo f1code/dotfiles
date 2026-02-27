@@ -1,3 +1,0 @@
-#!/bin/sh
-
-grep '^bind' ~/.config/i3/config|grep -v '^\s*#'|sed 's/^ *//'|less

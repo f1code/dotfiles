@@ -1,9 +1,0 @@
-#!/bin/sh
-# vim:ft=sh
-
-if [[ -n $BLOCK_BUTTON ]] 
-then
-  killall gsimplecal || gsimplecal&
-fi
-date '+%b %d %H:%M'
-
