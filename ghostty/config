@@ -46,3 +46,14 @@
 theme = Catppuccin Frappe
 macos-option-as-alt = true
 confirm-close-surface = false
+
+# This binds Cmd+Shift+O to: 
+# 1. Type 'vi '
+# 2. Paste clipboard
+# 3. Hit Enter
+keybind = super+shift+o=text:vi $(pbpaste)\r
+keybind = global:cmd+backquote=toggle_quick_terminal
+
+
+# Automatically copy to the system clipboard on selection
+copy-on-select = true

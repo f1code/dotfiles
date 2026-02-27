@@ -10,10 +10,30 @@ if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
   fi
 fi
 
-# Source Prezto.
+# Source Prezto. {{{
+
+# Completion cache shenanigans
+ZCOMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
+setopt EXTENDED_GLOB
+
+# Check if the cache file is older than 24 hours (86400 seconds)
+# Or if it doesn't exist at all
+if [[ ! -f "$ZCOMPDUMP" || -n "$ZCOMPDUMP"(#qN.m+1) ]]; then
+  # Rebuild it today
+  rm -f "$ZCOMPDUMP"
+else
+  # Use the fast cache
+  zstyle ':prezto:module:completion' unsafe 'yes' 
+fi
+# after installing something run this to redo the completions
+alias rebuild-completions='rm -f ~/.zcompdump*; exec zsh'
+# This forces Prezto to use the completion cache correctly
+zstyle ':prezto:module:completion' cache-path "${ZDOTDIR:-$HOME}/.zcompdump"
 if [[ -o interactive ]] && [[ -z "$CURSOR_AGENT" ]] && [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# }}}
 
 
 path=(
@@ -23,12 +43,6 @@ path=(
   # unversioned python commands
   /opt/homebrew/opt/python@3/libexec/bin
 )
-
-# Shell Options {{{
-##################################################
-
-
-# }}}
 
 # Aliases {{{
 ##################################################
@@ -132,10 +146,10 @@ fi
 ##################################################
 if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
   # FZF extensions
+  # brew install fzf fzf-tab
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  autoload bashcompinit && bashcompinit
-  autoload -Uz compinit && compinit
+  [[ -n "$functions[bashcompinit]" ]] || autoload -Uz bashcompinit && bashcompinit
   complete -C '/opt/homebrew/bin/aws_completer' aws
 
   # 1. Autosuggestions
@@ -145,32 +159,43 @@ if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
   # This accepts just the next word of the ghost text
   bindkey '\e ' forward-word
 
-  # 2. Autocomplete
-  # --- zsh-autocomplete tuning ---
-  # Add a slight 100ms delay so the menu doesn't flash wildly while you type fast
-  zstyle ':autocomplete:*' delay 0.1
-  
-  # Limit the dropdown menu height (the default can take up half your screen)
-  zstyle ':autocomplete:*' list-lines 10
+  # 2. FZF Tab (Replaces zsh-autocomplete)
+  source "/opt/homebrew/opt/fzf-tab/share/fzf-tab/fzf-tab.zsh"
 
-  # Let zsh-autosuggestions handle the "ghost text", keep autocomplete to the menu
-  zstyle ':autocomplete:*' insert-unambiguous no
-  source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  # OPTIONAL: Cool preview features
+  # Give it a nice look and show file previews with 'eza' or 'cat'
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+  zstyle ':fzf-tab:*' fzf-command fzf
+  zstyle ':fzf-tab:*' fzf-flags --color=16
 
-  # DISABLE THE "EXPANSION" GROUP
-  # This stops zsh from making you tab through the expanded path of ~ or $VAR
-  zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
-
-  # --- Keybinding fixes (Must go AFTER sourcing autocomplete) ---
-  # Make Up/Down arrows search your history instead of jumping into the menu.
-  # (You will use Tab and Shift-Tab to navigate the dropdown menu instead).
-  bindkey '\e[A' up-line-or-history    # Up Arrow
-  bindkey '\e[B' down-line-or-history  # Down Arrow
-
-  # Force 'Enter' to always run the command you typed. 
-  # (Without this, if a menu item is highlighted, Enter just inserts the word).
-  bindkey '\r' accept-line
-  bindkey '^M' accept-line
+  # # 2. Autocomplete (trying fzf-tab right now instead)
+  # # --- zsh-autocomplete tuning ---
+  # # Add a slight 200ms delay so the menu doesn't flash wildly while you type fast
+  # zstyle ':autocomplete:*' delay 0.2
+  #
+  # # Limit the dropdown menu height (the default can take up half your screen)
+  # zstyle ':autocomplete:*' list-lines 10
+  # # Don't start searching until 2 chars typed
+  # zstyle ':autocomplete:*' min-input 2        
+  #
+  # # Let zsh-autosuggestions handle the "ghost text", keep autocomplete to the menu
+  # zstyle ':autocomplete:*' insert-unambiguous no
+  # source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  #
+  # # DISABLE THE "EXPANSION" GROUP
+  # # This stops zsh from making you tab through the expanded path of ~ or $VAR
+  # zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
+  #
+  # # --- Keybinding fixes (Must go AFTER sourcing autocomplete) ---
+  # # Make Up/Down arrows search your history instead of jumping into the menu.
+  # # (You will use Tab and Shift-Tab to navigate the dropdown menu instead).
+  # bindkey '\e[A' up-line-or-history    # Up Arrow
+  # bindkey '\e[B' down-line-or-history  # Down Arrow
+  #
+  # # Force 'Enter' to always run the command you typed. 
+  # # (Without this, if a menu item is highlighted, Enter just inserts the word).
+  # bindkey '\r' accept-line
+  # bindkey '^M' accept-line
 
   # 3. Syntax highlighting - must be last
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -180,4 +205,4 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.config/dotfiles/zsh/.p10k.zsh.
 [[ ! -f ~/.config/dotfiles/zsh/.p10k.zsh ]] || source ~/.config/dotfiles/zsh/.p10k.zsh
 
-# zprof
+# zprof > /tmp/prof

@@ -19,24 +19,21 @@ zstyle ':prezto:*:*' color 'yes'
 # zstyle ':prezto:load' zmodule 'attr' 'stat'
 
 # Set the Zsh functions to load (man zshcontrib).
-# zstyle ':prezto:load' zfunction 'zargs' 'zmv'
+zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'environment' \
-  'python' \
-  'node' \
   'terminal' \
   'editor' \
   'history' \
   'directory' \
   'spectrum' \
   'utility' \
-  'completion' \
   'git' \
-  'prompt' \
-  'syntax-highlighting'
+  'completion' \
+  'prompt'
 
 #
 # Autosuggestions
@@ -81,13 +78,6 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 # Set the search globbing flags.
 # zstyle ':prezto:module:history-substring-search' globbing-flags ''
-
-#
-# Pacman
-#
-
-# Set the Pacman frontend.
-zstyle ':prezto:module:pacman' frontend 'yay'
 
 #
 # Prompt
