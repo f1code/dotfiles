@@ -52,7 +52,7 @@ confirm-close-surface = false
 # 2. Paste clipboard
 # 3. Hit Enter
 keybind = super+shift+o=text:vi $(pbpaste)\r
-keybind = global:cmd+backquote=toggle_quick_terminal
+keybind = global:ctrl+backquote=toggle_quick_terminal
 
 
 # Automatically copy to the system clipboard on selection

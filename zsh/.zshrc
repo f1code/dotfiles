@@ -4,7 +4,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.dotfiles/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
@@ -144,23 +144,45 @@ fi
 
 # Ghostty - we don't need these on warp {{{
 ##################################################
-if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
+  # List potential plugin locations
+  local -a plugin_dirs=(
+    "/opt/homebrew/share"                  # macOS Homebrew
+    "/usr/share"                           # Linux Native (Ubuntu/Debian/Arch)
+    "/home/linuxbrew/.linuxbrew/share"     # Linux Homebrew
+  )
+
+  # Function to find and source a plugin
+  load_plugin() {
+    local subpath=$1
+    for dir in $plugin_dirs; do
+      if [[ -f "$dir/$subpath" ]]; then
+        source "$dir/$subpath"
+        return 0
+      fi
+    done
+    echo "Could not load plugin $subpath!"
+  }
+
   # FZF extensions
   # brew install fzf fzf-tab
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  [[ -n "$functions[bashcompinit]" ]] || autoload -Uz bashcompinit && bashcompinit
-  complete -C '/opt/homebrew/bin/aws_completer' aws
+  [[ -n "$functions[bashcompinit]" ]] || \
+    autoload -Uz bashcompinit && bashcompinit
+  [[ -f "/opt/homebrew/bin/aws_completer" ]] && \
+    complete -C '/opt/homebrew/bin/aws_completer' aws
 
   # 1. Autosuggestions
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  load_plugin "zsh-autosuggestions/zsh-autosuggestions.zsh"
   # Bind Ctrl+Space to accept the suggestion
   bindkey '^ ' autosuggest-accept
+  bindkey '^@' autosuggest-accept
   # This accepts just the next word of the ghost text
   bindkey '\e ' forward-word
 
   # 2. FZF Tab (Replaces zsh-autocomplete)
-  source "/opt/homebrew/opt/fzf-tab/share/fzf-tab/fzf-tab.zsh"
+  load_plugin "fzf-tab/fzf-tab.zsh"
 
   # OPTIONAL: Cool preview features
   # Give it a nice look and show file previews with 'eza' or 'cat'
@@ -198,11 +220,12 @@ if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
   # bindkey '^M' accept-line
 
   # 3. Syntax highlighting - must be last
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  load_plugin "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+  # To customize prompt, run `p10k configure` or edit ~/.config/dotfiles/zsh/.p10k.zsh.
+  [[ ! -f ~/.config/dotfiles/zsh/.p10k.zsh ]] || source ~/.config/dotfiles/zsh/.p10k.zsh
+
 fi
 # }}}
-
-# To customize prompt, run `p10k configure` or edit ~/.config/dotfiles/zsh/.p10k.zsh.
-[[ ! -f ~/.config/dotfiles/zsh/.p10k.zsh ]] || source ~/.config/dotfiles/zsh/.p10k.zsh
 
 # zprof > /tmp/prof
