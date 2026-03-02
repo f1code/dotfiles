@@ -134,6 +134,7 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   # List potential plugin locations
   local -a plugin_dirs=(
     "/opt/homebrew/share"                  # macOS Homebrew
+    "/opt/homebrew/opt"                    # macOS Homebrew - alternate for fzf
     "/usr/share"                           # Linux Native (Ubuntu/Debian/Arch)
     "/home/linuxbrew/.linuxbrew/share"     # Linux Homebrew
   )
@@ -147,12 +148,17 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
         return 0
       fi
     done
-    echo "Could not load plugin $subpath!"
+    if [[ "$2" != "quiet" ]]; then
+      echo "Could not load plugin $subpath!"
+    fi
+    return 1
   }
 
   # FZF extensions
-  # brew install fzf fzf-tab
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  # On Linux (APT), these are in /usr/share/doc/fzf/examples/
+  # On macOS, these are in /opt/homebrew/opt/fzf/shell/
+  load_plugin "doc/fzf/examples/key-bindings.zsh" quiet || load_plugin "fzf/shell/key-bindings.zsh"
+  load_plugin "doc/fzf/examples/completion.zsh" quiet   || load_plugin "fzf/shell/completion.zsh"
 
   [[ -n "$functions[bashcompinit]" ]] || \
     autoload -Uz bashcompinit && bashcompinit
