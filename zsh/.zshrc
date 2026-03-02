@@ -12,23 +12,8 @@ fi
 
 # Source Prezto. {{{
 
-# Completion cache shenanigans
-ZCOMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
-setopt EXTENDED_GLOB
-
-# Check if the cache file is older than 24 hours (86400 seconds)
-# Or if it doesn't exist at all
-if [[ ! -f "$ZCOMPDUMP" || -n "$ZCOMPDUMP"(#qN.m+1) ]]; then
-  # Rebuild it today
-  rm -f "$ZCOMPDUMP"
-else
-  # Use the fast cache
-  zstyle ':prezto:module:completion' unsafe 'yes' 
-fi
 # after installing something run this to redo the completions
-alias rebuild-completions='rm -f ~/.zcompdump*; exec zsh'
-# This forces Prezto to use the completion cache correctly
-zstyle ':prezto:module:completion' cache-path "${ZDOTDIR:-$HOME}/.zcompdump"
+alias rebuild-completions='rm -f ~/.cache/prezto/zcompdump ~/.cache/prezto/zcompdump.zwc; exec zsh'
 if [[ -o interactive ]] && [[ -z "$CURSOR_AGENT" ]] && [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
@@ -105,6 +90,7 @@ if [[ -d "$HOME/prancer" ]]; then
   # Customize to your needs...
   [[ -s "${HOME}/tools/k8s/aliases.sh" ]] && source "${HOME}/tools/k8s/aliases.sh"
 
+  alias -g BRTICK='$(git branch --show-current | tr / - | cut -d - -f 2-3)'
   alias load-reports="dkce backend python manage.py initialize_reports --override=True"
   alias load-glossaries="dkce backend python manage.py initialize_prancer_glossary --override=True"
   alias shell-plus-sql="dkce backend python manage.py shell_plus --print-sql"
