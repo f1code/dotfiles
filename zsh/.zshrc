@@ -23,10 +23,14 @@ fi
 
 path=(
   $path
+  # local bin
+  $HOME/.local/bin
   # dart pub binaries
   $HOME/.pub-cache/bin
   # unversioned python commands
   /opt/homebrew/opt/python@3/libexec/bin
+  # opencode
+  $HOME/.opencode/bin
 )
 
 # Aliases {{{
@@ -125,9 +129,6 @@ fi
 
 # }}}
 
-. "$HOME/.local/bin/env"
-
-
 # Ghostty - we don't need these on warp {{{
 ##################################################
 if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
@@ -165,51 +166,37 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   [[ -f "/opt/homebrew/bin/aws_completer" ]] && \
     complete -C '/opt/homebrew/bin/aws_completer' aws
 
-  # 1. Autosuggestions
+  # 1. FZF Tab (Replaces zsh-autocomplete)
+  # Clear and Set Styles
+  zstyle -d ':completion:*' format
+  # disable sort when completing `git checkout`
+  zstyle ':completion:*:git-checkout:*' sort false
+  # set descriptions format to enable group support
+  # NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+  zstyle ':completion:*:descriptions' format '[%d]'
+  # set list-colors to enable filename colorizing
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+  zstyle ':completion:*' menu no
+  # preview directory's content with eza when completing cd
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+  # custom fzf flags
+  # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+  zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+  # To make fzf-tab follow FZF_DEFAULT_OPTS.
+  # NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+  zstyle ':fzf-tab:*' use-fzf-default-opts yes
+  # switch group using `<` and `>`
+  zstyle ':fzf-tab:*' switch-group '<' '>'
+  load_plugin "fzf-tab/fzf-tab.zsh"
+
+  # 2. Autosuggestions (must be after fzf-tab)
   load_plugin "zsh-autosuggestions/zsh-autosuggestions.zsh"
   # Bind Ctrl+Space to accept the suggestion
   bindkey '^ ' autosuggest-accept
   bindkey '^@' autosuggest-accept
   # This accepts just the next word of the ghost text
   bindkey '\e ' forward-word
-
-  # 2. FZF Tab (Replaces zsh-autocomplete)
-  load_plugin "fzf-tab/fzf-tab.zsh"
-
-  # OPTIONAL: Cool preview features
-  # Give it a nice look and show file previews with 'eza' or 'cat'
-  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-  zstyle ':fzf-tab:*' fzf-command fzf
-  zstyle ':fzf-tab:*' fzf-flags --color=16
-
-  # # 2. Autocomplete (trying fzf-tab right now instead)
-  # # --- zsh-autocomplete tuning ---
-  # # Add a slight 200ms delay so the menu doesn't flash wildly while you type fast
-  # zstyle ':autocomplete:*' delay 0.2
-  #
-  # # Limit the dropdown menu height (the default can take up half your screen)
-  # zstyle ':autocomplete:*' list-lines 10
-  # # Don't start searching until 2 chars typed
-  # zstyle ':autocomplete:*' min-input 2        
-  #
-  # # Let zsh-autosuggestions handle the "ghost text", keep autocomplete to the menu
-  # zstyle ':autocomplete:*' insert-unambiguous no
-  # source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-  #
-  # # DISABLE THE "EXPANSION" GROUP
-  # # This stops zsh from making you tab through the expanded path of ~ or $VAR
-  # zstyle ':completion:*' completer _complete _complete:-fuzzy _correct _approximate _ignored
-  #
-  # # --- Keybinding fixes (Must go AFTER sourcing autocomplete) ---
-  # # Make Up/Down arrows search your history instead of jumping into the menu.
-  # # (You will use Tab and Shift-Tab to navigate the dropdown menu instead).
-  # bindkey '\e[A' up-line-or-history    # Up Arrow
-  # bindkey '\e[B' down-line-or-history  # Down Arrow
-  #
-  # # Force 'Enter' to always run the command you typed. 
-  # # (Without this, if a menu item is highlighted, Enter just inserts the word).
-  # bindkey '\r' accept-line
-  # bindkey '^M' accept-line
 
   # 3. Syntax highlighting - must be last
   load_plugin "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
