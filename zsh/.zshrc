@@ -37,6 +37,7 @@ path=(
 ##################################################
 
 alias vi=nvim
+alias z=zellij
 alias cp='nocorrect cp'
 alias ln='nocorrect ln'
 alias mv='nocorrect mv'
