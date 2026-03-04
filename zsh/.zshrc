@@ -94,6 +94,8 @@ if [[ -d "$HOME/prancer" ]]; then
   # Customize to your needs...
   [[ -s "${HOME}/tools/k8s/aliases.sh" ]] && source "${HOME}/tools/k8s/aliases.sh"
 
+  hash -d p=~/prancer
+  hash -d d=~/data-hub
   alias -g BRTICK='$(git branch --show-current | tr / - | cut -d - -f 2-3)'
   alias load-reports="dkce backend python manage.py initialize_reports --override=True"
   alias load-glossaries="dkce backend python manage.py initialize_prancer_glossary --override=True"
@@ -126,6 +128,11 @@ if [[ -d "$HOME/prancer" ]]; then
     popd
   }
 fi
+
+# Directory aliases
+
+hash -d dot=~/.config/dotfiles
+hash -d vim=~/.config/nvim
 
 # }}}
 
