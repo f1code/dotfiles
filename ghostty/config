@@ -54,6 +54,13 @@ confirm-close-surface = false
 # 3. Hit Enter
 keybind = super+shift+o=text:vi $(pbpaste)\r
 keybind = global:ctrl+backquote=toggle_quick_terminal
+# if we do those via zellij / tmux we can unbind them here?
+# keybind = super+t=unbind
+# keybind = super+d=unbind
+# keybind = super+shift+d=unbind
+
+# auto-start zellij
+# command = zsh -l -c "exec zellij"
 
 
 # Automatically copy to the system clipboard on selection
