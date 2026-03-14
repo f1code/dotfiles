@@ -4,13 +4,13 @@ A set of reusable slash commands and skills for Claude Code that provide a struc
 
 ## What's Included
 
-### Commands (`/research`, `/plan`, `/implement`)
+### Commands (`/research`, `/phased-plan`, `/implement`)
 
 A three-phase development workflow:
 
 1. **`/research`** — Investigate the codebase to understand a feature area, bug, or ticket. Produces a research document in `docs/research/`. Uses parallel Explore agents or full teams for complex research.
 
-2. **`/plan`** — Create a phased implementation plan with verification gates. Interactive process: gathers context, asks clarifying questions, proposes design options, then writes a detailed plan to `docs/plans/`. Plans include team strategy for parallel execution.
+2. **`/phased-plan`** — Create a phased implementation plan with verification gates. Interactive process: gathers context, asks clarifying questions, proposes design options, then writes a detailed plan to `docs/phased-plans/`. Plans include team strategy for parallel execution.
 
 3. **`/implement`** — Execute an approved plan phase-by-phase. Supports solo execution for simple plans or team execution with parallel agents for complex ones. Includes verification gates between phases and checkbox tracking in the plan file.
 
@@ -47,15 +47,15 @@ cp -r skills/build-with-agent-team ~/.claude/skills/
 /research the authentication flow
 
 # Create an implementation plan
-/plan PROJ-123
-/plan docs/research/2025-03-01-auth-flow.md
+/phased-plan PROJ-123
+/phased-plan docs/research/2025-03-01-auth-flow.md
 
 # Implement an approved plan
-/implement docs/plans/2025-03-01-auth-flow.md
-/implement docs/plans/2025-03-01-auth-flow.md phase 3  # Resume from phase 3
+/implement docs/phased-plans/2025-03-01-auth-flow.md
+/implement docs/phased-plans/2025-03-01-auth-flow.md phase 3  # Resume from phase 3
 
 # Build with an agent team
-/build-with-agent-team docs/plans/2025-03-01-auth-flow.md 3
+/build-with-agent-team docs/phased-plans/2025-03-01-auth-flow.md 3
 ```
 
 ## Customization
@@ -63,15 +63,15 @@ cp -r skills/build-with-agent-team ~/.claude/skills/
 These commands are project-agnostic. They reference your project's `CLAUDE.md` for architecture rules, coding conventions, and tech stack details. To get the most out of them:
 
 1. Ensure your project has a `CLAUDE.md` with architecture rules, common mistakes, and code style guidelines
-2. Commands will write docs to `docs/research/` and `docs/plans/` — create these directories in your project
-3. The `/plan` template includes a "Project-Specific Checklists" section — customize it per project
+2. Commands will write docs to `docs/research/` and `docs/phased-plans/` — create these directories in your project
+3. The `/phased-plan` template includes a "Project-Specific Checklists" section — customize it per project
 
 ## How They Work Together
 
 ```
 /research → produces docs/research/YYYY-MM-DD-topic.md
     ↓
-/plan → reads research doc, produces docs/plans/YYYY-MM-DD-feature.md
+/phased-plan → reads research doc, produces docs/phased-plans/YYYY-MM-DD-feature.md
     ↓
 /implement → reads plan, executes phase-by-phase with verification gates
     ↓ (or for complex multi-agent builds)

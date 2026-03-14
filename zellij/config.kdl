@@ -47,6 +47,8 @@ keybinds clear-defaults=true {
         bind "j" { GoToNextTab; }
         bind "k" { GoToPreviousTab; }
         bind "l" { GoToNextTab; }
+        bind "i" { MoveTab "left"; }
+        bind "o" { MoveTab "right"; }
         bind "n" { NewTab; SwitchToMode "normal"; }
         bind "r" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "normal"; }
@@ -70,7 +72,7 @@ keybinds clear-defaults=true {
         bind "j" { Resize "Increase down"; }
         bind "k" { Resize "Increase up"; }
         bind "l" { Resize "Increase right"; }
-        bind "Ctrl n" { SwitchToMode "normal"; }
+        bind "Alt s" { SwitchToMode "normal"; }
     }
     move {
         bind "left" { MovePane "left"; }
@@ -149,16 +151,22 @@ keybinds clear-defaults=true {
         bind "Alt ]" { NextSwapLayout; }
         // bind "Shift Super d" { NewPane "down"; }
         // bind "Super d" { NewPane; }
+        bind "Ctrl Alt p" { 
+          LaunchPlugin "filepicker" {
+            close_on_selection true
+          }; 
+        }
         bind "Shift Super f" { ToggleFloatingPanes; }
         bind "Super g" { SwitchToMode "locked"; }
         bind "Alt h" { MoveFocusOrTab "left"; }
-        bind "Alt i" { MoveTab "left"; }
+        bind "Alt i" { GoToPreviousTab; }
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
-        bind "Alt o" { MoveTab "right"; }
+        bind "Alt o" { GoToNextTab; }
         bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Alt n" { NewTab; }
+        bind "Ctrl Alt n" { NewPane; }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }
@@ -176,7 +184,7 @@ keybinds clear-defaults=true {
         bind "Alt p" { SwitchToMode "pane"; }
     }
     shared_except "locked" "resize" {
-        bind "Ctrl n" { SwitchToMode "resize"; }
+        bind "Alt s" { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
@@ -302,7 +310,7 @@ default_layout "compact-top"
 //   - true (default, enabled)
 //   - false
 // 
-pane_frames false
+pane_frames true
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)

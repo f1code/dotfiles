@@ -65,3 +65,6 @@ keybind = global:ctrl+backquote=toggle_quick_terminal
 
 # Automatically copy to the system clipboard on selection
 copy-on-select = clipboard
+
+# https://ghostty.org/docs/help/terminfo#ssh
+shell-integration-features = ssh-env

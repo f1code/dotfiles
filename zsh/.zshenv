@@ -9,5 +9,5 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
-export VISUAL=vi
-export EDITOR=vi
+export VISUAL=nvim
+export EDITOR=nvim

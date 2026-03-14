@@ -21,18 +21,8 @@ fi
 # }}}
 
 
-path=(
-  $path
-  # local bin
-  $HOME/.local/bin
-  # dart pub binaries
-  $HOME/.pub-cache/bin
-  # unversioned python commands
-  /opt/homebrew/opt/python@3/libexec/bin
-  # opencode
-  $HOME/.opencode/bin
-)
-
+# PATH is set in .zprofile (login shell only) to avoid duplicates in Zellij panes.
+#
 # Aliases {{{
 ##################################################
 
