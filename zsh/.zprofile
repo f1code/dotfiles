@@ -15,6 +15,8 @@ path=(
   $HOME/.pub-cache/bin
   # Go shared installation
   /usr/local/go/bin
+  # User Go bin directory
+  $HOME/go/bin
   # unversioned python commands
   /opt/homebrew/opt/python@3/libexec/bin
   # opencode
