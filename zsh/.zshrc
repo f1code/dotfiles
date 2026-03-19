@@ -94,7 +94,7 @@ if [[ -d "$HOME/prancer" ]]; then
   wipe-db-prancer() {
     # optionally, pass the dump file to use
     # default uses dbs/develop.dmp
-    readonly dumpfile=~/dbs/${1:?develop}.dmp.gz
+    readonly dumpfile=~/prancer/dbs/${1:?develop}.dmp.gz
     echo "Using dump file $dumpfile"
     unsetopt pushdignoredups
     # optionally, pass a prancer version suffix to use as directory to switch to
@@ -103,7 +103,7 @@ if [[ -d "$HOME/prancer" ]]; then
     if [[ "$2" == "." ]]; then
       prancer_dir=.
     else
-      prancer_dir="$HOME/prancer${2:+_$2}"
+      prancer_dir="$HOME/prancer/${2:-develop}"
     fi
     if [ ! -f "$dumpfile" ]; then
       echo "File $dumpfile does not exist!"
