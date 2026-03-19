@@ -169,13 +169,13 @@ keybinds clear-defaults=true {
         bind "Ctrl Alt n" { NewPane; }
     }
     shared_except "locked" "move" {
-        bind "Ctrl h" { SwitchToMode "move"; }
+        bind "Alt m" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Ctrl q" { SwitchToMode "session"; }
+        bind "Alt q" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" "search" {
-        bind "Ctrl s" { SwitchToMode "scroll"; }
+        bind "Alt s" { SwitchToMode "scroll"; }
     }
     shared_except "locked" "tab" {
         bind "Alt t" { SwitchToMode "tab"; }
@@ -184,7 +184,7 @@ keybinds clear-defaults=true {
         bind "Alt p" { SwitchToMode "pane"; }
     }
     shared_except "locked" "resize" {
-        bind "Alt s" { SwitchToMode "resize"; }
+        bind "Alt r" { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
