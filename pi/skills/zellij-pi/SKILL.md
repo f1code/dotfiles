@@ -22,7 +22,7 @@ bash ~/.pi/agent/skills/zellij-pi/launch.sh "implement-plan" "/path/to/project" 
 
 **Run any task:**
 ```bash
-bash ~/.pi/agent/skills/zellij-pi/launch.sh "refactor" "/path/to/project" "Refactor the auth module to use JWT tokens"
+bash ./launch.sh "refactor" "/path/to/project" "Refactor the auth module to use JWT tokens"
 ```
 
 ## Important
