@@ -19,6 +19,7 @@ keybinds clear-defaults=true {
         bind "k" { MoveFocus "up"; }
         bind "l" { MoveFocus "right"; }
         bind "n" { NewPane; SwitchToMode "normal"; }
+        bind "N" { NewPane; SwitchToMode "normal"; }
         bind "p" { SwitchFocus; }
         bind "Ctrl p" { SwitchToMode "normal"; }
         bind "Alt p" { TogglePaneInGroup; }
@@ -158,10 +159,6 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" {
-        bind "Alt left" { MoveFocusOrTab "left"; }
-        bind "Alt down" { MoveFocus "down"; }
-        bind "Alt up" { MoveFocus "up"; }
-        bind "Alt right" { MoveFocusOrTab "right"; }
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt =" { Resize "Increase"; }
@@ -268,7 +265,8 @@ plugins {
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
-    "zellij:link"
+    // "zellij:link"
+    "file:~/.config/zellij/plugins/miserly-link.wasm"
 }
 web_client {
     font "monospace"
