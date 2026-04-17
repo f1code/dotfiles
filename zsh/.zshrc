@@ -10,6 +10,8 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   fi
 fi
 
+command -v brew > /dev/null && eval "$(brew shellenv)"
+
 # Source Prezto. {{{
 
 # after installing something run this to redo the completions
@@ -79,6 +81,8 @@ alias dkcx='docker compose stop'
 
 # FNM (replaces, nvm, install with brew)
 eval "$(fnm env --use-on-cd --log-level quiet)"
+# Rust
+[ -f ~/.cargo/env ] && . ~/.cargo/env
 
 # 4G
 if [[ -d "$HOME/prancer" ]]; then
