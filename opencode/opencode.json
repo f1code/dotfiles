@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "region": "us-east-1",
+        "profile": "default"
+      }
+    }
+  },
+  "instructions": ["~/.cursor/rules/*.mdc"],
+  "tui": {
+    "mouse": false
+  }
+}
