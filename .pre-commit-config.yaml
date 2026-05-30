@@ -1,0 +1,6 @@
+repos:
+  - repo: https://github.com/trufflesecurity/trufflehog
+    rev: v3.95.3
+    hooks:
+      - id: trufflehog
+        name: TruffleHog (secrets scan)
