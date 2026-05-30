@@ -4,11 +4,13 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.dotfiles/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
 fi
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 command -v brew > /dev/null && eval "$(brew shellenv)"
 
@@ -28,6 +30,7 @@ fi
 # Aliases {{{
 ##################################################
 
+alias oc=opencode
 alias vi=nvim
 alias z=zellij
 alias cp='nocorrect cp'
@@ -83,6 +86,7 @@ alias dkcx='docker compose stop'
 eval "$(fnm env --use-on-cd --log-level quiet)"
 # Rust
 [ -f ~/.cargo/env ] && . ~/.cargo/env
+eval "$(zoxide init zsh)"
 
 # 4G
 if [[ -d "$HOME/prancer" ]]; then

@@ -1,0 +1,5 @@
+[global]
+# in fact I prefer explicitly loading from .envrc
+# (use "dotenv" in .envrc)
+# This way it doesn't freak out every time it sees a .env
+# load_dotenv=true
