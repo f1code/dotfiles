@@ -8,8 +8,29 @@
       }
     }
   },
-  "instructions": ["~/.cursor/rules/*.mdc"],
+  "agent": {
+    "explore": {
+      "model": "amazon-bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    },
+    "build": {
+      "model": "amazon-bedrock/us.anthropic.claude-sonnet-4-6"
+    },
+    "plan": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-7"
+    }
+  },
   "tui": {
     "mouse": false
+  },
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "rm *": "ask",
+      "aws *": "ask",
+      "ssh *": "ask",
+      "kubectl *": "ask",
+      "pip install *": "deny"
+    }
   }
 }
