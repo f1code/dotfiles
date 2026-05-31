@@ -1,4 +1,8 @@
 # FNM (replaces nvm, install with brew)
+if [ -d ~/.local/share/fnm ]; then
+  export FNM_PATH=~/.local/share/fnm
+  export PATH=$PATH:$FNM_PATH
+fi
 eval "$(fnm env --use-on-cd --log-level quiet)"
 
 # Rust
