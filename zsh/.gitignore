@@ -2,4 +2,3 @@
 .zsh_sessions
 .zsh_history
 .zcompcache
-env.local
