@@ -1,27 +1,6 @@
 # Plugins - not needed in Warp (it has its own)
 [[ "$TERM_PROGRAM" == "WarpTerminal" ]] && return
 
-# load_plugin: find and source a plugin from common share dirs
-local -a plugin_dirs=(
-  "/opt/homebrew/share"
-  "/opt/homebrew/opt"
-  "/usr/share"
-  "/home/linuxbrew/.linuxbrew/share"
-)
-load_plugin() {
-  local subpath=$1
-  for dir in $plugin_dirs; do
-    if [[ -f "$dir/$subpath" ]]; then
-      source "$dir/$subpath"
-      return 0
-    fi
-  done
-  if [[ "$2" != "quiet" ]]; then
-    echo "Could not load plugin $subpath!"
-  fi
-  return 1
-}
-
 # 1. FZF Tab (replaces zsh-autocomplete)
 zstyle -d ':completion:*' format
 # disable sort when completing `git checkout`
