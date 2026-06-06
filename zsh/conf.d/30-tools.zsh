@@ -8,8 +8,8 @@ eval "$(fnm env --use-on-cd --log-level quiet)"
 # Rust
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 
-# Zoxide (smarter cd)
-eval "$(zoxide init zsh)"
+# Zoxide (smarter cd).  Use "cdi" for interactive jump
+eval "$(zoxide init zsh --cmd cd)"
 
 # SCM Puff [https://github.com/mroth/scmpuff]
 eval "$(scmpuff init -s --aliases=false)"
