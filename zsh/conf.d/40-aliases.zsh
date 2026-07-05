@@ -13,6 +13,7 @@ alias lni="${aliases[ln]:-ln} -i"
 alias mvi="${aliases[mv]:-mv} -i"
 alias rmi="${aliases[rm]:-rm} -i"
 alias rg='rg -S'
+alias kssh='kitten ssh'
 
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza --icons=always --hyperlink'
