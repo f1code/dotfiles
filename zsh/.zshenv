@@ -11,3 +11,4 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 export VISUAL=nvim
 export EDITOR=nvim
+export PI_ASK_USER_DISPLAY_MODE=inline

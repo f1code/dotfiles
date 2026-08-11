@@ -21,6 +21,8 @@ path=(
   /opt/homebrew/opt/python@3/libexec/bin
   # opencode
   $HOME/.opencode/bin
+  # bun
+  $HOME/.bun/bin
 )
 
 # Ensure path arrays do not contain duplicates.

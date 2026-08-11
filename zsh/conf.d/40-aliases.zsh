@@ -16,9 +16,9 @@ alias rg='rg -S'
 alias kssh='kitten ssh'
 
 if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --icons=always --hyperlink'
-  alias ll='eza -l --icons=always --hyperlink'
-  alias la='eza -la --icons=always --hyperlink'
+  alias ls='eza --icons=always --hyperlink=auto'
+  alias ll='eza -l --icons=always --hyperlink=auto'
+  alias la='eza -la --icons=always --hyperlink=auto'
 fi
 
 # Global aliases
