@@ -1,9 +1,11 @@
-# Tool setup — must run before 01-instant-prompt.zsh's eager `direnv
-# export`, which snapshots PATH as direnv's restore baseline. If PATH-
-# mutating tools (brew, fnm) haven't run yet, direnv unload wipes their
-# PATH additions. Keep this file silent: it runs during p10k's
+# PATH-mutating tool setup — must run before 01-instant-prompt.zsh's eager
+# `direnv export`, which snapshots PATH as direnv's restore baseline. If
+# PATH-mutating tools (brew, fnm) haven't run yet, direnv unload wipes
+# their PATH additions. Keep this file silent: it runs during p10k's
 # instant-prompt window, so any stdout/stderr trips p10k's console-output
 # warning.
+#
+# Non-PATH tool setup (zoxide, scmpuff, wt, etc.) belongs in 30-tools.zsh
 
 # Homebrew
 if (( ${+commands[brew]} )); then
@@ -28,12 +30,3 @@ eval "$(fnm env --use-on-cd --log-level quiet)"
 
 # Rust
 [ -f ~/.cargo/env ] && . ~/.cargo/env
-
-# Zoxide (smarter cd). Use "cdi" for interactive jump
-eval "$(zoxide init zsh --cmd cd)"
-
-# SCM Puff [https://github.com/mroth/scmpuff]
-eval "$(scmpuff init -s --aliases=false)"
-alias gs="scmpuff_status"
-
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
