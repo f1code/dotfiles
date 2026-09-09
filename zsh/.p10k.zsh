@@ -28,6 +28,12 @@
   # Zsh >= 5.1 is required.
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
+  # Use vcs_info instead of gitstatusd. gitstatusd's bundled libgit2 (v1.5.4, 2022)
+  # refuses repos declaring extensions.relativeworktrees, which git sets in every repo
+  # where a worktree is added while worktree.useRelativePaths is on. Symptom: no branch
+  # in the prompt. Costs ~3ms per prompt.
+  typeset -g POWERLEVEL9K_DISABLE_GITSTATUS=true
+
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================

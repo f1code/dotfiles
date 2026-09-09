@@ -7,6 +7,11 @@
 #
 # Non-PATH tool setup (zoxide, scmpuff, wt, etc.) belongs in 30-tools.zsh
 
+# For profiling, if needed:
+# zmodload zsh/zprof
+# then at the end:
+# zprof > /tmp/prof
+
 # Homebrew
 if (( ${+commands[brew]} )); then
   eval "$(brew shellenv)"
@@ -30,3 +35,4 @@ eval "$(fnm env --use-on-cd --log-level quiet)"
 
 # Rust
 [ -f ~/.cargo/env ] && . ~/.cargo/env
+
