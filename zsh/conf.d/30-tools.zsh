@@ -3,14 +3,14 @@
 # in 00-path-setup.zsh instead, since they must run before instant-prompt.
 
 # Zoxide (smarter cd). Use "cdi" for interactive jump
-eval "$(zoxide init zsh --cmd cd)"
+cached_eval zoxide zoxide init zsh --cmd cd
 
 # SCM Puff [https://github.com/mroth/scmpuff]
-eval "$(scmpuff init -s --aliases=false)"
+cached_eval scmpuff scmpuff init -s --aliases=false
 alias gs="scmpuff_status"
 
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+cached_eval wt wt config shell init zsh
+emulate zsh -c 'cached_eval direnv direnv hook zsh'
 
 # OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :

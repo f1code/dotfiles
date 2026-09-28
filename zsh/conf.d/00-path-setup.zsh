@@ -13,12 +13,8 @@
 # zprof > /tmp/prof
 
 # Homebrew
-if (( ${+commands[brew]} )); then
-  eval "$(brew shellenv)"
-else
-  test -d /home/linuxbrew/.linuxbrew && \
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+cached_eval brew brew shellenv \
+  || cached_eval brew /home/linuxbrew/.linuxbrew/bin/brew shellenv
 
 # FNM (replaces nvm, install with brew)
 if [ -d ~/.local/share/fnm ]; then

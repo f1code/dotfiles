@@ -1,4 +1,4 @@
 # not needed in Warp
 [[ "$TERM_PROGRAM" == "WarpTerminal" ]] && return
 
-eval "$(starship init zsh)"
+cached_eval starship starship init zsh --print-full-init
