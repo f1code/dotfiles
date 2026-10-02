@@ -1,0 +1,11 @@
+onboarding = false
+[ui]
+agent_panel_sort = "spaces"
+[keys]
+next_agent = "prefix+shift+n"
+previous_agent = "prefix+shift+p"
+cycle_pane_next = ["prefix+tab", "ctrl+alt+]"]
+cycle_pane_previous = ["prefix+shift+tab", "ctrl+alt+["]
+close_pane = ["prefix+x", "ctrl+alt+w"]
+[theme.custom]
+active_row_bg = "#3b4d7a"
