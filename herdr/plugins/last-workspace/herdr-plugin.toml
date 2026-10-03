@@ -1,0 +1,16 @@
+id = "local.last-workspace"
+name = "Last workspace"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Toggle between the two most recently focused workspaces"
+platforms = ["linux", "macos"]
+
+[[events]]
+on = "workspace.focused"
+command = ["sh", "last-workspace.sh", "record"]
+
+[[actions]]
+id = "toggle"
+title = "Focus last workspace"
+contexts = ["workspace"]
+command = ["sh", "last-workspace.sh", "toggle"]

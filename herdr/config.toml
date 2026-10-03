@@ -9,3 +9,9 @@ cycle_pane_previous = ["prefix+shift+tab", "ctrl+alt+["]
 close_pane = ["prefix+x", "ctrl+alt+w"]
 [theme.custom]
 active_row_bg = "#3b4d7a"
+
+[[keys.command]]
+key = "ctrl+alt+o"
+type = "plugin_action"
+command = "local.last-workspace.toggle"
+description = "last workspace"
