@@ -23,5 +23,6 @@ git submodule update --init --recursive
 - `ghostty/` - Ghostty terminal config
 - `karabiner/` - Karabiner-Elements config
 - `zellij/` - Zellij config and layouts
+- `herdr/` - herdr config and plugins
 - `opencode/` - opencode config and plugins
 - `bin/` - helper scripts

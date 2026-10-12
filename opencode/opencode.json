@@ -1,22 +1,38 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "disabled_providers": ["opencode", "opencode-go", "google", "amazon-bedrock"],
   "provider": {
-    "amazon-bedrock": {
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LiteLLM",
       "options": {
-        "region": "us-east-1",
-        "profile": "default"
+        "baseURL": "https://llm.4gclinical.com/v1"
+      },
+      "models": {
+        "claude-opus-5": {
+          "name": "Opus 5"
+        },
+        "claude-sonnet-5": {
+          "name": "Sonnet 5"
+        },
+        "claude-haiku-4-5": {
+          "name": "Haiku 4.5"
+        },
+        "claude-fable-5": {
+          "name": "Fable 5"
+        }
       }
     }
   },
   "agent": {
     "explore": {
-      "model": "amazon-bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+      "model": "litellm/claude-haiku-4-5"
     },
     "build": {
-      "model": "amazon-bedrock/us.anthropic.claude-sonnet-4-6"
+      "model": "litellm/claude-opus-5"
     },
     "plan": {
-      "model": "amazon-bedrock/us.anthropic.claude-opus-4-7"
+      "model": "litellm/claude-opus-5"
     }
   },
   "tui": {
@@ -31,6 +47,15 @@
       "ssh *": "ask",
       "kubectl *": "ask",
       "pip install *": "deny"
+    }
+  },
+  "lsp": {
+    "ty": {
+      "command": ["ty", "server"],
+      "extensions": [".py"]
+    },
+    "pyright": {
+      "disabled": true
     }
   }
 }

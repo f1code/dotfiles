@@ -1,0 +1,107 @@
+{
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "0",
+    "AWS_REGION": "us-east-1",
+    "AWS_PROFILE": "default",
+    "PATH": "/opt/homebrew/bin:/opt/homebrew/sbin:/Users/ngaller@4gclinical.com/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/ngaller@4gclinical.com/.cargo/bin:/Users/ngaller@4gclinical.com/go/bin:/Users/ngaller@4gclinical.com/.bun/bin:/Users/ngaller@4gclinical.com/.orbstack/bin"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "model": "opus",
+  "deniedMcpServers": [
+    {
+      "serverName": "claude.ai Atlassian MCP"
+    }
+  ],
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/ngaller@4gclinical.com/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/rtk-test-only.py"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "4gclinical": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:4GClinical/4G-AI-Plugins.git"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-haiku-4-5": {
+      "effortLevel": "high"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5": {
+      "effortLevel": "high"
+    }
+  },
+  "advisorModel": "opus",
+  "autoMemoryEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
+  "fileCheckpointingEnabled": true,
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true
+}
