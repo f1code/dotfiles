@@ -15,6 +15,8 @@ alias rmi="${aliases[rm]:-rm} -i"
 alias rg='rg -S'
 alias kssh='kitten ssh'
 alias gs="scmpuff_status"
+# Prezto sets noglob; want local globs. Quote remote ones: scp 'host:*.log' .
+unalias scp rsync 2>/dev/null
 
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza --icons=always --hyperlink=auto'
